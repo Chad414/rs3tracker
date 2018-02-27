@@ -8,9 +8,10 @@
 
 import UIKit
 
-class StatsVC: UIViewController {
+class StatsVC: UIViewController, UITableViewDelegate {
     @IBOutlet var statsTableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
+    let activityIndicator = UIActivityIndicatorView()
     
     var user: UserData?
     
@@ -20,20 +21,27 @@ class StatsVC: UIViewController {
         super.viewDidLoad()
         
         //statsTableView.dataSource = tableViewDataSource
+        //statsTableView.delegate = self
         
-        let userDataStore = UserDataStore()
+        startLoading()
         
-        userDataStore.fetchUserData() {
-            (result) in
-            
-            switch result {
-            case let .success(userData):
-                self.user = userData
-            case .failure:
-                print("Failed to Fetch User Data")
-            }
-        }
+        print("Stored User: \(Global.mainUserData.name)")
+    }
+    
+    func startLoading() {
+        activityIndicator.center = self.view.center;
+        activityIndicator.hidesWhenStopped = true;
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray;
+        let transform: CGAffineTransform = CGAffineTransform(scaleX: 3.5, y: 3.5)
+        activityIndicator.transform = transform
+        view.addSubview(activityIndicator);
         
+        activityIndicator.startAnimating();
+        UIApplication.shared.beginIgnoringInteractionEvents();
+    }
+    
+    func stopLoading() {
+        activityIndicator.stopAnimating()
     }
 }
 

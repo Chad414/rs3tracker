@@ -8,14 +8,17 @@
 
 import Foundation
 
-class Global {
+struct Global {
     static var username: String = "ChadTek"
     static var activities: Int = 20
-}
-
-extension Int {
-    mutating func findSkillLevel() {
-        self = 5
-        return
+    static var mainUserData: UserData = UserData()
+    static var updateInProgress: Bool = false {
+        didSet {
+            if updateInProgress {
+                print("--Loading Data--")
+            } else {
+                print("--Finished Loading Data--")
+            }
+        }
     }
 }

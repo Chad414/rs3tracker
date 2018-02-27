@@ -17,6 +17,7 @@ class UserDataStore {
     
     func fetchUserData(completion: @escaping (UserDataResult) -> Void) {
         let url: URL = RunescapeAPI.runemetricsURL
+        Global.updateInProgress = true
         
         URLSession.shared.dataTask(with: url) {
             (data, response, error) in
@@ -36,7 +37,7 @@ class UserDataStore {
             // Serialize JSON Here
             do {
                 let userData = try JSONDecoder().decode(UserData.self, from: data)
-                print("Fetched User: \(userData.name!)")
+                print("Fetched User: \(userData.name), Total Level: \(userData.totalskill)")
                 result = UserDataResult.success(userData)
             } catch let error {
                 print("Error Serializing JSON: \(error)")
@@ -47,6 +48,21 @@ class UserDataStore {
                 completion(result)
             }
         }.resume()
+    }
+    
+    func updateMainUserData() {
+        self.fetchUserData() {
+            (result) in
+            
+            switch result {
+            case let .success(userData):
+                Global.mainUserData = userData
+                Global.updateInProgress = false
+            case .failure:
+                print("Failed to Fetch User Data")
+                Global.updateInProgress = false
+            }
+        }
     }
     
 }
