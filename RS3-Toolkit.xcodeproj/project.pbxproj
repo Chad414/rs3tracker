@@ -8,12 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		63BDBA182044717500A935CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BDBA172044717500A935CE /* AppDelegate.swift */; };
-		63BDBA1A2044717500A935CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BDBA192044717500A935CE /* ViewController.swift */; };
 		63BDBA1D2044717500A935CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63BDBA1B2044717500A935CE /* Main.storyboard */; };
 		63BDBA1F2044717500A935CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63BDBA1E2044717500A935CE /* Assets.xcassets */; };
 		63BDBA222044717500A935CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63BDBA202044717500A935CE /* LaunchScreen.storyboard */; };
 		63BDBA2D2044717600A935CE /* RS3_ToolkitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BDBA2C2044717600A935CE /* RS3_ToolkitTests.swift */; };
 		63BDBA382044717600A935CE /* RS3_ToolkitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BDBA372044717600A935CE /* RS3_ToolkitUITests.swift */; };
+		63BDBA46204474C100A935CE /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BDBA45204474C100A935CE /* Global.swift */; };
+		63BDBA482044763D00A935CE /* StatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BDBA472044763D00A935CE /* StatsVC.swift */; };
+		63BDBA4B204479DA00A935CE /* RunescapeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BDBA4A204479DA00A935CE /* RunescapeAPI.swift */; };
+		63BDBA4E2044D2D100A935CE /* StatsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BDBA4D2044D2D100A935CE /* StatsTableViewDataSource.swift */; };
+		63BDBA502044E6ED00A935CE /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BDBA4F2044E6ED00A935CE /* UserData.swift */; };
+		63BDBA522044E8FF00A935CE /* UserDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BDBA512044E8FF00A935CE /* UserDataStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +41,6 @@
 /* Begin PBXFileReference section */
 		63BDBA142044717500A935CE /* RS3-Toolkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RS3-Toolkit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63BDBA172044717500A935CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		63BDBA192044717500A935CE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		63BDBA1C2044717500A935CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		63BDBA1E2044717500A935CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63BDBA212044717500A935CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +51,12 @@
 		63BDBA332044717600A935CE /* RS3-ToolkitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RS3-ToolkitUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63BDBA372044717600A935CE /* RS3_ToolkitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RS3_ToolkitUITests.swift; sourceTree = "<group>"; };
 		63BDBA392044717600A935CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63BDBA45204474C100A935CE /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		63BDBA472044763D00A935CE /* StatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsVC.swift; sourceTree = "<group>"; };
+		63BDBA4A204479DA00A935CE /* RunescapeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunescapeAPI.swift; sourceTree = "<group>"; };
+		63BDBA4D2044D2D100A935CE /* StatsTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableViewDataSource.swift; sourceTree = "<group>"; };
+		63BDBA4F2044E6ED00A935CE /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		63BDBA512044E8FF00A935CE /* UserDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +107,10 @@
 		63BDBA162044717500A935CE /* RS3-Toolkit */ = {
 			isa = PBXGroup;
 			children = (
+				63BDBA492044765300A935CE /* ViewControllers */,
+				63BDBA4C2044CFF800A935CE /* Data */,
 				63BDBA172044717500A935CE /* AppDelegate.swift */,
-				63BDBA192044717500A935CE /* ViewController.swift */,
+				63BDBA45204474C100A935CE /* Global.swift */,
 				63BDBA1B2044717500A935CE /* Main.storyboard */,
 				63BDBA1E2044717500A935CE /* Assets.xcassets */,
 				63BDBA202044717500A935CE /* LaunchScreen.storyboard */,
@@ -123,6 +135,25 @@
 				63BDBA392044717600A935CE /* Info.plist */,
 			);
 			path = "RS3-ToolkitUITests";
+			sourceTree = "<group>";
+		};
+		63BDBA492044765300A935CE /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				63BDBA472044763D00A935CE /* StatsVC.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		63BDBA4C2044CFF800A935CE /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				63BDBA4A204479DA00A935CE /* RunescapeAPI.swift */,
+				63BDBA4D2044D2D100A935CE /* StatsTableViewDataSource.swift */,
+				63BDBA512044E8FF00A935CE /* UserDataStore.swift */,
+				63BDBA4F2044E6ED00A935CE /* UserData.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,8 +290,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63BDBA1A2044717500A935CE /* ViewController.swift in Sources */,
+				63BDBA502044E6ED00A935CE /* UserData.swift in Sources */,
+				63BDBA4E2044D2D100A935CE /* StatsTableViewDataSource.swift in Sources */,
+				63BDBA482044763D00A935CE /* StatsVC.swift in Sources */,
 				63BDBA182044717500A935CE /* AppDelegate.swift in Sources */,
+				63BDBA4B204479DA00A935CE /* RunescapeAPI.swift in Sources */,
+				63BDBA522044E8FF00A935CE /* UserDataStore.swift in Sources */,
+				63BDBA46204474C100A935CE /* Global.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
