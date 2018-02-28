@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		636CA7C92047144F00244432 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636CA7C82047144F00244432 /* StatusCell.swift */; };
 		63BDBA182044717500A935CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BDBA172044717500A935CE /* AppDelegate.swift */; };
 		63BDBA1D2044717500A935CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63BDBA1B2044717500A935CE /* Main.storyboard */; };
 		63BDBA1F2044717500A935CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63BDBA1E2044717500A935CE /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		636CA7C82047144F00244432 /* StatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
 		63BDBA142044717500A935CE /* RS3-Toolkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RS3-Toolkit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63BDBA172044717500A935CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63BDBA1C2044717500A935CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				63BDBA472044763D00A935CE /* StatsVC.swift */,
+				636CA7C82047144F00244432 /* StatusCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				63BDBA4B204479DA00A935CE /* RunescapeAPI.swift in Sources */,
 				63BDBA522044E8FF00A935CE /* UserDataStore.swift in Sources */,
 				63BDBA46204474C100A935CE /* Global.swift in Sources */,
+				636CA7C92047144F00244432 /* StatusCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

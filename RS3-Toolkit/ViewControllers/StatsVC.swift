@@ -41,13 +41,11 @@ class StatsVC: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //statsTableView.dataSource = tableViewDataSource
-        //statsTableView.delegate = self
+        statsTableView.dataSource = tableViewDataSource
+        statsTableView.delegate = self
         
         updateUserData()
         updating = true
-        
-        print("Stored User: \(StatsVC.user.name)")
     }
     
     func updateUserData() {
@@ -63,9 +61,23 @@ class StatsVC: UIViewController, UITableViewDelegate {
                 self.updating = false
             }
         }
+        store.fetchUserAvatar() {
+            (result) in
+            
+            switch result {
+            case let .success(avatar):
+                self.profileImage.image = avatar
+            case .failure:
+                print("Failed to Fetch User Avatar")
+            }
+        }
     }
     
     func updateViewData() {
+        tableViewDataSource.userData = localUser
+        statsTableView.reloadData()
+
+        print("Attack Level: \(localUser.getSkill(id: 0)["level"]!)")
         usernameLabel.text = localUser.name
         xpLabel.text = "Total XP: \(localUser.totalxp.convertToString())"
         skillLabel.text = "Total Level: \(localUser.totalskill)"
@@ -86,20 +98,6 @@ class StatsVC: UIViewController, UITableViewDelegate {
     
     func stopLoading() {
         activityIndicator.stopAnimating()
-    }
-}
-
-class StatCell: UITableViewCell {
-    
-    func updateSkill(skill: Int, exp: Int) {
-        
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
+        UIApplication.shared.endIgnoringInteractionEvents()
     }
 }

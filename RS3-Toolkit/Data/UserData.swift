@@ -10,20 +10,20 @@ import Foundation
 
 class UserData: Codable {
     
-    var magic: Int
-    var questsstarted: Int
-    var totalskill: Int
-    var questscomplete: Int
-    var questsnotstarted: Int
-    var totalxp: Int
-    var ranged: Int
-    var activities: [[String:String]]?
-    var skillvalues: [[String:Int]]?
-    var name: String
-    var rank: String
-    var melee: Int
-    var combatlevel: Int
-    var loggedIn: String
+    let magic: Int
+    let questsstarted: Int
+    let totalskill: Int
+    let questscomplete: Int
+    let questsnotstarted: Int
+    let totalxp: Int
+    let ranged: Int
+    let activities: [[String:String]]
+    let skillvalues: [[String:Int]]
+    let name: String
+    let rank: String
+    let melee: Int
+    let combatlevel: Int
+    let loggedIn: String
     
     init() {
         self.magic = -1
@@ -33,13 +33,23 @@ class UserData: Codable {
         self.questsnotstarted = -1
         self.totalxp = -1
         self.ranged = -1
-        self.activities = nil
-        self.skillvalues = nil
+        self.activities = []
+        self.skillvalues = []
         self.name = "null"
         self.rank = "null"
         self.melee = -1
         self.combatlevel = -1
         self.loggedIn = "null"
+    }
+    
+    func getSkill(id: Int) -> [String:Int] {
+        for i in skillvalues {
+            if i["id"] == id {
+                return i
+            }
+        }
+        print("Skill not found")
+        return ["level" : -1, "xp" : -1, "rank" : -1, "id" : -1]
     }
     
 }

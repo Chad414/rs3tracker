@@ -10,12 +10,24 @@ import UIKit
 
 class StatsTableViewDataSource: NSObject, UITableViewDataSource {
     
+    var userData: UserData!
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20 // Get count from array of data
+        guard userData != nil else {
+            return 20
+        }
+        
+        return userData.skillvalues.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "statCell", for: indexPath) as! StatCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "statusCell", for: indexPath) as! StatusCell
+        
+        guard userData != nil else {
+            return cell
+        }
+        
+        cell.textLabel?.text = "\(Global.getSkillString(id: indexPath.row)) - \(userData.getSkill(id: indexPath.row)["level"]!)"
         
         return cell
     }

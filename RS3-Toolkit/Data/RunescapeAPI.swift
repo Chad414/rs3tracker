@@ -11,7 +11,7 @@ import Foundation
 enum Method: String {
     case hiscore = "https://services.runescape.com/m=hiscore/index_lite.ws"
     case runemetrics = "https://apps.runescape.com/runemetrics/profile/profile"
-    case avatar = "http://secure.runescape.com/m=avatar-rs/"
+    case avatar = "https://secure.runescape.com/m=avatar-rs/"
 }
 
 struct RunescapeAPI {
