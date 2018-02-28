@@ -11,6 +11,7 @@ import Foundation
 enum Method: String {
     case hiscore = "https://services.runescape.com/m=hiscore/index_lite.ws"
     case runemetrics = "https://apps.runescape.com/runemetrics/profile/profile"
+    case avatar = "http://secure.runescape.com/m=avatar-rs/"
 }
 
 struct RunescapeAPI {
@@ -25,6 +26,8 @@ struct RunescapeAPI {
             case .runemetrics:
                 urlString += "?user=" + parameters!["username"]!
                 urlString += "&activities=" + parameters!["activities"]!
+            case .avatar:
+                urlString += parameters!["username"]! + "/chat.png"
             }
         }
         
@@ -39,6 +42,10 @@ struct RunescapeAPI {
     
     static var runemetricsURL: URL {
         return runescapeURL(method: .runemetrics, parameters: ["username" : Global.username, "activities" : String(Global.activities)])
+    }
+    
+    static var avatarURL: URL {
+        return runescapeURL(method: .avatar, parameters: ["username" : Global.username])
     }
     
 }

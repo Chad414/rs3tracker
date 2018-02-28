@@ -50,19 +50,4 @@ class UserDataStore {
         }.resume()
     }
     
-    func updateMainUserData() {
-        self.fetchUserData() {
-            (result) in
-            
-            switch result {
-            case let .success(userData):
-                Global.mainUserData = userData
-                Global.updateInProgress = false
-            case .failure:
-                print("Failed to Fetch User Data")
-                Global.updateInProgress = false
-            }
-        }
-    }
-    
 }
