@@ -9,8 +9,12 @@
 import UIKit
 
 class StatusCell: UITableViewCell {
-    func updateSkill(skill: Int, exp: Int) {
-        
+    @IBOutlet var skillIcon: UIImageView!
+    @IBOutlet var skillLabel: UILabel!
+    
+    func updateCell() {
+        contentView.addSubview(skillIcon)
+        contentView.addSubview(skillLabel)
     }
     
     override func prepareForReuse() {

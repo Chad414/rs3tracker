@@ -27,7 +27,10 @@ class StatsTableViewDataSource: NSObject, UITableViewDataSource {
             return cell
         }
         
-        cell.textLabel?.text = "\(Global.getSkillString(id: indexPath.row)) - \(userData.getSkill(id: indexPath.row)["level"]!)"
+        cell.skillLabel.text = "\(Global.getSkillString(id: indexPath.row)) - \(userData.getSkill(id: indexPath.row)["level"]!)"
+        cell.skillIcon.image = UIImage(named: "Skill\(indexPath.row).png")
+        
+        cell.updateCell()
         
         return cell
     }
