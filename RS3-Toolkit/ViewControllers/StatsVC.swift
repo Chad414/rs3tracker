@@ -63,7 +63,7 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
                 print("Failed to Fetch User Data")
                 self.updating = false
                 // Show Alert Here
-                let errorMessage = "The user doesn't exist or has been offline for a while."
+                let errorMessage = "The user either doesn't exist, has been offline for a while, or has privacy enabled."
                 let ac = UIAlertController(title: "User Not Found", message: errorMessage, preferredStyle: .alert)
                 let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
                 ac.addAction(closeAction)
@@ -127,5 +127,23 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         tapGesture.isEnabled = true
         return true
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let skillID  = indexPath.row
+        let skill = localUser.getSkill(id: skillID)
+        let xp = String(skill["xp"]!).dropLast()
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        let xpInt = Int(xp)!
+        let formattedXP = numberFormatter.string(from: NSNumber(value:xpInt))!
+        
+        let skillInfo = "Level: \(skill["level"]!)\nXP: \(formattedXP)"
+        
+        let ac = UIAlertController(title: "\(Global.getSkillString(id: indexPath.row))", message: skillInfo, preferredStyle: .alert)
+        let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+        ac.addAction(closeAction)
+        self.present(ac, animated: true, completion: nil)
     }
 }

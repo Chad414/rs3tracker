@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -77,15 +78,24 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Qh5-y2-oD7">
+                                                    <rect key="frame" x="252" y="20" width="100" height="2"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="6Pe-Sr-koL"/>
+                                                    </constraints>
+                                                </progressView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="rrr-Ia-ZV7" firstAttribute="centerY" secondItem="knz-rK-KUI" secondAttribute="centerY" id="5lt-ZS-m0k"/>
                                                 <constraint firstItem="rrr-Ia-ZV7" firstAttribute="leading" secondItem="CS8-2F-hAf" secondAttribute="trailing" constant="8" id="7tF-0s-OMo"/>
                                                 <constraint firstItem="CS8-2F-hAf" firstAttribute="centerY" secondItem="knz-rK-KUI" secondAttribute="centerY" id="8Af-2h-KeD"/>
+                                                <constraint firstItem="Qh5-y2-oD7" firstAttribute="centerY" secondItem="knz-rK-KUI" secondAttribute="centerY" id="ON2-K0-le0"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Qh5-y2-oD7" secondAttribute="trailing" constant="8" id="TB2-dA-5QG"/>
                                                 <constraint firstItem="CS8-2F-hAf" firstAttribute="leading" secondItem="knz-rK-KUI" secondAttribute="leading" constant="8" id="fpc-VM-nT8"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="progressView" destination="Qh5-y2-oD7" id="4xi-hr-4e9"/>
                                             <outlet property="skillIcon" destination="CS8-2F-hAf" id="iix-bR-2eC"/>
                                             <outlet property="skillLabel" destination="rrr-Ia-ZV7" id="Ivw-ml-5C0"/>
                                         </connections>

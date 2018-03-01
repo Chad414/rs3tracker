@@ -11,10 +11,12 @@ import UIKit
 class StatusCell: UITableViewCell {
     @IBOutlet var skillIcon: UIImageView!
     @IBOutlet var skillLabel: UILabel!
+    @IBOutlet var progressView: UIProgressView!
     
     func updateCell() {
         contentView.addSubview(skillIcon)
         contentView.addSubview(skillLabel)
+        contentView.addSubview(progressView)
     }
     
     override func prepareForReuse() {
