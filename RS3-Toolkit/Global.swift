@@ -9,6 +9,7 @@
 import Foundation
 
 struct Global {
+    static var storedUsername: String = "Dark_Poet"
     static var username: String = "ChadTek"
     static var activities: Int = 20
     static var updateInProgress: Bool = false {

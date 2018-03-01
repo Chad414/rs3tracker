@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StatsVC: UIViewController, UITableViewDelegate {
+class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     @IBOutlet var statsTableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var profileImage: UIImageView!
@@ -17,6 +17,7 @@ class StatsVC: UIViewController, UITableViewDelegate {
     @IBOutlet var xpLabel: UILabel!
     @IBOutlet var skillLabel: UILabel!
     @IBOutlet var combatLabel: UILabel!
+    @IBOutlet var tapGesture: UITapGestureRecognizer!
     
     let activityIndicator = UIActivityIndicatorView()
     var updating: Bool = false {
@@ -43,6 +44,8 @@ class StatsVC: UIViewController, UITableViewDelegate {
         
         statsTableView.dataSource = tableViewDataSource
         statsTableView.delegate = self
+        searchBar.delegate = self
+        tapGesture.isEnabled = false
         
         updateUserData()
         updating = true
@@ -59,6 +62,12 @@ class StatsVC: UIViewController, UITableViewDelegate {
             case .failure:
                 print("Failed to Fetch User Data")
                 self.updating = false
+                // Show Alert Here
+                let errorMessage = "The user doesn't exist or has been offline for a while."
+                let ac = UIAlertController(title: "User Not Found", message: errorMessage, preferredStyle: .alert)
+                let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+                ac.addAction(closeAction)
+                self.present(ac, animated: true, completion: nil)
             }
         }
         store.fetchUserAvatar() {
@@ -76,7 +85,7 @@ class StatsVC: UIViewController, UITableViewDelegate {
     func updateViewData() {
         tableViewDataSource.userData = localUser
         statsTableView.reloadData()
-
+        
         print("Attack Level: \(localUser.getSkill(id: 0)["level"]!)")
         usernameLabel.text = localUser.name
         xpLabel.text = "Total XP: \(localUser.totalxp.convertToString())"
@@ -99,5 +108,24 @@ class StatsVC: UIViewController, UITableViewDelegate {
     func stopLoading() {
         activityIndicator.stopAnimating()
         UIApplication.shared.endIgnoringInteractionEvents()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("Search Button Clicked!")
+        Global.username = (searchBar.text?.replacingOccurrences(of: " ", with: "_")) ?? Global.username
+        searchBar.resignFirstResponder()
+        tapGesture.isEnabled = false
+        updateUserData()
+        updating = true
+    }
+    
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        searchBar.resignFirstResponder()
+        tapGesture.isEnabled = false
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        tapGesture.isEnabled = true
+        return true
     }
 }

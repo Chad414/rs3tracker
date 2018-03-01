@@ -94,6 +94,7 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="34Q-4g-Ysx" firstAttribute="top" secondItem="fNy-4X-9hg" secondAttribute="bottom" constant="16" id="7X0-vz-IpI"/>
                             <constraint firstItem="bxp-ol-OuH" firstAttribute="leading" secondItem="fNy-4X-9hg" secondAttribute="trailing" constant="8" id="8C3-gv-rfO"/>
@@ -115,6 +116,9 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="34Q-4g-Ysx" secondAttribute="trailing" id="vKl-hR-Jdo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="CF5-jd-r3j" appends="YES" id="ZWi-Wx-IFQ"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="combatLabel" destination="bxp-ol-OuH" id="pDj-9r-XKc"/>
@@ -122,11 +126,17 @@
                         <outlet property="searchBar" destination="76G-w4-UlO" id="UUt-oI-h6Q"/>
                         <outlet property="skillLabel" destination="aTd-jf-Ua5" id="14a-is-O53"/>
                         <outlet property="statsTableView" destination="34Q-4g-Ysx" id="vg4-x8-xks"/>
+                        <outlet property="tapGesture" destination="CF5-jd-r3j" id="mSg-SU-TrV"/>
                         <outlet property="usernameLabel" destination="QO5-RZ-dI1" id="Rih-cP-adS"/>
                         <outlet property="xpLabel" destination="OMZ-Ss-n6N" id="upz-hS-aEH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="CF5-jd-r3j">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="BYZ-38-t0r" id="xvJ-hH-d6i"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="31.773399014778327"/>
         </scene>
