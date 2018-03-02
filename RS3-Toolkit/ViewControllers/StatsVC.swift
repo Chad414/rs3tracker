@@ -90,7 +90,7 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         usernameLabel.text = localUser.name
         xpLabel.text = "Total XP: \(localUser.totalxp.convertToString())"
         skillLabel.text = "Total Level: \(localUser.totalskill)"
-        combatLabel.text = "Combat Level: \(localUser.combatlevel)"
+        combatLabel.text = "Rank: \(localUser.rank)"
     }
     
     func startLoading() {
@@ -133,13 +133,12 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let skillID  = indexPath.row
         let skill = localUser.getSkill(id: skillID)
-        let xp = String(skill["xp"]!).dropLast()
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        var xp = String(skill["xp"]!).dropLast()
+        if xp == "" { xp = "0" }
         let xpInt = Int(xp)!
-        let formattedXP = numberFormatter.string(from: NSNumber(value:xpInt))!
+        let formattedXP = xpInt.convertToString()
         
-        let skillInfo = "Level: \(skill["level"]!)\nXP: \(formattedXP)"
+        let skillInfo = "Level: \(skill["level"]!)\nXP: \(formattedXP)\nXP To Level Up:"
         
         let ac = UIAlertController(title: "\(Global.getSkillString(id: indexPath.row))", message: skillInfo, preferredStyle: .alert)
         let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
