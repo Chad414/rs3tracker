@@ -133,12 +133,22 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let skillID  = indexPath.row
         let skill = localUser.getSkill(id: skillID)
+        let level = skill["level"]!
         var xp = String(skill["xp"]!).dropLast()
         if xp == "" { xp = "0" }
         let xpInt = Int(xp)!
         let formattedXP = xpInt.convertToString()
+        let xpToLevel: String
         
-        let skillInfo = "Level: \(skill["level"]!)\nXP: \(formattedXP)\nXP To Level Up:"
+        if skillID == 25 || skillID == 18 {
+            xpToLevel = (LevelTables.getXPForLevel(level + 1) - xpInt).convertToString()
+        } else if skillID == 26 {
+            xpToLevel = (LevelTables.getXPForLevel(level + 1) - xpInt).convertToString() // Get Invetion XP Here
+        } else {
+            xpToLevel = (LevelTables.getXPForDungLevel(level + 1) - xpInt).convertToString()
+        }
+        
+        let skillInfo = "Level: \(level)\nXP: \(formattedXP)\nXP To Level Up: \(xpToLevel)"
         
         let ac = UIAlertController(title: "\(Global.getSkillString(id: indexPath.row))", message: skillInfo, preferredStyle: .alert)
         let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)

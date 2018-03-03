@@ -1,0 +1,271 @@
+//
+//  LevelTables.swift
+//  RS3-Toolkit
+//
+//  Created by Chad Hamdan on 3/2/18.
+//  Copyright © 2018 Chad Hamdan. All rights reserved.
+//
+
+import Foundation
+
+struct LevelTables {
+    static func getXPForLevel(_ level: Int) -> Int {
+        switch level {
+        case 1:
+            return 0
+        case 2:
+            return 83
+        case 3:
+            return 174
+        case 4:
+            return 276
+        case 5:
+            return 388
+        case 6:
+            return 512
+        case 7:
+            return 650
+        case 8:
+            return 801
+        case 9:
+            return 969
+        case 10:
+            return 1154
+        case 11:
+            return 1358
+        case 12:
+            return 1584
+        case 13:
+            return 1833
+        case 14:
+            return 2107
+        case 15:
+            return 2411
+        case 16:
+            return 2746
+        case 17:
+            return 3115
+        case 18:
+            return 3523
+        case 19:
+            return 3973
+        case 20:
+            return 4470
+        case 21:
+            return 5018
+        case 22:
+            return 5624
+        case 23:
+            return 6291
+        case 24:
+            return 7028
+        case 25:
+            return 7842
+        case 26:
+            return 8740
+        case 27:
+            return 9730
+        case 28:
+            return 10824
+        case 29:
+            return 12031
+        case 30:
+            return 13363
+        case 31:
+            return 14833
+        case 32:
+            return 16456
+        case 33:
+            return 18247
+        case 34:
+            return 20224
+        case 35:
+            return 22406
+        case 36:
+            return 24815
+        case 37:
+            return 27473
+        case 38:
+            return 30408
+        case 39:
+            return 33648
+        case 40:
+            return 37224
+        case 41:
+            return 41171
+        case 42:
+            return 45529
+        case 43:
+            return 50339
+        case 44:
+            return 55649
+        case 45:
+            return 61512
+        case 46:
+            return 67983
+        case 47:
+            return 75127
+        case 48:
+            return 83014
+        case 49:
+            return 91721
+        case 50:
+            return 101333
+        case 51:
+            return 111945
+        case 52:
+            return 123660
+        case 53:
+            return 136594
+        case 54:
+            return 150872
+        case 55:
+            return 166636
+        case 56:
+            return 184040
+        case 57:
+            return 203254
+        case 58:
+            return 224466
+        case 59:
+            return 247886
+        case 60:
+            return 273742
+        case 61:
+            return 302288
+        case 62:
+            return 333804
+        case 63:
+            return 368599
+        case 64:
+            return 407015
+        case 65:
+            return 449428
+        case 66:
+            return 496254
+        case 67:
+            return 547953
+        case 68:
+            return 605032
+        case 69:
+            return 668051
+        case 70:
+            return 737627
+        case 71:
+            return 814445
+        case 72:
+            return 899257
+        case 73:
+            return 992895
+        case 74:
+            return 1096278
+        case 75:
+            return 1210421
+        case 76:
+            return 1336443
+        case 77:
+            return 1475581
+        case 78:
+            return 1629200
+        case 79:
+            return 1798808
+        case 80:
+            return 1986068
+        case 81:
+            return 2192818
+        case 82:
+            return 2421087
+        case 83:
+            return 2673114
+        case 84:
+            return 2951373
+        case 85:
+            return 3258594
+        case 86:
+            return 3597792
+        case 87:
+            return 3972294
+        case 88:
+            return 4385776
+        case 89:
+            return 4842295
+        case 90:
+            return 5346332
+        case 91:
+            return 5902831
+        case 92:
+            return 6517253
+        case 93:
+            return 7195629
+        case 94:
+            return 7944614
+        case 95:
+            return 8771558
+        case 96:
+            return 9684577
+        case 97:
+            return 10692629
+        case 98:
+            return 11805606
+        case 99:
+            return 13034431
+        default:
+            print("Invalid level patameter")
+            return 0
+        }
+    }
+    
+    static func getXPForDungLevel(_ level: Int) -> Int {
+        if level <= 99 {
+            return LevelTables.getXPForLevel(level)
+        }
+        
+        switch level {
+        case 100:
+            return 14391160
+        case 101:
+            return 15889109
+        case 102:
+            return 17542976
+        case 103:
+            return 19368992
+        case 104:
+            return 21385073
+        case 105:
+            return 23611006
+        case 106:
+            return 26068632
+        case 107:
+            return 28782069
+        case 108:
+            return 31777943
+        case 109:
+            return 35085654
+        case 110:
+            return 38737661
+        case 111:
+            return 42769801
+        case 112:
+            return 47221641
+        case 113:
+            return 52136869
+        case 114:
+            return 57563718
+        case 115:
+            return 63555443
+        case 116:
+            return 70170840
+        case 117:
+            return 77474828
+        case 118:
+            return 85539082
+        case 119:
+            return 94442737
+        case 120:
+            return 104273167
+        default:
+            print("Invalid level parameter")
+            return 0
+        }
+    }
+}

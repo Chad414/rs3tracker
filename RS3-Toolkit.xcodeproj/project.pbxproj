@@ -20,6 +20,7 @@
 		63BDBA4E2044D2D100A935CE /* StatsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BDBA4D2044D2D100A935CE /* StatsTableViewDataSource.swift */; };
 		63BDBA502044E6ED00A935CE /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BDBA4F2044E6ED00A935CE /* UserData.swift */; };
 		63BDBA522044E8FF00A935CE /* UserDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BDBA512044E8FF00A935CE /* UserDataStore.swift */; };
+		63D3AEE0204A378D00EBD07B /* LevelTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D3AEDF204A378D00EBD07B /* LevelTables.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		63BDBA4D2044D2D100A935CE /* StatsTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableViewDataSource.swift; sourceTree = "<group>"; };
 		63BDBA4F2044E6ED00A935CE /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		63BDBA512044E8FF00A935CE /* UserDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataStore.swift; sourceTree = "<group>"; };
+		63D3AEDF204A378D00EBD07B /* LevelTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTables.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 				63BDBA4D2044D2D100A935CE /* StatsTableViewDataSource.swift */,
 				63BDBA512044E8FF00A935CE /* UserDataStore.swift */,
 				63BDBA4F2044E6ED00A935CE /* UserData.swift */,
+				63D3AEDF204A378D00EBD07B /* LevelTables.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				63BDBA502044E6ED00A935CE /* UserData.swift in Sources */,
 				63BDBA4E2044D2D100A935CE /* StatsTableViewDataSource.swift in Sources */,
 				63BDBA482044763D00A935CE /* StatsVC.swift in Sources */,
+				63D3AEE0204A378D00EBD07B /* LevelTables.swift in Sources */,
 				63BDBA182044717500A935CE /* AppDelegate.swift in Sources */,
 				63BDBA4B204479DA00A935CE /* RunescapeAPI.swift in Sources */,
 				63BDBA522044E8FF00A935CE /* UserDataStore.swift in Sources */,
