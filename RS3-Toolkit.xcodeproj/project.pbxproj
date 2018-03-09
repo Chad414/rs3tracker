@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		636CA7C92047144F00244432 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636CA7C82047144F00244432 /* StatusCell.swift */; };
+		63AD493C2051D3F5009DC0B3 /* LogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD493B2051D3F5009DC0B3 /* LogVC.swift */; };
+		63AD493E2051D4DD009DC0B3 /* LogTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD493D2051D4DD009DC0B3 /* LogTableViewDataSource.swift */; };
+		63AD49402051D56B009DC0B3 /* LogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD493F2051D56B009DC0B3 /* LogCell.swift */; };
 		63BDBA182044717500A935CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BDBA172044717500A935CE /* AppDelegate.swift */; };
 		63BDBA1D2044717500A935CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63BDBA1B2044717500A935CE /* Main.storyboard */; };
 		63BDBA1F2044717500A935CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63BDBA1E2044717500A935CE /* Assets.xcassets */; };
@@ -42,6 +45,9 @@
 
 /* Begin PBXFileReference section */
 		636CA7C82047144F00244432 /* StatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
+		63AD493B2051D3F5009DC0B3 /* LogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogVC.swift; sourceTree = "<group>"; };
+		63AD493D2051D4DD009DC0B3 /* LogTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTableViewDataSource.swift; sourceTree = "<group>"; };
+		63AD493F2051D56B009DC0B3 /* LogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogCell.swift; sourceTree = "<group>"; };
 		63BDBA142044717500A935CE /* RS3-Toolkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RS3-Toolkit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63BDBA172044717500A935CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63BDBA1C2044717500A935CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -146,6 +152,8 @@
 			children = (
 				63BDBA472044763D00A935CE /* StatsVC.swift */,
 				636CA7C82047144F00244432 /* StatusCell.swift */,
+				63AD493B2051D3F5009DC0B3 /* LogVC.swift */,
+				63AD493F2051D56B009DC0B3 /* LogCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -155,6 +163,7 @@
 			children = (
 				63BDBA4A204479DA00A935CE /* RunescapeAPI.swift */,
 				63BDBA4D2044D2D100A935CE /* StatsTableViewDataSource.swift */,
+				63AD493D2051D4DD009DC0B3 /* LogTableViewDataSource.swift */,
 				63BDBA512044E8FF00A935CE /* UserDataStore.swift */,
 				63BDBA4F2044E6ED00A935CE /* UserData.swift */,
 				63D3AEDF204A378D00EBD07B /* LevelTables.swift */,
@@ -298,11 +307,14 @@
 			files = (
 				63BDBA502044E6ED00A935CE /* UserData.swift in Sources */,
 				63BDBA4E2044D2D100A935CE /* StatsTableViewDataSource.swift in Sources */,
+				63AD49402051D56B009DC0B3 /* LogCell.swift in Sources */,
 				63BDBA482044763D00A935CE /* StatsVC.swift in Sources */,
+				63AD493E2051D4DD009DC0B3 /* LogTableViewDataSource.swift in Sources */,
 				63D3AEE0204A378D00EBD07B /* LevelTables.swift in Sources */,
 				63BDBA182044717500A935CE /* AppDelegate.swift in Sources */,
 				63BDBA4B204479DA00A935CE /* RunescapeAPI.swift in Sources */,
 				63BDBA522044E8FF00A935CE /* UserDataStore.swift in Sources */,
+				63AD493C2051D3F5009DC0B3 /* LogVC.swift in Sources */,
 				63BDBA46204474C100A935CE /* Global.swift in Sources */,
 				636CA7C92047144F00244432 /* StatusCell.swift in Sources */,
 			);
@@ -470,13 +482,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZV5VY53F4X;
 				INFOPLIST_FILE = "RS3-Toolkit/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "chadhamdan.RS3-Stats";
+				PRODUCT_BUNDLE_IDENTIFIER = chadhamdan.RS3Tracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -486,13 +500,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZV5VY53F4X;
 				INFOPLIST_FILE = "RS3-Toolkit/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "chadhamdan.RS3-Stats";
+				PRODUCT_BUNDLE_IDENTIFIER = chadhamdan.RS3Tracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -1,22 +1,23 @@
 //
-//  StatsVC.swift
+//  LogVC.swift
 //  RS3-Toolkit
 //
-//  Created by Chad Hamdan on 2/26/18.
+//  Created by Chad Hamdan on 3/8/18.
 //  Copyright © 2018 Chad Hamdan. All rights reserved.
 //
 
 import UIKit
 
-class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
-    @IBOutlet var statsTableView: UITableView!
+class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
+    @IBOutlet var logTableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var profileImage: UIImageView!
-    // Labels
+    
     @IBOutlet var usernameLabel: UILabel!
-    @IBOutlet var xpLabel: UILabel!
-    @IBOutlet var skillLabel: UILabel!
-    @IBOutlet var combatLabel: UILabel!
+    @IBOutlet var questPointsLabel: UILabel!
+    @IBOutlet var questsCompleteLabel: UILabel!
+    @IBOutlet var questsStartedLabel: UILabel!
+    @IBOutlet var questsNotStartedLabel: UILabel!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     
     let activityIndicator = UIActivityIndicatorView()
@@ -37,15 +38,16 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         return StatsVC.user
     }
     
-    let tableViewDataSource = StatsTableViewDataSource()
+    let tableViewDataSource = LogTableViewDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        statsTableView.dataSource = tableViewDataSource
-        statsTableView.delegate = self
+        logTableView.dataSource = tableViewDataSource
+        logTableView.delegate = self
         searchBar.delegate = self
-        tapGesture.isEnabled = false
+        
+        // Check if data is already stored
         
         updateUserData()
         updating = true
@@ -84,28 +86,9 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     func updateViewData() {
         tableViewDataSource.userData = localUser
-        statsTableView.reloadData()
+        logTableView.reloadData()
         
-        print("Attack Level: \(localUser.getSkill(id: 0)["level"]!)")
         usernameLabel.text = localUser.name
-        
-        //xpLabel.text = "Total XP: \(localUser.totalxp.convertToString())"
-        let totalXPText = NSMutableAttributedString()
-        totalXPText.bold("Total XP: ")
-        totalXPText.normal("\(localUser.totalxp.convertToString())")
-        xpLabel.attributedText = totalXPText
-        
-        //skillLabel.text = "Total Level: \(localUser.totalskill)"
-        let totalLevelText = NSMutableAttributedString()
-        totalLevelText.bold("Total Level: ")
-        totalLevelText.normal("\(localUser.totalskill)")
-        skillLabel.attributedText = totalLevelText
-        
-        //combatLabel.text = "Rank: \(localUser.rank)"
-        let rankText = NSMutableAttributedString()
-        rankText.bold("Rank: ")
-        rankText.normal("\(localUser.rank)")
-        combatLabel.attributedText = rankText
     }
     
     func startLoading() {
@@ -144,45 +127,5 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         return true
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let skillID  = indexPath.row
-        let skill = localUser.getSkill(id: skillID)
-        var level = skill["level"]!
-        var xp = String(skill["xp"]!).dropLast()
-        if xp == "" { xp = "0" }
-        let xpInt = Int(xp)!
-        let formattedXP = xpInt.convertToString()
-        let xpToLevel: String
-        
-        if level == 99 || level == 120 {
-            // Level is likely higher than 99 and needs to be calculated
-            if skillID == 26 {
-                level = LevelTables.getEliteLevelForXP(xpInt)
-            } else if skillID != 18 && skillID != 24 {
-                level = LevelTables.getLevelForXP(xpInt)
-            }
-        }
-        
-        if skillID == 26 {
-            xpToLevel = (LevelTables.getXPForEliteLevel(level + 1) - xpInt).convertToString() // Get Invetion XP
-        } else {
-            xpToLevel = (LevelTables.getXPForLevel(level + 1) - xpInt).convertToString()
-        }
-        
-        var levelString = String(level)
-        
-        if level > 99 {
-            if skillID != 18 && skillID != 24 {
-                levelString = "\(skill["level"]!)" + "(\(levelString))"
-            }
-        }
-        
-        let skillInfo = "Level: \(levelString)\nXP: \(formattedXP)\nXP To Level Up: \(xpToLevel)"
-        
-        let ac = UIAlertController(title: "\(Global.getSkillString(id: indexPath.row))", message: skillInfo, preferredStyle: .alert)
-        let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-        ac.addAction(closeAction)
-        self.present(ac, animated: true, completion: nil)
-    }
+    
 }

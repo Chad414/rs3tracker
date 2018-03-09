@@ -27,9 +27,46 @@ class StatsTableViewDataSource: NSObject, UITableViewDataSource {
             return cell
         }
         let skillID = indexPath.row
+        let skill = userData.getSkill(id: skillID)
         
-        cell.skillLabel.text = "\(Global.getSkillString(id: skillID)) - \(userData.getSkill(id: skillID)["level"]!)"
+        var xp = String(skill["xp"]!).dropLast()
+        if xp == "" { xp = "0" }
+        let xpInt = Int(xp)!
+        
+        let level = skill["level"]!
+        
+        //print("Skill: \(skillID)")
+        
+        var xpTowardNextLevel: Float
+        var xpDifference: Float
+        
+        if skillID == 26 {
+            xpTowardNextLevel = Float(xpInt - LevelTables.getXPForEliteLevel(level))
+            xpDifference = Float(LevelTables.getXPForEliteLevel(level + 1)) - Float(LevelTables.getXPForEliteLevel(level))
+        } else {
+            xpTowardNextLevel = Float(xpInt - LevelTables.getXPForLevel(level))
+            xpDifference = Float(LevelTables.getXPForLevel(level + 1)) - Float(LevelTables.getXPForLevel(level))
+        }
+        //print("xpToward Next Level \(xpTowardNextLevel)")
+        //print("xpDifference: \(xpDifference)")
+        
+        let progress: Float
+        
+        if level == 99 || level == 120 {
+            progress = 1.0
+        } else {
+            progress = xpTowardNextLevel / xpDifference
+        }
+        
+        //print("Progress: \(progress)")
+        
+        let skillText = NSMutableAttributedString()
+        skillText.bold("\(Global.getSkillString(id: skillID)): ")
+        skillText.normal("\(level)")
+        cell.skillLabel.attributedText = skillText
+
         cell.skillIcon.image = UIImage(named: "Skill\(skillID).png")
+        cell.progressView.progress = progress
         
         cell.updateCell()
         

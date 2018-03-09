@@ -12,17 +12,17 @@ class UserData: Codable {
     
     let magic: Int
     let questsstarted: Int
-    let totalskill: Int
-    let questscomplete: Int
+    let totalskill: Int // Stats
+    let questscomplete: Int // Log
     let questsnotstarted: Int
-    let totalxp: Int
+    let totalxp: Int // Stats
     let ranged: Int
-    let activities: [[String:String]]
-    let skillvalues: [[String:Int]]
+    let activities: [[String:String]] // Log
+    let skillvalues: [[String:Int]] // Stats
     let name: String
-    let rank: String
+    let rank: String // Stats
     let melee: Int
-    let combatlevel: Int
+    let combatlevel: Int // Combat Level
     let loggedIn: String
     
     init() {
