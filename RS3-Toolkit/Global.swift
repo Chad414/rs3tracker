@@ -22,6 +22,8 @@ struct Global {
             }
         }
     }
+    static var cachedUserData: UserData?
+    static var cachedUserAvatar: UIImage?
     
     static func getSkillString(id: Int) -> String {
         switch id {
@@ -103,8 +105,9 @@ extension NSMutableAttributedString {
     }
     
     @discardableResult func normal(_ text: String) -> NSMutableAttributedString {
-        let normal = NSAttributedString(string: text)
-        append(normal)
+        let attrs: [NSAttributedStringKey: Any] = [.font: UIFont.systemFont(ofSize: 17.0)]
+        let boldString = NSMutableAttributedString(string:text, attributes: attrs)
+        append(boldString)
         
         return self
     }

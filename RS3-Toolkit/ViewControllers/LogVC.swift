@@ -33,7 +33,11 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     }
     
     var store = UserDataStore()
-    static var user: UserData = UserData()
+    static var user: UserData = UserData() {
+        didSet {
+            Global.cachedUserData = LogVC.user
+        }
+    }
     var localUser: UserData {
         return StatsVC.user
     }
@@ -46,11 +50,24 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         logTableView.dataSource = tableViewDataSource
         logTableView.delegate = self
         searchBar.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        // Check if data is already stored
+        if Global.cachedUserData != nil {
+            LogVC.user = Global.cachedUserData!
+            updateViewData()
+        } else {
+            updateUserData()
+            updating = true
+        }
         
-        updateUserData()
-        updating = true
+        if Global.cachedUserAvatar != nil {
+            profileImage.image = Global.cachedUserAvatar!
+        } else {
+            updateUserAvatar()
+        }
     }
     
     func updateUserData() {
@@ -72,12 +89,16 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
                 self.present(ac, animated: true, completion: nil)
             }
         }
+    }
+    
+    func updateUserAvatar() {
         store.fetchUserAvatar() {
             (result) in
             
             switch result {
             case let .success(avatar):
                 self.profileImage.image = avatar
+                Global.cachedUserAvatar = avatar
             case .failure:
                 print("Failed to Fetch User Avatar")
             }
@@ -89,6 +110,10 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         logTableView.reloadData()
         
         usernameLabel.text = localUser.name
+        questPointsLabel.text = "Quest Points: \(155)"
+        questsCompleteLabel.text = "\(localUser.questscomplete)"
+        questsStartedLabel.text = "\(localUser.questsstarted)"
+        questsNotStartedLabel.text = "\(localUser.questsnotstarted)"
     }
     
     func startLoading() {
@@ -111,9 +136,11 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("Search Button Clicked!")
         Global.username = (searchBar.text?.replacingOccurrences(of: " ", with: "_")) ?? Global.username
+        searchBar.text = ""
         searchBar.resignFirstResponder()
         tapGesture.isEnabled = false
         updateUserData()
+        updateUserAvatar()
         updating = true
     }
     
@@ -126,6 +153,5 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         tapGesture.isEnabled = true
         return true
     }
-    
     
 }

@@ -32,7 +32,11 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     }
     
     var store = UserDataStore()
-    static var user: UserData = UserData()
+    static var user: UserData = UserData() {
+        didSet {
+            Global.cachedUserData = StatsVC.user
+        }
+    }
     var localUser: UserData {
         return StatsVC.user
     }
@@ -46,9 +50,24 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         statsTableView.delegate = self
         searchBar.delegate = self
         tapGesture.isEnabled = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        updateUserData()
-        updating = true
+        if Global.cachedUserData != nil {
+            LogVC.user = Global.cachedUserData!
+            updateViewData()
+        } else {
+            updateUserData()
+            updating = true
+        }
+        
+        if Global.cachedUserAvatar != nil {
+            profileImage.image = Global.cachedUserAvatar!
+        } else {
+            updateUserAvatar()
+        }
     }
     
     func updateUserData() {
@@ -70,12 +89,16 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
                 self.present(ac, animated: true, completion: nil)
             }
         }
+    }
+    
+    func updateUserAvatar() {
         store.fetchUserAvatar() {
             (result) in
             
             switch result {
             case let .success(avatar):
                 self.profileImage.image = avatar
+                Global.cachedUserAvatar = avatar
             case .failure:
                 print("Failed to Fetch User Avatar")
             }
@@ -128,9 +151,11 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("Search Button Clicked!")
         Global.username = (searchBar.text?.replacingOccurrences(of: " ", with: "_")) ?? Global.username
+        searchBar.text = ""
         searchBar.resignFirstResponder()
         tapGesture.isEnabled = false
         updateUserData()
+        updateUserAvatar()
         updating = true
     }
     
@@ -185,4 +210,5 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         ac.addAction(closeAction)
         self.present(ac, animated: true, completion: nil)
     }
+    
 }
