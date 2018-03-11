@@ -15,6 +15,7 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var questPointsLabel: UILabel!
+    @IBOutlet var questProgressLabel: UILabel!
     @IBOutlet var questsCompleteLabel: UILabel!
     @IBOutlet var questsStartedLabel: UILabel!
     @IBOutlet var questsNotStartedLabel: UILabel!
@@ -110,7 +111,16 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         logTableView.reloadData()
         
         usernameLabel.text = localUser.name
-        questPointsLabel.text = "Quest Points: \(155)"
+        
+        let questPointsText = NSMutableAttributedString()
+        questPointsText.bold("Quest Points: ")
+        questPointsText.normal("\(124)")
+        questPointsLabel.attributedText = questPointsText
+        
+        let questProgressText = NSMutableAttributedString()
+        questProgressText.bold("Quest Progress")
+        questProgressLabel.attributedText = questProgressText
+        
         questsCompleteLabel.text = "\(localUser.questscomplete)"
         questsStartedLabel.text = "\(localUser.questsstarted)"
         questsNotStartedLabel.text = "\(localUser.questsnotstarted)"

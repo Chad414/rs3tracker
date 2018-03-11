@@ -202,8 +202,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quest Progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cS3-k0-RMe">
-                                <rect key="frame" x="152" y="183" width="137.33333333333337" height="23"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                <rect key="frame" x="152" y="183" width="141" height="23"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -302,6 +302,7 @@
                         <outlet property="logTableView" destination="Zsw-92-CJx" id="AzK-Aa-VX8"/>
                         <outlet property="profileImage" destination="x8B-7e-KD4" id="Phr-Sq-McX"/>
                         <outlet property="questPointsLabel" destination="9L7-dy-AlX" id="34d-b6-BLl"/>
+                        <outlet property="questProgressLabel" destination="cS3-k0-RMe" id="cir-4a-8fd"/>
                         <outlet property="questsCompleteLabel" destination="Nqh-8m-7Yy" id="0Yg-7D-w47"/>
                         <outlet property="questsNotStartedLabel" destination="DYe-xk-8yD" id="dHm-o0-Uyl"/>
                         <outlet property="questsStartedLabel" destination="4ra-XW-Hlh" id="M5r-lv-EEO"/>
