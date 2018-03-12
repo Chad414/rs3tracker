@@ -10,4 +10,19 @@ import UIKit
 
 class LogCell: UITableViewCell {
     
+    @IBOutlet var iconView: UIImageView!
+    @IBOutlet var logLabel: UILabel!
+    
+    func updateCell() {
+        contentView.addSubview(iconView)
+        contentView.addSubview(logLabel)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
 }

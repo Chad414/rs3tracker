@@ -51,6 +51,8 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         logTableView.dataSource = tableViewDataSource
         logTableView.delegate = self
         searchBar.delegate = self
+        
+        logTableView.rowHeight = 50.0
     }
     
     override func viewWillAppear(_ animated: Bool) {
