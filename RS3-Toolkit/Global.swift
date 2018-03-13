@@ -76,13 +76,25 @@ struct Global {
         case 23:
             return "Summoning"
         case 24:
-            return "Dungeoneering"
+            if Global.displayIsCompact() {
+                return "Dung"
+            } else {
+                return "Dungeoneering"
+            }
         case 25:
             return "Divination"
         case 26:
             return "Invention"
         default:
             return "Skill Not Found"
+        }
+    }
+    
+    static func displayIsCompact() -> Bool {
+        if UIScreen.main.nativeBounds.height <= 1136 {
+            return true
+        } else {
+            return false
         }
     }
 }
@@ -97,7 +109,13 @@ extension Int {
 
 extension NSMutableAttributedString {
     @discardableResult func bold(_ text: String) -> NSMutableAttributedString {
-        let attrs: [NSAttributedStringKey: Any] = [.font: UIFont.boldSystemFont(ofSize: 19.0)]
+        var size: CGFloat = 19.0
+        
+        if Global.displayIsCompact() {
+            size = 17.0
+        }
+        
+        let attrs: [NSAttributedStringKey: Any] = [.font: UIFont.boldSystemFont(ofSize: size)]
         let boldString = NSMutableAttributedString(string:text, attributes: attrs)
         append(boldString)
         
@@ -105,7 +123,15 @@ extension NSMutableAttributedString {
     }
     
     @discardableResult func normal(_ text: String) -> NSMutableAttributedString {
-        let attrs: [NSAttributedStringKey: Any] = [.font: UIFont.systemFont(ofSize: 17.0)]
+        var size: CGFloat = 17.0
+        
+        if Global.displayIsCompact() {
+            if text.count >= 11 {
+                size = 13.0
+            }
+        }
+        
+        let attrs: [NSAttributedStringKey: Any] = [.font: UIFont.systemFont(ofSize: size)]
         let boldString = NSMutableAttributedString(string:text, attributes: attrs)
         append(boldString)
         

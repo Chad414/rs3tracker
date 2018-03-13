@@ -166,4 +166,8 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         return true
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
 }

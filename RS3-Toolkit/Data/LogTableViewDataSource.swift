@@ -28,6 +28,7 @@ class LogTableViewDataSource: NSObject, UITableViewDataSource {
         }
         
         let activity = userData.activities[indexPath.row]
+        
         let logText = activity["text"]!
         
         if logText.range(of: "Levelled") != nil || logText.range(of: "levels") != nil || logText.range(of: "XP") != nil {
