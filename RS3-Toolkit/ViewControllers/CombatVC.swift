@@ -1,23 +1,19 @@
 //
-//  LogVC.swift
+//  CombatVC.swift
 //  RS3-Toolkit
 //
-//  Created by Chad Hamdan on 3/8/18.
+//  Created by Chad Hamdan on 3/15/18.
 //  Copyright © 2018 Chad Hamdan. All rights reserved.
 //
 
 import UIKit
 
-class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
-    @IBOutlet var logTableView: UITableView!
+class CombatVC: UIViewController, UISearchBarDelegate {
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var profileImage: UIImageView!
     
     @IBOutlet var usernameLabel: UILabel!
-    @IBOutlet var questProgressLabel: UILabel!
-    @IBOutlet var questsCompleteLabel: UILabel!
-    @IBOutlet var questsStartedLabel: UILabel!
-    @IBOutlet var questsNotStartedLabel: UILabel!
+    @IBOutlet var combatLevelLabel: UILabel!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     
     let activityIndicator = UIActivityIndicatorView()
@@ -42,16 +38,9 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         return StatsVC.user
     }
     
-    let tableViewDataSource = LogTableViewDataSource()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        logTableView.dataSource = tableViewDataSource
-        logTableView.delegate = self
         searchBar.delegate = self
-        
-        logTableView.rowHeight = 50.0
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -108,18 +97,12 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     }
     
     func updateViewData() {
-        tableViewDataSource.userData = localUser
-        logTableView.reloadData()
-        
         usernameLabel.text = localUser.name
         
-        let questProgressText = NSMutableAttributedString()
-        questProgressText.bold("Quest Progress")
-        questProgressLabel.attributedText = questProgressText
-        
-        questsCompleteLabel.text = "\(localUser.questscomplete)"
-        questsStartedLabel.text = "\(localUser.questsstarted)"
-        questsNotStartedLabel.text = "\(localUser.questsnotstarted)"
+        let combatLevelText = NSMutableAttributedString()
+        combatLevelText.bold("Combat Level: ")
+        combatLevelText.normal("\(localUser.combatlevel)")
+        combatLevelLabel.attributedText = combatLevelText
     }
     
     func startLoading() {
@@ -160,25 +143,22 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         return true
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    func getCombatLevel(att: Int, str: Int, def: Int, range: Int, magic: Int, const: Int, pray: Int, summ: Int) -> Double {
+        var max = 0
         
-        let activity = localUser.activities[indexPath.row]
+        if (att > str && att > range && att > magic) || (str > range && str > magic) {
+            // Add strength and attack
+            max = att + str
+        } else if range > magic {
+            // Double range
+            max = range * 2
+        } else {
+            // Double magic
+            max = magic * 2
+        }
         
-        let rawDate = activity["date"]!
-        let activityInfo = activity["details"]!
+        let result: Double = (13/10) * Double(max) + Double(def) + Double(const) + Double(pray / 2) + Double(summ / 2)
         
-        let month = rawDate.takeSubstring(start: 3, end: -11)
-        let day = rawDate.takeSubstring(start: 0, end: -15)
-        let year = rawDate.takeSubstring(start: 7, end: -6)
-        let time = rawDate.takeSubstring(start: 12, end: 0)
-        
-        let activityDate = "\(month) \(day), \(year) at \(time)"
-        
-        let ac = UIAlertController(title: activityDate, message: activityInfo, preferredStyle: .alert)
-        let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-        ac.addAction(closeAction)
-        self.present(ac, animated: true, completion: nil)
+        return result / 4
     }
-    
 }

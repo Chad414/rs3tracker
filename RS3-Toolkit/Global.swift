@@ -107,6 +107,18 @@ extension Int {
     }
 }
 
+extension String {
+    func takeSubstring(start: Int, end: Int) -> String {
+        let start = self.index(self.startIndex, offsetBy: start)
+        let end = self.index(self.endIndex, offsetBy: end)
+        let range = start..<end
+        
+        let substring = self[range]
+        
+        return String(substring)
+    }
+}
+
 extension NSMutableAttributedString {
     @discardableResult func bold(_ text: String) -> NSMutableAttributedString {
         var size: CGFloat = 19.0
