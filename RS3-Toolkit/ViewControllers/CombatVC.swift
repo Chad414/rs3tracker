@@ -16,6 +16,17 @@ class CombatVC: UIViewController, UISearchBarDelegate {
     @IBOutlet var combatLevelLabel: UILabel!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     
+    // Constraints
+    @IBOutlet var combatLevelConst: NSLayoutConstraint!
+    @IBOutlet var leftSkillsConst: NSLayoutConstraint!
+    @IBOutlet var rightSkillsConst: NSLayoutConstraint!
+    @IBOutlet var attackStrengthConst: NSLayoutConstraint!
+    @IBOutlet var strengthDefenceConst: NSLayoutConstraint!
+    @IBOutlet var defenceConstitutionConst: NSLayoutConstraint!
+    @IBOutlet var rangedMagicConst: NSLayoutConstraint!
+    @IBOutlet var magicPrayerConst: NSLayoutConstraint!
+    @IBOutlet var prayerSummoningConst: NSLayoutConstraint!
+    
     let activityIndicator = UIActivityIndicatorView()
     var updating: Bool = false {
         didSet {
@@ -58,6 +69,20 @@ class CombatVC: UIViewController, UISearchBarDelegate {
             profileImage.image = Global.cachedUserAvatar!
         } else {
             updateUserAvatar()
+        }
+        
+        if Global.displayIsCompact() {
+            // Change constraints here
+            combatLevelConst.constant = 50
+            leftSkillsConst.constant = 8
+            rightSkillsConst.constant = 8
+            
+            attackStrengthConst.constant = 10
+            strengthDefenceConst.constant = 10
+            defenceConstitutionConst.constant = 10
+            rangedMagicConst.constant = 10
+            magicPrayerConst.constant = 10
+            prayerSummoningConst.constant = 10
         }
     }
     

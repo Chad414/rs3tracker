@@ -1,2 +1,2 @@
-# rs3-toolkit
-Native iOS Toolkit for Runescape 3
+# rs3-tracker
+Native iOS Stats Tracker for Runescape 3
