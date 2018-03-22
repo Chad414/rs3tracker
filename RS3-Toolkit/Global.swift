@@ -151,6 +151,15 @@ extension NSMutableAttributedString {
     }
 }
 
+func firstTimeLaunchingApp() -> Bool {
+    if let _ = UserDefaults.standard.string(forKey: "firstTimeLaunchingApp"){
+        return false
+    } else {
+        UserDefaults.standard.set(true, forKey: "firstTimeLaunchingApp")
+        return true
+    }
+}
+
 /* Skill ID's
  
  0 - Attack

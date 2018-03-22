@@ -16,7 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        Global.username = Global.storedUsername
+        if firstTimeLaunchingApp() {
+            self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "welcome")
+        }
+        
+        Global.username = UserDefaults.standard.string(forKey: "username") ?? "ChadTek"
        
         return true
     }

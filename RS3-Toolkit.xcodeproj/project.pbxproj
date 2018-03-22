@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6319F25D205B394C0021AD37 /* CombatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6319F25C205B394C0021AD37 /* CombatVC.swift */; };
+		6336C69A20645F4F0058FB98 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6336C69920645F4F0058FB98 /* WelcomeVC.swift */; };
 		636CA7C92047144F00244432 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636CA7C82047144F00244432 /* StatusCell.swift */; };
 		63AD493C2051D3F5009DC0B3 /* LogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD493B2051D3F5009DC0B3 /* LogVC.swift */; };
 		63AD493E2051D4DD009DC0B3 /* LogTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD493D2051D4DD009DC0B3 /* LogTableViewDataSource.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		6319F25C205B394C0021AD37 /* CombatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombatVC.swift; sourceTree = "<group>"; };
+		6336C69920645F4F0058FB98 /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
 		636CA7C82047144F00244432 /* StatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
 		63AD493B2051D3F5009DC0B3 /* LogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogVC.swift; sourceTree = "<group>"; };
 		63AD493D2051D4DD009DC0B3 /* LogTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTableViewDataSource.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				63AD493F2051D56B009DC0B3 /* LogCell.swift */,
 				6319F25C205B394C0021AD37 /* CombatVC.swift */,
 				63DAFF87206450CA00219921 /* SettingsVC.swift */,
+				6336C69920645F4F0058FB98 /* WelcomeVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				63BDBA482044763D00A935CE /* StatsVC.swift in Sources */,
 				63AD493E2051D4DD009DC0B3 /* LogTableViewDataSource.swift in Sources */,
 				63D3AEE0204A378D00EBD07B /* LevelTables.swift in Sources */,
+				6336C69A20645F4F0058FB98 /* WelcomeVC.swift in Sources */,
 				63BDBA182044717500A935CE /* AppDelegate.swift in Sources */,
 				63BDBA4B204479DA00A935CE /* RunescapeAPI.swift in Sources */,
 				63BDBA522044E8FF00A935CE /* UserDataStore.swift in Sources */,
