@@ -27,6 +27,143 @@ class CombatVC: UIViewController, UISearchBarDelegate {
     @IBOutlet var magicPrayerConst: NSLayoutConstraint!
     @IBOutlet var prayerSummoningConst: NSLayoutConstraint!
     
+    @IBOutlet var leadingAttackConst: NSLayoutConstraint!
+    @IBOutlet var leadingStrengthConst: NSLayoutConstraint!
+    @IBOutlet var leadingDefenceConst: NSLayoutConstraint!
+    @IBOutlet var leadingConstitutionConst: NSLayoutConstraint!
+    @IBOutlet var trailingRagnedConst: NSLayoutConstraint!
+    @IBOutlet var trailingMagicConst: NSLayoutConstraint!
+    @IBOutlet var trailingPrayerConst: NSLayoutConstraint!
+    @IBOutlet var trailingSummoningConst: NSLayoutConstraint!
+    
+    // Level Labels
+    @IBOutlet var calculatedCombatLevelLabel: UILabel!
+    @IBOutlet var attackLevelLabel: UILabel!
+    @IBOutlet var strengthLevelLabel: UILabel!
+    @IBOutlet var defenceLevelLabel: UILabel!
+    @IBOutlet var constLevelLabel: UILabel!
+    @IBOutlet var rangedLevelLabel: UILabel!
+    @IBOutlet var magicLevelLabel: UILabel!
+    @IBOutlet var prayerLevelLabel: UILabel!
+    @IBOutlet var summonLevelLabel: UILabel!
+    
+    // Level Buttons
+    @IBAction func subAttack(sender: UIButton) {
+        guard combatSkills["attack"]! > 1 else {
+            return
+        }
+        combatSkills["attack"]! -= 1
+    }
+    @IBAction func addAttack(sender: UIButton) {
+        guard combatSkills["attack"]! < 99 else {
+            return
+        }
+        combatSkills["attack"]! += 1
+    }
+    @IBAction func subStrength(sender: UIButton) {
+        guard combatSkills["strength"]! > 1 else {
+            return
+        }
+        combatSkills["strength"]! -= 1
+    }
+    @IBAction func addStrength(sender: UIButton) {
+        guard combatSkills["strength"]! < 99 else {
+            return
+        }
+        combatSkills["strength"]! += 1
+    }
+    @IBAction func subDefence(sender: UIButton) {
+        guard combatSkills["defence"]! > 1 else {
+            return
+        }
+        combatSkills["defence"]! -= 1
+    }
+    @IBAction func addDefence(sender: UIButton) {
+        guard combatSkills["defence"]! < 99 else {
+            return
+        }
+        combatSkills["defence"]! += 1
+    }
+    @IBAction func subConst(sender: UIButton) {
+        guard combatSkills["const"]! > 1 else {
+            return
+        }
+        combatSkills["const"]! -= 1
+    }
+    @IBAction func addConst(sender: UIButton) {
+        guard combatSkills["const"]! < 99 else {
+            return
+        }
+        combatSkills["const"]! += 1
+    }
+    @IBAction func subRanged(sender: UIButton) {
+        guard combatSkills["ranged"]! > 1 else {
+            return
+        }
+        combatSkills["ranged"]! -= 1
+    }
+    @IBAction func addRagned(sender: UIButton) {
+        guard combatSkills["ranged"]! < 99 else {
+            return
+        }
+        combatSkills["ranged"]! += 1
+    }
+    @IBAction func subMagic(sender: UIButton) {
+        guard combatSkills["magic"]! > 1 else {
+            return
+        }
+        combatSkills["magic"]! -= 1
+    }
+    @IBAction func addMagic(sender: UIButton) {
+        guard combatSkills["magic"]! < 99 else {
+            return
+        }
+        combatSkills["magic"]! += 1
+    }
+    @IBAction func subPrayer(sender: UIButton) {
+        guard combatSkills["prayer"]! > 1 else {
+            return
+        }
+        combatSkills["prayer"]! -= 1
+    }
+    @IBAction func addPrayer(sender: UIButton) {
+        guard combatSkills["prayer"]! < 99 else {
+            return
+        }
+        combatSkills["prayer"]! += 1
+    }
+    @IBAction func subSummon(sender: UIButton) {
+        guard combatSkills["summon"]! > 1 else {
+            return
+        }
+        combatSkills["summon"]! -= 1
+    }
+    @IBAction func addSummon(sender: UIButton) {
+        guard combatSkills["summon"]! < 99 else {
+            return
+        }
+        combatSkills["summon"]! += 1
+    }
+    
+    @IBAction func resetCombatSkills(_ sender: UIButton) {
+        updateViewData()
+    }
+    
+    var combatSkills: [String:Int] = [
+        "attack" : 1,
+        "strength": 1,
+        "defence" : 1,
+        "ranged" : 1,
+        "magic" : 1,
+        "const" : 1,
+        "prayer" : 1,
+        "summon" : 1
+        ] {
+        didSet {
+            updateCombatLevel()
+        }
+    }
+    
     let activityIndicator = UIActivityIndicatorView()
     var updating: Bool = false {
         didSet {
@@ -72,10 +209,9 @@ class CombatVC: UIViewController, UISearchBarDelegate {
         }
         
         if Global.displayIsCompact() {
-            // Change constraints here
             combatLevelConst.constant = 50
-            leftSkillsConst.constant = 8
-            rightSkillsConst.constant = 8
+            leftSkillsConst.constant = 45
+            rightSkillsConst.constant = 45
             
             attackStrengthConst.constant = 10
             strengthDefenceConst.constant = 10
@@ -83,6 +219,17 @@ class CombatVC: UIViewController, UISearchBarDelegate {
             rangedMagicConst.constant = 10
             magicPrayerConst.constant = 10
             prayerSummoningConst.constant = 10
+        }
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            leadingAttackConst.constant = 220
+            leadingDefenceConst.constant = 220
+            leadingStrengthConst.constant = 220
+            leadingConstitutionConst.constant = 220
+            trailingMagicConst.constant = 220
+            trailingPrayerConst.constant = 220
+            trailingRagnedConst.constant = 220
+            trailingSummoningConst.constant = 220
         }
     }
     
@@ -128,6 +275,15 @@ class CombatVC: UIViewController, UISearchBarDelegate {
         combatLevelText.bold("Combat Level: ")
         combatLevelText.normal("\(localUser.combatlevel)")
         combatLevelLabel.attributedText = combatLevelText
+        
+        combatSkills["attack"]! = localUser.getSkill(id: 0)["level"]!
+        combatSkills["strength"]! = localUser.getSkill(id: 2)["level"]!
+        combatSkills["defence"]! = localUser.getSkill(id: 1)["level"]!
+        combatSkills["ranged"]! = localUser.getSkill(id: 4)["level"]!
+        combatSkills["magic"]! = localUser.getSkill(id: 6)["level"]!
+        combatSkills["const"]! = localUser.getSkill(id: 3)["level"]!
+        combatSkills["prayer"]! = localUser.getSkill(id: 5)["level"]!
+        combatSkills["summon"]! = localUser.getSkill(id: 23)["level"]!
     }
     
     func startLoading() {
@@ -168,7 +324,25 @@ class CombatVC: UIViewController, UISearchBarDelegate {
         return true
     }
     
-    func getCombatLevel(att: Int, str: Int, def: Int, range: Int, magic: Int, const: Int, pray: Int, summ: Int) -> Double {
+    func updateCombatLevel() {
+        let att = combatSkills["attack"]!
+        let str = combatSkills["strength"]!
+        let def = combatSkills["defence"]!
+        let range = combatSkills["ranged"]!
+        let magic = combatSkills["magic"]!
+        let const = combatSkills["const"]!
+        let pray = combatSkills["prayer"]!
+        let summ = combatSkills["summon"]!
+        
+        attackLevelLabel.text = "\(att)"
+        strengthLevelLabel.text = "\(str)"
+        defenceLevelLabel.text = "\(def)"
+        rangedLevelLabel.text = "\(range)"
+        magicLevelLabel.text = "\(magic)"
+        constLevelLabel.text = "\(const)"
+        prayerLevelLabel.text = "\(pray)"
+        summonLevelLabel.text = "\(summ)"
+        
         var max = 0
         
         if (att > str && att > range && att > magic) || (str > range && str > magic) {
@@ -182,8 +356,10 @@ class CombatVC: UIViewController, UISearchBarDelegate {
             max = magic * 2
         }
         
-        let result: Double = (13/10) * Double(max) + Double(def) + Double(const) + Double(pray / 2) + Double(summ / 2)
+        let product: Double = (13/10) * Double(max) + Double(def) + Double(const) + Double(pray / 2) + Double(summ / 2)
         
-        return result / 4
+        let result = product / 4
+        
+        calculatedCombatLevelLabel.text = "\(Int(result))"
     }
 }

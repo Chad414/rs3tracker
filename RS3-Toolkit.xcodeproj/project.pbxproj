@@ -25,6 +25,7 @@
 		63BDBA502044E6ED00A935CE /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BDBA4F2044E6ED00A935CE /* UserData.swift */; };
 		63BDBA522044E8FF00A935CE /* UserDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BDBA512044E8FF00A935CE /* UserDataStore.swift */; };
 		63D3AEE0204A378D00EBD07B /* LevelTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D3AEDF204A378D00EBD07B /* LevelTables.swift */; };
+		63DAFF88206450CA00219921 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DAFF87206450CA00219921 /* SettingsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		63BDBA4F2044E6ED00A935CE /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		63BDBA512044E8FF00A935CE /* UserDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataStore.swift; sourceTree = "<group>"; };
 		63D3AEDF204A378D00EBD07B /* LevelTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTables.swift; sourceTree = "<group>"; };
+		63DAFF87206450CA00219921 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 				63AD493B2051D3F5009DC0B3 /* LogVC.swift */,
 				63AD493F2051D56B009DC0B3 /* LogCell.swift */,
 				6319F25C205B394C0021AD37 /* CombatVC.swift */,
+				63DAFF87206450CA00219921 /* SettingsVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				63BDBA46204474C100A935CE /* Global.swift in Sources */,
 				636CA7C92047144F00244432 /* StatusCell.swift in Sources */,
 				6319F25D205B394C0021AD37 /* CombatVC.swift in Sources */,
+				63DAFF88206450CA00219921 /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,7 +500,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -514,7 +518,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
