@@ -11,6 +11,7 @@ import UIKit
 class WelcomeVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var usernameTextInput: UITextField!
+    @IBOutlet var cancelButton: UIButton!
     
     let activityIndicator = UIActivityIndicatorView()
     var updating: Bool = false {
@@ -24,6 +25,7 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
     }
     
     var store = UserDataStore()
+    static var hideCancelButton = Global.firstTimeLaunchingApp
     
     var userDataFound: Bool = false {
         didSet {
@@ -63,15 +65,32 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func continueButton(_ sender: UIButton) {
-        updating = true
-        Global.username = username
-        updateUserData()
+        if usernameTextInput.text == "" {
+            let errorMessage = "Please enter your Runescape username."
+            let ac = UIAlertController(title: "Not so fast!", message: errorMessage, preferredStyle: .alert)
+            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+            ac.addAction(closeAction)
+            self.present(ac, animated: true, completion: nil)
+        } else {
+            updating = true
+            Global.username = username
+            updateUserData()
+        }
+    }
+    
+    @IBAction func cancel(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         usernameTextInput.delegate = self
+        
+        if WelcomeVC.hideCancelButton {
+            cancelButton.isHidden = true
+            WelcomeVC.hideCancelButton = false
+        }
         
     }
     

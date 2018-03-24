@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5568A480750F5D452F43AD11 /* Pods_RS3_Toolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7DE69AEF31FAB6A6B1551E /* Pods_RS3_Toolkit.framework */; };
 		6319F25D205B394C0021AD37 /* CombatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6319F25C205B394C0021AD37 /* CombatVC.swift */; };
 		6336C69A20645F4F0058FB98 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6336C69920645F4F0058FB98 /* WelcomeVC.swift */; };
 		636CA7C92047144F00244432 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636CA7C82047144F00244432 /* StatusCell.swift */; };
@@ -47,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		27F9C7C23F127123316AAF1B /* Pods-RS3-Toolkit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RS3-Toolkit.release.xcconfig"; path = "Pods/Target Support Files/Pods-RS3-Toolkit/Pods-RS3-Toolkit.release.xcconfig"; sourceTree = "<group>"; };
+		5E74834C97A235F7DB83175F /* Pods-RS3-Toolkit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RS3-Toolkit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RS3-Toolkit/Pods-RS3-Toolkit.debug.xcconfig"; sourceTree = "<group>"; };
 		6319F25C205B394C0021AD37 /* CombatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombatVC.swift; sourceTree = "<group>"; };
 		6336C69920645F4F0058FB98 /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
 		636CA7C82047144F00244432 /* StatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
@@ -73,6 +76,7 @@
 		63BDBA512044E8FF00A935CE /* UserDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataStore.swift; sourceTree = "<group>"; };
 		63D3AEDF204A378D00EBD07B /* LevelTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTables.swift; sourceTree = "<group>"; };
 		63DAFF87206450CA00219921 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		DA7DE69AEF31FAB6A6B1551E /* Pods_RS3_Toolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RS3_Toolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5568A480750F5D452F43AD11 /* Pods_RS3_Toolkit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +105,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		499CDC7CDF4837B65AD46D7E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DA7DE69AEF31FAB6A6B1551E /* Pods_RS3_Toolkit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		63BDBA0B2044717500A935CE = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +120,8 @@
 				63BDBA2B2044717600A935CE /* RS3-ToolkitTests */,
 				63BDBA362044717600A935CE /* RS3-ToolkitUITests */,
 				63BDBA152044717500A935CE /* Products */,
+				D981472CA69E57B3AC83918A /* Pods */,
+				499CDC7CDF4837B65AD46D7E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -180,6 +195,15 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		D981472CA69E57B3AC83918A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5E74834C97A235F7DB83175F /* Pods-RS3-Toolkit.debug.xcconfig */,
+				27F9C7C23F127123316AAF1B /* Pods-RS3-Toolkit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -187,9 +211,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63BDBA3C2044717600A935CE /* Build configuration list for PBXNativeTarget "RS3-Toolkit" */;
 			buildPhases = (
+				6153EF9B79C945F7CC4637C1 /* [CP] Check Pods Manifest.lock */,
 				63BDBA102044717500A935CE /* Sources */,
 				63BDBA112044717500A935CE /* Frameworks */,
 				63BDBA122044717500A935CE /* Resources */,
+				56B9B9356CF549C894B9276A /* [CP] Embed Pods Frameworks */,
+				BEE0F9B0F8513C890D602B32 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -308,6 +335,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		56B9B9356CF549C894B9276A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RS3-Toolkit/Pods-RS3-Toolkit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6153EF9B79C945F7CC4637C1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RS3-Toolkit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BEE0F9B0F8513C890D602B32 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RS3-Toolkit/Pods-RS3-Toolkit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		63BDBA102044717500A935CE /* Sources */ = {
@@ -492,6 +570,7 @@
 		};
 		63BDBA3D2044717600A935CE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E74834C97A235F7DB83175F /* Pods-RS3-Toolkit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -510,6 +589,7 @@
 		};
 		63BDBA3E2044717600A935CE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27F9C7C23F127123316AAF1B /* Pods-RS3-Toolkit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

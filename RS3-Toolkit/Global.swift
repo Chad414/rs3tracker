@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 struct Global {
+    static var firstTimeLaunchingApp: Bool = false
     static var storedUsername: String = "Dark_Poet"
     static var username: String = "ChadTek"
     static var activities: Int = 20
@@ -24,6 +25,7 @@ struct Global {
     }
     static var cachedUserData: UserData?
     static var cachedUserAvatar: UIImage?
+    static var adShown: Bool = false
     
     static func getSkillString(id: Int) -> String {
         switch id {

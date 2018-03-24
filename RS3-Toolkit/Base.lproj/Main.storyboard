@@ -161,25 +161,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome To" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpv-l9-mwi">
-                                <rect key="frame" x="96.5" y="52" width="127" height="29"/>
+                                <rect key="frame" x="96.5" y="70" width="127" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RS3Tracker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JXF-a7-E3t">
-                                <rect key="frame" x="89" y="88.5" width="142" height="31"/>
+                                <rect key="frame" x="89" y="106.5" width="142" height="31"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your Runescape username" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aeg-d5-gBO">
-                                <rect key="frame" x="8.5" y="183.5" width="303" height="21"/>
+                                <rect key="frame" x="8.5" y="201.5" width="303" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zezima" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sIX-V7-HfW">
-                                <rect key="frame" x="64" y="212" width="192" height="30"/>
+                                <rect key="frame" x="64" y="230" width="192" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -192,6 +192,14 @@
                                     <action selector="continueButton:" destination="OcU-Z5-xld" eventType="touchUpInside" id="omh-VC-HkJ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rcg-oL-7BM">
+                                <rect key="frame" x="249" y="28" width="55" height="33"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancel:" destination="OcU-Z5-xld" eventType="touchUpInside" id="Ox6-9y-6f9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
@@ -201,8 +209,10 @@
                             <constraint firstItem="iWm-2s-BnL" firstAttribute="bottom" secondItem="x2m-w4-Pgd" secondAttribute="bottom" constant="96" id="IqQ-uT-s64"/>
                             <constraint firstItem="sIX-V7-HfW" firstAttribute="centerX" secondItem="uBY-C0-OUe" secondAttribute="centerX" id="MEE-MI-cIa"/>
                             <constraint firstItem="sIX-V7-HfW" firstAttribute="top" secondItem="Aeg-d5-gBO" secondAttribute="bottom" constant="8" id="RQq-b3-Ppu"/>
-                            <constraint firstItem="xpv-l9-mwi" firstAttribute="top" secondItem="iWm-2s-BnL" secondAttribute="top" constant="32" id="SPy-FC-69E"/>
+                            <constraint firstItem="xpv-l9-mwi" firstAttribute="top" secondItem="iWm-2s-BnL" secondAttribute="top" constant="50" id="SPy-FC-69E"/>
                             <constraint firstItem="x2m-w4-Pgd" firstAttribute="centerX" secondItem="uBY-C0-OUe" secondAttribute="centerX" id="T5I-Ut-dRW"/>
+                            <constraint firstItem="iWm-2s-BnL" firstAttribute="trailing" secondItem="rcg-oL-7BM" secondAttribute="trailing" constant="16" id="Ykk-WJ-BQG"/>
+                            <constraint firstItem="rcg-oL-7BM" firstAttribute="top" secondItem="iWm-2s-BnL" secondAttribute="top" constant="8" id="hSd-KP-k43"/>
                             <constraint firstItem="JXF-a7-E3t" firstAttribute="top" secondItem="xpv-l9-mwi" secondAttribute="bottom" constant="8" id="jjx-jr-0I4"/>
                             <constraint firstItem="Aeg-d5-gBO" firstAttribute="centerX" secondItem="uBY-C0-OUe" secondAttribute="centerX" id="klH-1M-Tg9"/>
                             <constraint firstItem="JXF-a7-E3t" firstAttribute="centerX" secondItem="uBY-C0-OUe" secondAttribute="centerX" id="ndG-Yv-chK"/>
@@ -215,6 +225,7 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="rcg-oL-7BM" id="PAo-rM-bHt"/>
                         <outlet property="usernameTextInput" destination="sIX-V7-HfW" id="JvK-6U-xbB"/>
                         <segue destination="Hdd-xx-xlL" kind="showDetail" identifier="continue" id="uRY-PF-r1i"/>
                     </connections>
@@ -978,8 +989,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Someone Else" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4aU-Rk-67l">
-                                <rect key="frame" x="106.5" y="446.5" width="108.5" height="19.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Safaroff" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4aU-Rk-67l">
+                                <rect key="frame" x="128" y="446.5" width="64" height="20"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -992,7 +1003,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UI Icons:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nb6-6H-4ho">
-                                <rect key="frame" x="136" y="481.5" width="49.5" height="14.5"/>
+                                <rect key="frame" x="136" y="482.5" width="49.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1004,7 +1015,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ANU-Ce-Q1Y">
-                                <rect key="frame" x="86" y="500" width="148" height="32"/>
+                                <rect key="frame" x="86" y="501" width="148" height="32"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <state key="normal" title="https://icons8.com"/>
                                 <connections>

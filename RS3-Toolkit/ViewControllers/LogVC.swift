@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     @IBOutlet var logTableView: UITableView!
@@ -19,6 +20,8 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     @IBOutlet var questsStartedLabel: UILabel!
     @IBOutlet var questsNotStartedLabel: UILabel!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
+    
+    var interstitial: GADInterstitial!
     
     let activityIndicator = UIActivityIndicatorView()
     var updating: Bool = false {
@@ -46,6 +49,14 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        interstitial = GADInterstitial(adUnitID: "ca-app-pub-4468715439448322/3008848820")
+        //interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/1033173712") // Test ID
+        
+        if !Global.adShown {
+            let request = GADRequest()
+            interstitial.load(request)
+        }
         
         logTableView.dataSource = tableViewDataSource
         logTableView.delegate = self
@@ -148,6 +159,12 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         updateUserData()
         updateUserAvatar()
         updating = true
+        if interstitial.isReady && !Global.adShown {
+            self.interstitial.present(fromRootViewController: self)
+            Global.adShown = true
+        } else {
+            print("Ad wasn't ready or has already been shown")
+        }
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {

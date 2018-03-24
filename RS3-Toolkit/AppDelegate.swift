@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,9 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if firstTimeLaunchingApp() {
             self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "welcome")
+            Global.firstTimeLaunchingApp = true
         }
         
         Global.username = UserDefaults.standard.string(forKey: "username") ?? "ChadTek"
+        
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-4468715439448322~4513502185")
        
         return true
     }
