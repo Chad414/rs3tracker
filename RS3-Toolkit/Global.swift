@@ -78,11 +78,7 @@ struct Global {
         case 23:
             return "Summoning"
         case 24:
-            if Global.displayIsCompact() {
-                return "Dung"
-            } else {
-                return "Dungeoneering"
-            }
+            return "Dungeoneering"
         case 25:
             return "Divination"
         case 26:
@@ -126,7 +122,11 @@ extension NSMutableAttributedString {
         var size: CGFloat = 19.0
         
         if Global.displayIsCompact() {
-            size = 17.0
+            if text == "Dungeoneering: " {
+                size = 14.0
+            } else {
+                size = 17.0
+            }
         }
         
         let attrs: [NSAttributedStringKey: Any] = [.font: UIFont.boldSystemFont(ofSize: size)]

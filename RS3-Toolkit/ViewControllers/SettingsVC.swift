@@ -18,4 +18,7 @@ class SettingsVC: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func appIconLink(_ sender: UIButton) {
+        UIApplication.shared.open(URL(string: "https://www.facebook.com/profile.php?id=100005939234711")!)
+    }
 }

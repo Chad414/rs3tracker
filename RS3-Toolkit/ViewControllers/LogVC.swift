@@ -134,15 +134,15 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     }
     
     func startLoading() {
-        activityIndicator.center = self.view.center;
-        activityIndicator.hidesWhenStopped = true;
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray;
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
         let transform: CGAffineTransform = CGAffineTransform(scaleX: 3.5, y: 3.5)
         activityIndicator.transform = transform
-        view.addSubview(activityIndicator);
+        view.addSubview(activityIndicator)
         
-        activityIndicator.startAnimating();
-        UIApplication.shared.beginIgnoringInteractionEvents();
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
     }
     
     func stopLoading() {

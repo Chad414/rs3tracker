@@ -41,6 +41,8 @@ class LogTableViewDataSource: NSObject, UITableViewDataSource {
             cell.iconView.image = UIImage(named: "icons8-coins_filled.png")
         } else if logText.range(of: "killed") != nil {
             cell.iconView.image = UIImage(named: "icons8-dragon_filled.png")
+        } else if logText.range(of: "trail") != nil {
+            cell.iconView.image = UIImage(named: "icons8-adventure_filled.png")
         } else if logText.range(of: "floor") != nil {
             cell.iconView.image = UIImage(named: "icons8-adventure_filled.png")
         } else {
