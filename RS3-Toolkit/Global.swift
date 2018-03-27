@@ -27,6 +27,9 @@ struct Global {
     static var cachedUserAvatar: UIImage?
     static var adShown: Bool = false
     
+    static let backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
+    //static let backgroundColor = UIColor.white
+    
     static func getSkillString(id: Int) -> String {
         switch id {
         case 0:
@@ -159,6 +162,15 @@ func firstTimeLaunchingApp() -> Bool {
     } else {
         UserDefaults.standard.set(true, forKey: "firstTimeLaunchingApp")
         return true
+    }
+}
+
+extension Bundle {
+    var releaseVersionNumber: String? {
+        return infoDictionary?["CFBundleShortVersionString"] as? String
+    }
+    var buildVersionNumber: String? {
+        return infoDictionary?["CFBundleVersion"] as? String
     }
 }
 

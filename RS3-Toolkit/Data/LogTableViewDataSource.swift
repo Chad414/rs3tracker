@@ -51,6 +51,8 @@ class LogTableViewDataSource: NSObject, UITableViewDataSource {
         
         cell.logLabel.text = logText
         
+        cell.backgroundColor = Global.backgroundColor
+        
         cell.updateCell()
         
         return cell

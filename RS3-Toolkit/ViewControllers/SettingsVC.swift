@@ -10,6 +10,16 @@ import UIKit
 
 class SettingsVC: UIViewController {
     
+    @IBOutlet var versionLabel: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.view.backgroundColor = Global.backgroundColor
+        
+        versionLabel.text = "Version " + Bundle.main.releaseVersionNumber!
+    }
+    
     @IBAction func icons8Link(_ sender: UIButton) {
         UIApplication.shared.open(URL(string: "https://icons8.com")!)
     }

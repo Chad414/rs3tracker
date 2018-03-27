@@ -49,6 +49,10 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = Global.backgroundColor
+        statsTableView.backgroundColor = Global.backgroundColor
+        searchBar.searchBarStyle = .minimal
+        
         interstitial = GADInterstitial(adUnitID: "ca-app-pub-4468715439448322/3008848820")
         //interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/1033173712") // Test ID
         
@@ -79,6 +83,7 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         } else {
             updateUserAvatar()
         }
+        
     }
     
     func updateUserData() {
@@ -109,6 +114,7 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
             switch result {
             case let .success(avatar):
                 self.profileImage.image = avatar
+                //self.profileImage.image = UIImage(named: "chadtek.png")
                 Global.cachedUserAvatar = avatar
             case .failure:
                 print("Failed to Fetch User Avatar")
