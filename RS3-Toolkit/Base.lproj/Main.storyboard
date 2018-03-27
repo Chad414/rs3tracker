@@ -181,6 +181,7 @@
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zezima" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sIX-V7-HfW">
                                 <rect key="frame" x="64" y="254" width="247" height="30"/>
+                                <color key="backgroundColor" red="0.89012992382049561" green="0.89029347896575928" blue="0.89422672986984253" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>

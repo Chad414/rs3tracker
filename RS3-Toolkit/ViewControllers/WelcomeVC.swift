@@ -85,6 +85,9 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = Global.backgroundColor
+        usernameTextInput.backgroundColor = UIColor(red: 227/255, green: 227/255, blue: 228/255, alpha: 1.0)
+        
         usernameTextInput.delegate = self
         
         if WelcomeVC.hideCancelButton {
