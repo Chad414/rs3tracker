@@ -13,6 +13,10 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
     @IBOutlet var usernameTextInput: UITextField!
     @IBOutlet var cancelButton: UIButton!
     
+    @IBOutlet var welcomeToLabel: UILabel!
+    @IBOutlet var appTitleLabel: UILabel!
+    @IBOutlet var instructionsLabel: UILabel!
+    
     let activityIndicator = UIActivityIndicatorView()
     var updating: Bool = false {
         didSet {
@@ -89,6 +93,12 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
         usernameTextInput.backgroundColor = UIColor(red: 227/255, green: 227/255, blue: 228/255, alpha: 1.0)
         
         usernameTextInput.delegate = self
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            welcomeToLabel.font = welcomeToLabel.font.withSize(CGFloat(36.0))
+            appTitleLabel.font = appTitleLabel.font.withSize(CGFloat(38.0))
+            instructionsLabel.font = instructionsLabel.font.withSize(CGFloat(29.0))
+        }
         
         if WelcomeVC.hideCancelButton {
             cancelButton.isHidden = true

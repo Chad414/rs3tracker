@@ -36,8 +36,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total XP:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMZ-Ss-n6N">
-                                <rect key="frame" x="152" y="144.66666666666666" width="81" height="23"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total XP:                  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMZ-Ss-n6N">
+                                <rect key="frame" x="152" y="144.66666666666666" width="162" height="23"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -58,7 +58,7 @@
                                 <rect key="frame" x="0.0" y="240" width="375" height="489"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="statusCell" id="yqb-HH-UDW" customClass="StatusCell" customModule="RS3_Toolkit" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="statusCell" id="yqb-HH-UDW" customClass="StatusCell" customModule="RS3_Toolkit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yqb-HH-UDW" id="knz-rK-KUI">
@@ -97,12 +97,19 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="progressView" destination="Qh5-y2-oD7" id="4xi-hr-4e9"/>
+                                            <outlet property="progressViewLength" destination="6Pe-Sr-koL" id="fdD-C8-ZVA"/>
                                             <outlet property="skillIcon" destination="CS8-2F-hAf" id="iix-bR-2eC"/>
                                             <outlet property="skillLabel" destination="rrr-Ia-ZV7" id="Ivw-ml-5C0"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rank:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6Z-Wg-VHa">
+                                <rect key="frame" x="270.66666666666669" y="175" width="52" height="23"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -110,9 +117,11 @@
                             <constraint firstItem="34Q-4g-Ysx" firstAttribute="top" secondItem="fNy-4X-9hg" secondAttribute="bottom" constant="4" id="7X0-vz-IpI"/>
                             <constraint firstItem="bxp-ol-OuH" firstAttribute="leading" secondItem="fNy-4X-9hg" secondAttribute="trailing" constant="8" id="8C3-gv-rfO"/>
                             <constraint firstItem="fNy-4X-9hg" firstAttribute="top" secondItem="76G-w4-UlO" secondAttribute="bottom" constant="8" id="8Ip-Ys-wHg"/>
+                            <constraint firstItem="v6Z-Wg-VHa" firstAttribute="leading" secondItem="aTd-jf-Ua5" secondAttribute="trailing" constant="16" id="9X8-ur-6RH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="34Q-4g-Ysx" secondAttribute="bottom" id="CH9-bg-yUF"/>
                             <constraint firstItem="QO5-RZ-dI1" firstAttribute="leading" secondItem="fNy-4X-9hg" secondAttribute="trailing" constant="8" id="CKz-ZS-Gya"/>
                             <constraint firstItem="aTd-jf-Ua5" firstAttribute="top" secondItem="OMZ-Ss-n6N" secondAttribute="bottom" constant="8" id="CPM-5c-GKD"/>
+                            <constraint firstItem="v6Z-Wg-VHa" firstAttribute="top" secondItem="OMZ-Ss-n6N" secondAttribute="bottom" constant="8" id="EEN-2X-aEw"/>
                             <constraint firstItem="QO5-RZ-dI1" firstAttribute="top" secondItem="76G-w4-UlO" secondAttribute="bottom" constant="8" id="I0p-Rs-CFH"/>
                             <constraint firstItem="aTd-jf-Ua5" firstAttribute="leading" secondItem="fNy-4X-9hg" secondAttribute="trailing" constant="8" id="IJP-ni-WAU"/>
                             <constraint firstItem="OMZ-Ss-n6N" firstAttribute="leading" secondItem="fNy-4X-9hg" secondAttribute="trailing" constant="8" id="J32-ds-gHz"/>
@@ -135,6 +144,7 @@
                     <connections>
                         <outlet property="combatLabel" destination="bxp-ol-OuH" id="pDj-9r-XKc"/>
                         <outlet property="profileImage" destination="fNy-4X-9hg" id="hTv-sK-G7h"/>
+                        <outlet property="rankiPadLabel" destination="v6Z-Wg-VHa" id="CVM-9z-QGZ"/>
                         <outlet property="searchBar" destination="76G-w4-UlO" id="UUt-oI-h6Q"/>
                         <outlet property="skillLabel" destination="aTd-jf-Ua5" id="14a-is-O53"/>
                         <outlet property="statsTableView" destination="34Q-4g-Ysx" id="vg4-x8-xks"/>
@@ -227,8 +237,11 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="appTitleLabel" destination="JXF-a7-E3t" id="XWC-vm-QMq"/>
                         <outlet property="cancelButton" destination="rcg-oL-7BM" id="PAo-rM-bHt"/>
+                        <outlet property="instructionsLabel" destination="Aeg-d5-gBO" id="Y8Y-Ae-bsD"/>
                         <outlet property="usernameTextInput" destination="sIX-V7-HfW" id="JvK-6U-xbB"/>
+                        <outlet property="welcomeToLabel" destination="xpv-l9-mwi" id="8gZ-5I-DfJ"/>
                         <segue destination="Hdd-xx-xlL" kind="showDetail" identifier="continue" id="uRY-PF-r1i"/>
                     </connections>
                 </viewController>
@@ -276,7 +289,7 @@
                                 <rect key="frame" x="0.0" y="240" width="375" height="489"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="logCell" id="ibD-0Q-BGs" customClass="LogCell" customModule="RS3_Toolkit" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="logCell" id="ibD-0Q-BGs" customClass="LogCell" customModule="RS3_Toolkit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ibD-0Q-BGs" id="EUM-zK-sGD">
@@ -884,31 +897,56 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Combat Level" image="icons8-sword_filled" id="hty-Kz-D2v"/>
                     <connections>
+                        <outlet property="attackAddConst" destination="lm1-um-9vv" id="C6u-Hh-JuW"/>
+                        <outlet property="attackLabel" destination="lnj-dP-dUf" id="cT5-Kf-fzf"/>
                         <outlet property="attackLevelLabel" destination="lCG-Hu-GTN" id="ep7-uh-4i7"/>
                         <outlet property="attackStrengthConst" destination="yl3-6s-tRd" id="yta-Yx-yng"/>
+                        <outlet property="attackSubConst" destination="8aw-Au-b9B" id="z71-XL-OXg"/>
                         <outlet property="calculatedCombatLevelLabel" destination="nfD-RC-TXY" id="19W-Hh-IOe"/>
                         <outlet property="combatLevelConst" destination="IRC-r7-uq6" id="gbc-ch-YdM"/>
                         <outlet property="combatLevelLabel" destination="e3e-SR-dfw" id="KBM-gS-k7G"/>
+                        <outlet property="combatLevelTitle" destination="E9b-a3-AvC" id="mO5-fD-gHK"/>
+                        <outlet property="constAddConst" destination="e31-AO-gXd" id="6dr-W0-3ic"/>
+                        <outlet property="constLabel" destination="AwR-8s-jiR" id="DLv-Fd-Twa"/>
                         <outlet property="constLevelLabel" destination="oep-aC-EDZ" id="B1E-HA-mHD"/>
+                        <outlet property="constSubConst" destination="XeP-rP-nd4" id="HDg-Cn-ldn"/>
+                        <outlet property="defenceAddConst" destination="3Hp-8j-0OH" id="ZjV-TN-r6b"/>
                         <outlet property="defenceConstitutionConst" destination="t6c-o7-rbw" id="rJq-rU-xvd"/>
+                        <outlet property="defenceLabel" destination="Bqw-M1-BE7" id="oEA-A4-cA0"/>
                         <outlet property="defenceLevelLabel" destination="zHr-Hd-PVw" id="2ti-Gk-2md"/>
+                        <outlet property="defenceSubConst" destination="Y4s-HV-day" id="Q50-Bc-Whq"/>
                         <outlet property="leadingAttackConst" destination="3MV-oa-5iP" id="hxp-E3-yY4"/>
                         <outlet property="leadingConstitutionConst" destination="Kgs-H7-5mD" id="1f0-ie-nBW"/>
                         <outlet property="leadingDefenceConst" destination="PdB-9d-yue" id="Hi9-fg-ahO"/>
                         <outlet property="leadingStrengthConst" destination="0HR-Se-Egl" id="EP8-fK-cGf"/>
                         <outlet property="leftSkillsConst" destination="tt7-OM-wjc" id="1i8-jO-Mcb"/>
+                        <outlet property="magicAddConst" destination="Yyh-Oq-JBA" id="E4U-L8-zGL"/>
+                        <outlet property="magicLabel" destination="W00-oO-RX3" id="hXz-5u-Aae"/>
                         <outlet property="magicLevelLabel" destination="0mH-9H-yzA" id="aUi-I2-jIO"/>
                         <outlet property="magicPrayerConst" destination="VM9-K8-0e4" id="4k1-UV-vIX"/>
+                        <outlet property="magicSubConst" destination="j9Z-qc-QTY" id="Kpr-31-ep1"/>
+                        <outlet property="prayerAddConst" destination="Ai3-o3-fCu" id="yhM-0v-xyw"/>
+                        <outlet property="prayerLabel" destination="j9t-p7-93y" id="QWN-rm-JqK"/>
                         <outlet property="prayerLevelLabel" destination="lBG-lO-KwF" id="Jea-OV-aC9"/>
+                        <outlet property="prayerSubConst" destination="Hoa-6G-waM" id="2bM-XA-uVA"/>
                         <outlet property="prayerSummoningConst" destination="48R-ab-obF" id="GSi-vu-RAE"/>
                         <outlet property="profileImage" destination="TCS-r4-l0d" id="QmV-D5-K0J"/>
+                        <outlet property="rangedAddConst" destination="bX0-tM-SjH" id="wge-WN-dmD"/>
+                        <outlet property="rangedLabel" destination="hny-uX-NPl" id="jMj-YW-8KL"/>
                         <outlet property="rangedLevelLabel" destination="VUV-U5-3OW" id="sNW-Ad-wPh"/>
                         <outlet property="rangedMagicConst" destination="AJV-E8-War" id="DoQ-6M-80n"/>
+                        <outlet property="rangedSubConst" destination="3SQ-dy-0GF" id="GQV-Hd-hAS"/>
                         <outlet property="rightSkillsConst" destination="eUM-YV-TmX" id="5PX-V4-hNL"/>
                         <outlet property="searchBar" destination="YbR-RS-O3r" id="fVK-8C-6aT"/>
+                        <outlet property="strengthAddConst" destination="Mqk-Es-187" id="jyC-YA-jxh"/>
                         <outlet property="strengthDefenceConst" destination="XgH-7R-mO1" id="AvM-vN-nNq"/>
+                        <outlet property="strengthLabel" destination="mCY-wi-M9H" id="ED0-Kk-CA3"/>
                         <outlet property="strengthLevelLabel" destination="6Gp-kf-DB4" id="lOs-GA-3or"/>
+                        <outlet property="strengthSubConst" destination="j4a-go-uHO" id="v8d-2P-qeR"/>
+                        <outlet property="summonAddConst" destination="qny-pU-fhm" id="YJr-S5-cWD"/>
                         <outlet property="summonLevelLabel" destination="Quc-mc-wUy" id="XOK-Ij-AIP"/>
+                        <outlet property="summonSubConst" destination="dXD-vL-2Ko" id="mGt-O0-dQx"/>
+                        <outlet property="summoningLabel" destination="OId-XB-d6e" id="Kqg-02-JFw"/>
                         <outlet property="tapGesture" destination="9LT-iS-apd" id="qU4-33-xgY"/>
                         <outlet property="trailingMagicConst" destination="f1U-ZN-h9o" id="dog-3n-B1T"/>
                         <outlet property="trailingPrayerConst" destination="2B6-K0-jbu" id="iIA-R9-PJZ"/>
@@ -969,7 +1007,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chad Hamdan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qcM-Jx-e5V">
-                                <rect key="frame" x="126.33333333333334" y="293.66666666666669" width="122.33333333333334" height="21"/>
+                                <rect key="frame" x="126.66666666666669" y="293.66666666666669" width="122" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -981,7 +1019,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Developed By:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGD-nW-qbw">
-                                <rect key="frame" x="140.66666666666666" y="272.66666666666669" width="93.666666666666657" height="17"/>
+                                <rect key="frame" x="140.66666666666666" y="272.66666666666669" width="94" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1000,7 +1038,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UI Icons:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nb6-6H-4ho">
-                                <rect key="frame" x="159.33333333333334" y="507.66666666666674" width="56.333333333333343" height="17"/>
+                                <rect key="frame" x="159.66666666666666" y="507.66666666666674" width="56" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1020,7 +1058,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uxa-on-Wp8">
-                                <rect key="frame" x="135.66666666666666" y="467.66666666666669" width="103" height="32"/>
+                                <rect key="frame" x="136" y="467.66666666666669" width="103" height="32"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <state key="normal" title="Elyor Safarov"/>
                                 <connections>
@@ -1062,6 +1100,19 @@
                         <viewLayoutGuide key="safeArea" id="QYy-XJ-0N8"/>
                     </view>
                     <connections>
+                        <outlet property="appIconCreditLabel" destination="uxa-on-Wp8" id="3pW-fv-AqY"/>
+                        <outlet property="appIconLabel" destination="PbW-Ww-KSX" id="KZy-Rt-MQ4"/>
+                        <outlet property="chadHamdanLabel" destination="qcM-Jx-e5V" id="or9-Dr-DJm"/>
+                        <outlet property="changeUserButton" destination="Y2x-Bm-hjz" id="l06-fo-2AV"/>
+                        <outlet property="creditsLabel" destination="4fY-Yt-tSy" id="044-st-fKQ"/>
+                        <outlet property="developedByLabel" destination="rGD-nW-qbw" id="ANR-Ue-O16"/>
+                        <outlet property="icons8Button" destination="ANU-Ce-Q1Y" id="COj-HN-egy"/>
+                        <outlet property="profileImageHeight" destination="9WY-Eu-feW" id="6en-LX-CC0"/>
+                        <outlet property="profileImageWidth" destination="bAW-Sc-Dbn" id="5pT-Z7-FBq"/>
+                        <outlet property="rsnLabel" destination="qnz-ok-z5P" id="rUo-cl-77t"/>
+                        <outlet property="settingsLabel" destination="6ZV-Xu-D6W" id="hDa-ql-Uga"/>
+                        <outlet property="titleLabel" destination="1Kb-Ta-yCe" id="qAP-c6-hLj"/>
+                        <outlet property="uiIconLabel" destination="nb6-6H-4ho" id="AN0-tJ-aiW"/>
                         <outlet property="versionLabel" destination="nxe-XV-ZDz" id="V8V-Hj-o7D"/>
                     </connections>
                 </viewController>

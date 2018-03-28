@@ -27,6 +27,7 @@ struct Global {
     static var cachedUserAvatar: UIImage?
     static var adShown: Bool = false
     
+    static let systemVersion = UIDevice.current.systemVersion
     static let backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
     //static let backgroundColor = UIColor.white
     
@@ -132,6 +133,10 @@ extension NSMutableAttributedString {
             }
         }
         
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            size = 26.0
+        }
+        
         let attrs: [NSAttributedStringKey: Any] = [.font: UIFont.boldSystemFont(ofSize: size)]
         let boldString = NSMutableAttributedString(string:text, attributes: attrs)
         append(boldString)
@@ -146,6 +151,10 @@ extension NSMutableAttributedString {
             if text.count >= 11 {
                 size = 13.0
             }
+        }
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            size = 24.0
         }
         
         let attrs: [NSAttributedStringKey: Any] = [.font: UIFont.systemFont(ofSize: size)]

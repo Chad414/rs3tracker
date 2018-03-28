@@ -18,6 +18,7 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     @IBOutlet var xpLabel: UILabel!
     @IBOutlet var skillLabel: UILabel!
     @IBOutlet var combatLabel: UILabel!
+    @IBOutlet var rankiPadLabel: UILabel!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     
     var interstitial: GADInterstitial!
@@ -59,6 +60,13 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         if !Global.adShown {
             let request = GADRequest()
             interstitial.load(request)
+        }
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            statsTableView.rowHeight = 70.0
+            combatLabel.isHidden = true
+            rankiPadLabel.isHidden = false
+            usernameLabel.font = usernameLabel.font.withSize(28.0)
         }
         
         statsTableView.dataSource = tableViewDataSource
@@ -145,7 +153,11 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         let rankText = NSMutableAttributedString()
         rankText.bold("Rank: ")
         rankText.normal("\(localUser.rank)")
-        combatLabel.attributedText = rankText
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            rankiPadLabel.attributedText = rankText
+        } else {
+            combatLabel.attributedText = rankText
+        }
     }
     
     func startLoading() {

@@ -70,6 +70,10 @@ class StatsTableViewDataSource: NSObject, UITableViewDataSource {
         
         cell.backgroundColor = Global.backgroundColor
         
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            cell.progressViewLength.constant = CGFloat(200.0)
+        }
+        
         cell.updateCell()
         
         return cell

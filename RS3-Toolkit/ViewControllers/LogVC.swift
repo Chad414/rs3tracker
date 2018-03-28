@@ -62,11 +62,19 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
             interstitial.load(request)
         }
         
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            logTableView.rowHeight = 70.0
+            usernameLabel.font = usernameLabel.font.withSize(28.0)
+            questsCompleteLabel.font = questsCompleteLabel.font.withSize(CGFloat(20.0))
+            questsStartedLabel.font = questsStartedLabel.font.withSize(CGFloat(20.0))
+            questsNotStartedLabel.font = questsNotStartedLabel.font.withSize(CGFloat(20.0))
+        } else {
+            logTableView.rowHeight = 50.0
+        }
+        
         logTableView.dataSource = tableViewDataSource
         logTableView.delegate = self
         searchBar.delegate = self
-        
-        logTableView.rowHeight = 50.0
     }
     
     override func viewWillAppear(_ animated: Bool) {

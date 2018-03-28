@@ -18,6 +18,7 @@ class CombatVC: UIViewController, UISearchBarDelegate {
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var combatLevelLabel: UILabel!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
+    @IBOutlet var combatLevelTitle: UILabel!
     
     // Constraints
     @IBOutlet var combatLevelConst: NSLayoutConstraint!
@@ -39,6 +40,23 @@ class CombatVC: UIViewController, UISearchBarDelegate {
     @IBOutlet var trailingPrayerConst: NSLayoutConstraint!
     @IBOutlet var trailingSummoningConst: NSLayoutConstraint!
     
+    @IBOutlet var attackSubConst: NSLayoutConstraint!
+    @IBOutlet var attackAddConst: NSLayoutConstraint!
+    @IBOutlet var strengthSubConst: NSLayoutConstraint!
+    @IBOutlet var strengthAddConst: NSLayoutConstraint!
+    @IBOutlet var defenceSubConst: NSLayoutConstraint!
+    @IBOutlet var defenceAddConst: NSLayoutConstraint!
+    @IBOutlet var constSubConst: NSLayoutConstraint!
+    @IBOutlet var constAddConst: NSLayoutConstraint!
+    @IBOutlet var rangedSubConst: NSLayoutConstraint!
+    @IBOutlet var rangedAddConst: NSLayoutConstraint!
+    @IBOutlet var magicSubConst: NSLayoutConstraint!
+    @IBOutlet var magicAddConst: NSLayoutConstraint!
+    @IBOutlet var prayerSubConst: NSLayoutConstraint!
+    @IBOutlet var prayerAddConst: NSLayoutConstraint!
+    @IBOutlet var summonSubConst: NSLayoutConstraint!
+    @IBOutlet var summonAddConst: NSLayoutConstraint!
+    
     // Level Labels
     @IBOutlet var calculatedCombatLevelLabel: UILabel!
     @IBOutlet var attackLevelLabel: UILabel!
@@ -49,6 +67,16 @@ class CombatVC: UIViewController, UISearchBarDelegate {
     @IBOutlet var magicLevelLabel: UILabel!
     @IBOutlet var prayerLevelLabel: UILabel!
     @IBOutlet var summonLevelLabel: UILabel!
+    
+    // Skill Labels
+    @IBOutlet var attackLabel: UILabel!
+    @IBOutlet var strengthLabel: UILabel!
+    @IBOutlet var defenceLabel: UILabel!
+    @IBOutlet var constLabel: UILabel!
+    @IBOutlet var rangedLabel: UILabel!
+    @IBOutlet var magicLabel: UILabel!
+    @IBOutlet var prayerLabel: UILabel!
+    @IBOutlet var summoningLabel: UILabel!
     
     // Level Buttons
     @IBAction func subAttack(sender: UIButton) {
@@ -237,14 +265,58 @@ class CombatVC: UIViewController, UISearchBarDelegate {
         }
         
         if UIDevice.current.userInterfaceIdiom == .pad {
-            leadingAttackConst.constant = 220
-            leadingDefenceConst.constant = 220
-            leadingStrengthConst.constant = 220
+            let trailingLeadingConst = CGFloat(240.0)
+            leadingAttackConst.constant = trailingLeadingConst
+            leadingDefenceConst.constant = trailingLeadingConst
+            leadingStrengthConst.constant = trailingLeadingConst
             leadingConstitutionConst.constant = 220
-            trailingMagicConst.constant = 220
-            trailingPrayerConst.constant = 220
-            trailingRagnedConst.constant = 220
-            trailingSummoningConst.constant = 220
+            trailingMagicConst.constant = trailingLeadingConst
+            trailingPrayerConst.constant = trailingLeadingConst
+            trailingRagnedConst.constant = trailingLeadingConst
+            trailingSummoningConst.constant = 218
+            
+            leftSkillsConst.constant = 120
+            rightSkillsConst.constant = 120
+            
+            calculatedCombatLevelLabel.font = calculatedCombatLevelLabel.font.withSize(CGFloat(72.0))
+            combatLevelTitle.font = combatLevelTitle.font.withSize(CGFloat(32.0))
+            
+            let skillLabelFontSize = CGFloat(28.0)
+            attackLabel.font = attackLabel.font.withSize(skillLabelFontSize)
+            strengthLabel.font = strengthLabel.font.withSize(skillLabelFontSize)
+            defenceLabel.font = defenceLabel.font.withSize(skillLabelFontSize)
+            constLabel.font = constLabel.font.withSize(skillLabelFontSize)
+            rangedLabel.font = rangedLabel.font.withSize(skillLabelFontSize)
+            magicLabel.font = magicLabel.font.withSize(skillLabelFontSize)
+            prayerLabel.font = prayerLabel.font.withSize(skillLabelFontSize)
+            summoningLabel.font = summoningLabel.font.withSize(skillLabelFontSize)
+            
+            let skillLevelLabelFontSize = CGFloat(24.0)
+            attackLevelLabel.font = attackLevelLabel.font.withSize(skillLevelLabelFontSize)
+            strengthLevelLabel.font = strengthLevelLabel.font.withSize(skillLevelLabelFontSize)
+            defenceLevelLabel.font = defenceLevelLabel.font.withSize(skillLevelLabelFontSize)
+            constLevelLabel.font = constLevelLabel.font.withSize(skillLevelLabelFontSize)
+            rangedLevelLabel.font = rangedLevelLabel.font.withSize(skillLevelLabelFontSize)
+            magicLevelLabel.font = magicLevelLabel.font.withSize(skillLevelLabelFontSize)
+            prayerLevelLabel.font = prayerLevelLabel.font.withSize(skillLevelLabelFontSize)
+            summonLevelLabel.font = summonLevelLabel.font.withSize(skillLevelLabelFontSize)
+            
+            attackSubConst.constant = 8.0
+            attackAddConst.constant = 8.0
+            strengthSubConst.constant = 8.0
+            strengthAddConst.constant = 8.0
+            defenceSubConst.constant = 8.0
+            defenceAddConst.constant = 8.0
+            constSubConst.constant = 8.0
+            constAddConst.constant = 8.0
+            rangedSubConst.constant = 8.0
+            rangedAddConst.constant = 8.0
+            magicSubConst.constant = 8.0
+            magicAddConst.constant = 8.0
+            prayerSubConst.constant = 8.0
+            prayerAddConst.constant = 8.0
+            summonSubConst.constant = 8.0
+            summonAddConst.constant = 8.0
         }
     }
     
