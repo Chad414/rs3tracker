@@ -72,6 +72,9 @@ class StatsTableViewDataSource: NSObject, UITableViewDataSource {
         
         if UIDevice.current.userInterfaceIdiom == .pad {
             cell.progressViewLength.constant = CGFloat(200.0)
+            cell.skillIconLength.constant = 36
+            cell.skillIconHeight.constant = 36
+            cell.trailingConst.constant = 24
         }
         
         cell.updateCell()

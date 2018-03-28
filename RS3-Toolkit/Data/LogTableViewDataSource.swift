@@ -55,6 +55,9 @@ class LogTableViewDataSource: NSObject, UITableViewDataSource {
         
         if UIDevice.current.userInterfaceIdiom == .pad {
             cell.logLabel.font = cell.logLabel.font.withSize(CGFloat(24.0))
+            cell.iconLength.constant = 36
+            cell.iconLength.constant = 36
+            cell.trailingConst.constant = 24
         }
         
         cell.updateCell()

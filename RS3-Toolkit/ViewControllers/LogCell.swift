@@ -13,6 +13,10 @@ class LogCell: UITableViewCell {
     @IBOutlet var iconView: UIImageView!
     @IBOutlet var logLabel: UILabel!
     
+    @IBOutlet var iconLength: NSLayoutConstraint!
+    @IBOutlet var iconHeight: NSLayoutConstraint!
+    @IBOutlet var trailingConst: NSLayoutConstraint!
+    
     func updateCell() {
         contentView.addSubview(iconView)
         contentView.addSubview(logLabel)

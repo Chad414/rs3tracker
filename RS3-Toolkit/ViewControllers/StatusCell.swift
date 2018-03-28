@@ -12,7 +12,11 @@ class StatusCell: UITableViewCell {
     @IBOutlet var skillIcon: UIImageView!
     @IBOutlet var skillLabel: UILabel!
     @IBOutlet var progressView: UIProgressView!
+    
     @IBOutlet var progressViewLength: NSLayoutConstraint!
+    @IBOutlet var skillIconLength: NSLayoutConstraint!
+    @IBOutlet var skillIconHeight: NSLayoutConstraint!
+    @IBOutlet var trailingConst: NSLayoutConstraint!
     
     func updateCell() {
         contentView.addSubview(skillIcon)
