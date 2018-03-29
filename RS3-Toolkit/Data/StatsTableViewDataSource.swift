@@ -68,7 +68,7 @@ class StatsTableViewDataSource: NSObject, UITableViewDataSource {
         cell.skillIcon.image = UIImage(named: "Skill\(skillID).png")
         cell.progressView.progress = progress
         
-        cell.backgroundColor = Global.backgroundColor
+        cell.contentView.backgroundColor = Global.backgroundColor
         
         if UIDevice.current.userInterfaceIdiom == .pad {
             cell.progressViewLength.constant = CGFloat(200.0)

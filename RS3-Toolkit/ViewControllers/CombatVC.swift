@@ -116,7 +116,7 @@ class CombatVC: UIViewController, UISearchBarDelegate {
         combatSkills["defence"]! += 1
     }
     @IBAction func subConst(sender: UIButton) {
-        guard combatSkills["const"]! > 1 else {
+        guard combatSkills["const"]! > 10 else {
             return
         }
         combatSkills["const"]! -= 1
@@ -392,7 +392,15 @@ class CombatVC: UIViewController, UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("Search Button Clicked!")
-        Global.username = (searchBar.text?.replacingOccurrences(of: " ", with: "_")) ?? Global.username
+        let input = searchBar.text?.replacingOccurrences(of: " ", with: "_") ?? Global.username
+        
+        if searchBar.text == "" || input == Global.username {
+            searchBar.text = ""
+            searchBar.resignFirstResponder()
+            return
+        }
+        
+        Global.username = input
         searchBar.text = ""
         searchBar.resignFirstResponder()
         tapGesture.isEnabled = false

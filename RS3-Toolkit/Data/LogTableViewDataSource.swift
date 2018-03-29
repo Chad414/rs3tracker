@@ -51,7 +51,7 @@ class LogTableViewDataSource: NSObject, UITableViewDataSource {
         
         cell.logLabel.text = logText
         
-        cell.backgroundColor = Global.backgroundColor
+        cell.contentView.backgroundColor = Global.backgroundColor
         
         if UIDevice.current.userInterfaceIdiom == .pad {
             cell.logLabel.font = cell.logLabel.font.withSize(CGFloat(24.0))

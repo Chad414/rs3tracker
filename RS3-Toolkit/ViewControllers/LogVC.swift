@@ -165,7 +165,15 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("Search Button Clicked!")
-        Global.username = (searchBar.text?.replacingOccurrences(of: " ", with: "_")) ?? Global.username
+        let input = searchBar.text?.replacingOccurrences(of: " ", with: "_") ?? Global.username
+        
+        if searchBar.text == "" || input == Global.username {
+            searchBar.text = ""
+            searchBar.resignFirstResponder()
+            return
+        }
+        
+        Global.username = input
         searchBar.text = ""
         searchBar.resignFirstResponder()
         tapGesture.isEnabled = false
