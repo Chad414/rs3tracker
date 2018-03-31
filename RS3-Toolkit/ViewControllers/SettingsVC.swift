@@ -48,9 +48,31 @@ class SettingsVC: UIViewController {
             
             profileImageWidth.constant = 200
             profileImageHeight.constant = 200
+            
+            updateLayoutFor97iPad()
         }
         
         versionLabel.text = "Version " + Bundle.main.releaseVersionNumber!
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            updateLayoutFor97iPad()
+        }
+    }
+    
+    func updateLayoutFor97iPad() {
+        if UIDevice.current.orientation != UIDeviceOrientation.portrait && UIDevice.current.orientation != UIDeviceOrientation.portraitUpsideDown {
+            if Global.deviceIs97InchiPad() {
+                guard profileImageHeight != nil && profileImageWidth != nil else { return }
+                profileImageWidth.constant = 100
+                profileImageHeight.constant = 100
+            }
+        } else {
+            guard profileImageHeight != nil && profileImageWidth != nil else { return }
+            profileImageWidth.constant = 200
+            profileImageHeight.constant = 200
+        }
     }
     
     @IBAction func icons8Link(_ sender: UIButton) {

@@ -99,6 +99,14 @@ struct Global {
             return false
         }
     }
+    
+    static func deviceIs97InchiPad() -> Bool {
+        if UIScreen.main.nativeBounds.height <= 2048 && UIDevice.current.userInterfaceIdiom == .pad {
+            return true
+        } else {
+            return false
+        }
+    }
 }
 
 extension Int {

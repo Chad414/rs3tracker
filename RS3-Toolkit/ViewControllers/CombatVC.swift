@@ -317,8 +317,71 @@ class CombatVC: UIViewController, UISearchBarDelegate {
             prayerAddConst.constant = 8.0
             summonSubConst.constant = 8.0
             summonAddConst.constant = 8.0
+            
+            updateLayoutFor97iPad()
         }
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            updateLayoutFor97iPad()
+        }
+    }
+    
+    func updateLayoutFor97iPad() { // This function should only get called when device is an iPad
+        if UIDevice.current.orientation != UIDeviceOrientation.portrait && UIDevice.current.orientation != UIDeviceOrientation.portraitUpsideDown {
+            if Global.deviceIs97InchiPad() {
+                guard leftSkillsConst != nil && rightSkillsConst != nil else { return }
+                leftSkillsConst.constant = 60
+                rightSkillsConst.constant = 60
+            } else { // Device is Large iPad
+                guard leadingAttackConst != nil,
+                    leadingDefenceConst != nil,
+                    leadingStrengthConst != nil,
+                    leadingConstitutionConst != nil,
+                    trailingMagicConst != nil,
+                    trailingPrayerConst != nil,
+                    trailingRagnedConst != nil,
+                    trailingSummoningConst != nil else { return }
+                
+                let trailingLeadingConst = CGFloat(450.0)
+                leadingAttackConst.constant = trailingLeadingConst
+                leadingDefenceConst.constant = trailingLeadingConst
+                leadingStrengthConst.constant = trailingLeadingConst
+                leadingConstitutionConst.constant = 430
+                trailingMagicConst.constant = trailingLeadingConst
+                trailingPrayerConst.constant = trailingLeadingConst
+                trailingRagnedConst.constant = trailingLeadingConst
+                trailingSummoningConst.constant = 432
+            }
+        } else {
+            if Global.deviceIs97InchiPad() {
+                guard leftSkillsConst != nil && rightSkillsConst != nil else { return }
+                leftSkillsConst.constant = 120
+                rightSkillsConst.constant = 120
+            } else { // Device is Large iPad
+                guard leadingAttackConst != nil,
+                    leadingDefenceConst != nil,
+                    leadingStrengthConst != nil,
+                    leadingConstitutionConst != nil,
+                    trailingMagicConst != nil,
+                    trailingPrayerConst != nil,
+                    trailingRagnedConst != nil,
+                    trailingSummoningConst != nil else { return }
+                
+                let trailingLeadingConst = CGFloat(240.0)
+                leadingAttackConst.constant = trailingLeadingConst
+                leadingDefenceConst.constant = trailingLeadingConst
+                leadingStrengthConst.constant = trailingLeadingConst
+                leadingConstitutionConst.constant = 220
+                trailingMagicConst.constant = trailingLeadingConst
+                trailingPrayerConst.constant = trailingLeadingConst
+                trailingRagnedConst.constant = trailingLeadingConst
+                trailingSummoningConst.constant = 218
+            }
+        }
+    }
+    
     
     func updateUserData() {
         store.fetchUserData() {
