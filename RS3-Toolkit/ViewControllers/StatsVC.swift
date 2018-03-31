@@ -47,6 +47,8 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     let tableViewDataSource = StatsTableViewDataSource()
     
+    var timer = Timer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -170,9 +172,27 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         activityIndicator.startAnimating()
         UIApplication.shared.beginIgnoringInteractionEvents()
+
+        timer = Timer.scheduledTimer(timeInterval: 8, target: self,   selector: (#selector(failedToFetchData)), userInfo: nil, repeats: true)
+
+    }
+    
+    @objc func failedToFetchData() {
+        stopLoading()
+        
+        Global.cachedUserData = UserData()
+        profileImage.image = UIImage(named: "chadtek.png")
+        updateViewData()
+        
+        let errorMessage = "Please check your internet connection."
+        let ac = UIAlertController(title: "No Response from Server", message: errorMessage, preferredStyle: .alert)
+        let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+        ac.addAction(closeAction)
+        self.present(ac, animated: true, completion: nil)
     }
     
     func stopLoading() {
+        timer.invalidate()
         activityIndicator.stopAnimating()
         UIApplication.shared.endIgnoringInteractionEvents()
     }
@@ -181,9 +201,23 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         print("Search Button Clicked!")
         let input = searchBar.text?.replacingOccurrences(of: " ", with: "_") ?? Global.username
         
-        if searchBar.text == "" || input == Global.username {
+        if searchBar.text == "" {
             searchBar.text = ""
             searchBar.resignFirstResponder()
+            return
+        }
+        
+        if searchBar.text?.containsOnlyLetters() == false {
+            print("Invalid username")
+            searchBar.text = ""
+            searchBar.resignFirstResponder()
+            
+            let errorMessage = "Please enter a valid username."
+            let ac = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+            ac.addAction(closeAction)
+            self.present(ac, animated: true, completion: nil)
+            
             return
         }
         

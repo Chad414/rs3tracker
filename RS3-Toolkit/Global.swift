@@ -127,6 +127,14 @@ extension String {
         
         return String(substring)
     }
+    
+    func containsOnlyLetters() -> Bool {
+        let characterset = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ")
+        if self.rangeOfCharacter(from: characterset.inverted) != nil {
+            return false
+        }
+        return true
+    }
 }
 
 extension NSMutableAttributedString {
