@@ -54,7 +54,8 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
                 print("Failed to Fetch User Data")
                 self.updating = false
                 // Show Alert Here
-                let errorMessage = "The user either doesn't exist, has been offline for a while, or has privacy enabled."
+                //let errorMessage = "The user either doesn't exist, has been offline for a while, or has privacy enabled."
+                let errorMessage = "Please make sure your RuneMetrics profile is set to public."
                 let ac = UIAlertController(title: "User Not Found", message: errorMessage, preferredStyle: .alert)
                 let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
                 ac.addAction(closeAction)

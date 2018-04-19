@@ -11,7 +11,7 @@ import UIKit
 
 struct Global {
     static var firstTimeLaunchingApp: Bool = false
-    static var storedUsername: String = "Dark_Poet"
+    static var storedUsername: String = UserDefaults.standard.string(forKey: "username") ?? "ChadTek"
     static var username: String = "ChadTek"
     static var activities: Int = 20
     static var updateInProgress: Bool = false {

@@ -108,11 +108,22 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
                 print("Failed to Fetch User Data")
                 self.updating = false
                 // Show Alert Here
-                let errorMessage = "The user either doesn't exist, has been offline for a while, or has privacy enabled."
-                let ac = UIAlertController(title: "User Not Found", message: errorMessage, preferredStyle: .alert)
-                let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-                ac.addAction(closeAction)
-                self.present(ac, animated: true, completion: nil)
+                if Global.username == Global.storedUsername {
+                    WelcomeVC.hideCancelButton = true
+                    let errorMessage = "User is no longer available. Please make sure your RuneMetrics profile is set to public."
+                    let ac = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+                    let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: { (sender: UIAlertAction) in
+                        self.performSegue(withIdentifier: "welcome", sender: self)
+                    })
+                    ac.addAction(closeAction)
+                    self.present(ac, animated: true, completion: nil)
+                } else {
+                    let errorMessage = "The user either doesn't exist, has been offline for a while, or has privacy enabled."
+                    let ac = UIAlertController(title: "User Not Found", message: errorMessage, preferredStyle: .alert)
+                    let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+                    ac.addAction(closeAction)
+                    self.present(ac, animated: true, completion: nil)
+                }
             }
         }
     }
