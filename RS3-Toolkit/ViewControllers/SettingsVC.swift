@@ -75,8 +75,10 @@ class SettingsVC: UIViewController {
         }
     }
     
+    let emailURL: URL! = URL(string: "mailto:feedback@chadhamdan.me")
+    
     @IBAction func icons8Link(_ sender: UIButton) {
-        UIApplication.shared.open(URL(string: "https://icons8.com")!)
+        UIApplication.shared.open(emailURL)
     }
     
     @IBAction func done(_ sender: UIButton) {
