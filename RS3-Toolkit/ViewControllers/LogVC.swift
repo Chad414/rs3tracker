@@ -151,7 +151,7 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     func startLoading() {
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
         let transform: CGAffineTransform = CGAffineTransform(scaleX: 3.5, y: 3.5)
         activityIndicator.transform = transform
         view.addSubview(activityIndicator)

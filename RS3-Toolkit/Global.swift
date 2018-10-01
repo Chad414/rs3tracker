@@ -153,7 +153,7 @@ extension NSMutableAttributedString {
             size = 26.0
         }
         
-        let attrs: [NSAttributedStringKey: Any] = [.font: UIFont.boldSystemFont(ofSize: size)]
+        let attrs: [NSAttributedString.Key: Any] = [.font: UIFont.boldSystemFont(ofSize: size)]
         let boldString = NSMutableAttributedString(string:text, attributes: attrs)
         append(boldString)
         
@@ -173,7 +173,7 @@ extension NSMutableAttributedString {
             size = 24.0
         }
         
-        let attrs: [NSAttributedStringKey: Any] = [.font: UIFont.systemFont(ofSize: size)]
+        let attrs: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: size)]
         let boldString = NSMutableAttributedString(string:text, attributes: attrs)
         append(boldString)
         
