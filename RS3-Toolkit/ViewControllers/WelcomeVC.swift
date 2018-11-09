@@ -76,6 +76,16 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
             let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
             ac.addAction(closeAction)
             self.present(ac, animated: true, completion: nil)
+        } else if usernameTextInput.text?.containsOnlyLetters() == false {
+            print("Invalid username")
+            usernameTextInput.text = ""
+            usernameTextInput.resignFirstResponder()
+            
+            let errorMessage = "Please enter a valid username."
+            let ac = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+            ac.addAction(closeAction)
+            self.present(ac, animated: true, completion: nil)
         } else {
             updating = true
             Global.username = username

@@ -52,10 +52,6 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = Global.backgroundColor
-        statsTableView.backgroundColor = Global.backgroundColor
-        searchBar.searchBarStyle = .minimal
-        
         interstitial = GADInterstitial(adUnitID: "ca-app-pub-4468715439448322/3008848820")
         //interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/1033173712") // Test ID
         
@@ -79,6 +75,10 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.view.backgroundColor = Global.backgroundColor
+        statsTableView.backgroundColor = Global.backgroundColor
+        searchBar.searchBarStyle = .minimal
         
         if Global.cachedUserData != nil {
             LogVC.user = Global.cachedUserData!
