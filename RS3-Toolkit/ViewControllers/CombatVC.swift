@@ -239,6 +239,8 @@ class CombatVC: UIViewController, UISearchBarDelegate {
         self.view.backgroundColor = Global.backgroundColor
         searchBar.searchBarStyle = .minimal
         
+        self.tabBarController?.navigationItem.searchController?.searchBar.delegate = self
+        
         if Global.cachedUserData != nil {
             LogVC.user = Global.cachedUserData!
             updateViewData()
@@ -422,6 +424,7 @@ class CombatVC: UIViewController, UISearchBarDelegate {
     
     func updateViewData() {
         usernameLabel.text = localUser.name
+        self.tabBarController?.title = localUser.name
         
         let combatLevelText = NSMutableAttributedString()
         combatLevelText.bold("Combat Level: ")
@@ -480,6 +483,7 @@ class CombatVC: UIViewController, UISearchBarDelegate {
         if searchBar.text == "" {
             searchBar.text = ""
             searchBar.resignFirstResponder()
+            self.tabBarController?.navigationItem.searchController?.isActive = false
             return
         }
         
@@ -487,6 +491,7 @@ class CombatVC: UIViewController, UISearchBarDelegate {
             print("Invalid username")
             searchBar.text = ""
             searchBar.resignFirstResponder()
+            self.tabBarController?.navigationItem.searchController?.isActive = false
             
             let errorMessage = "Please enter a valid username."
             let ac = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
@@ -500,6 +505,7 @@ class CombatVC: UIViewController, UISearchBarDelegate {
         Global.username = input
         searchBar.text = ""
         searchBar.resignFirstResponder()
+        self.tabBarController?.navigationItem.searchController?.isActive = false
         tapGesture.isEnabled = false
         updateUserData()
         updateUserAvatar()

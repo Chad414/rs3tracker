@@ -82,6 +82,8 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         logTableView.backgroundColor = Global.backgroundColor
         searchBar.searchBarStyle = .minimal
         
+        self.tabBarController?.navigationItem.searchController?.searchBar.delegate = self
+        
         if Global.cachedUserData != nil {
             LogVC.user = Global.cachedUserData!
             updateViewData()
@@ -138,6 +140,7 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         logTableView.reloadData()
         
         usernameLabel.text = localUser.name
+        self.tabBarController?.title = localUser.name
         
         let questProgressText = NSMutableAttributedString()
         questProgressText.bold("Quest Progress")
@@ -191,6 +194,7 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         if searchBar.text == "" {
             searchBar.text = ""
             searchBar.resignFirstResponder()
+            self.tabBarController?.navigationItem.searchController?.isActive = false
             return
         }
         
@@ -198,6 +202,7 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
             print("Invalid username")
             searchBar.text = ""
             searchBar.resignFirstResponder()
+            self.tabBarController?.navigationItem.searchController?.isActive = false
             
             let errorMessage = "Please enter a valid username."
             let ac = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
@@ -211,6 +216,7 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         Global.username = input
         searchBar.text = ""
         searchBar.resignFirstResponder()
+        self.tabBarController?.navigationItem.searchController?.isActive = false
         tapGesture.isEnabled = false
         updateUserData()
         updateUserAvatar()

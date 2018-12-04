@@ -10,6 +10,7 @@ import UIKit
 import GoogleMobileAds
 
 class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
+    
     @IBOutlet var statsTableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var profileImage: UIImageView!
@@ -80,6 +81,8 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         statsTableView.backgroundColor = Global.backgroundColor
         searchBar.searchBarStyle = .minimal
         
+        self.tabBarController?.navigationItem.searchController?.searchBar.delegate = self
+        
         if Global.cachedUserData != nil {
             LogVC.user = Global.cachedUserData!
             updateViewData()
@@ -149,6 +152,8 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         print("Attack Level: \(localUser.getSkill(id: 0)["level"]!)")
         usernameLabel.text = localUser.name
+        //self.navigationController?.topViewController?.title = localUser.name
+        self.tabBarController?.title = localUser.name
         
         //xpLabel.text = "Total XP: \(localUser.totalxp.convertToString())"
         let totalXPText = NSMutableAttributedString()
@@ -215,6 +220,7 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         if searchBar.text == "" {
             searchBar.text = ""
             searchBar.resignFirstResponder()
+            self.tabBarController?.navigationItem.searchController?.isActive = false
             return
         }
         
@@ -222,6 +228,7 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
             print("Invalid username")
             searchBar.text = ""
             searchBar.resignFirstResponder()
+            self.tabBarController?.navigationItem.searchController?.isActive = false
             
             let errorMessage = "Please enter a valid username."
             let ac = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
@@ -235,6 +242,7 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         Global.username = input
         searchBar.text = ""
         searchBar.resignFirstResponder()
+        self.tabBarController?.navigationItem.searchController?.isActive = false
         tapGesture.isEnabled = false
         updateUserData()
         updateUserAvatar()

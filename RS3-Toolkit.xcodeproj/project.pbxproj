@@ -10,6 +10,7 @@
 		5568A480750F5D452F43AD11 /* Pods_RS3_Toolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7DE69AEF31FAB6A6B1551E /* Pods_RS3_Toolkit.framework */; };
 		6319F25D205B394C0021AD37 /* CombatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6319F25C205B394C0021AD37 /* CombatVC.swift */; };
 		6336C69A20645F4F0058FB98 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6336C69920645F4F0058FB98 /* WelcomeVC.swift */; };
+		6346523821B05C9E00B7F8B0 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6346523721B05C9E00B7F8B0 /* TabBarVC.swift */; };
 		636CA7C92047144F00244432 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636CA7C82047144F00244432 /* StatusCell.swift */; };
 		63AD493C2051D3F5009DC0B3 /* LogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD493B2051D3F5009DC0B3 /* LogVC.swift */; };
 		63AD493E2051D4DD009DC0B3 /* LogTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD493D2051D4DD009DC0B3 /* LogTableViewDataSource.swift */; };
@@ -53,6 +54,7 @@
 		5E74834C97A235F7DB83175F /* Pods-RS3-Toolkit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RS3-Toolkit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RS3-Toolkit/Pods-RS3-Toolkit.debug.xcconfig"; sourceTree = "<group>"; };
 		6319F25C205B394C0021AD37 /* CombatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombatVC.swift; sourceTree = "<group>"; };
 		6336C69920645F4F0058FB98 /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
+		6346523721B05C9E00B7F8B0 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		636CA7C82047144F00244432 /* StatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
 		63AD493B2051D3F5009DC0B3 /* LogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogVC.swift; sourceTree = "<group>"; };
 		63AD493D2051D4DD009DC0B3 /* LogTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTableViewDataSource.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 		63BDBA492044765300A935CE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				6346523721B05C9E00B7F8B0 /* TabBarVC.swift */,
 				63BDBA472044763D00A935CE /* StatsVC.swift */,
 				636CA7C82047144F00244432 /* StatusCell.swift */,
 				63AD493B2051D3F5009DC0B3 /* LogVC.swift */,
@@ -406,6 +409,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6346523821B05C9E00B7F8B0 /* TabBarVC.swift in Sources */,
 				63BDBA502044E6ED00A935CE /* UserData.swift in Sources */,
 				63BDBA4E2044D2D100A935CE /* StatsTableViewDataSource.swift in Sources */,
 				63AD49402051D56B009DC0B3 /* LogCell.swift in Sources */,
@@ -596,7 +600,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZV5VY53F4X;
 				INFOPLIST_FILE = "RS3-Toolkit/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = chadhamdan.RS3Tracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -615,7 +619,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZV5VY53F4X;
 				INFOPLIST_FILE = "RS3-Toolkit/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = chadhamdan.RS3Tracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
