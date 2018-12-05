@@ -32,3 +32,24 @@ class StatusCell: UITableViewCell {
         super.awakeFromNib()
     }
 }
+
+class HeaderCell: UITableViewCell {
+    
+    @IBOutlet var totalLevelLabel: UILabel!
+    @IBOutlet var totalXPLabel: UILabel!
+    @IBOutlet var profileIcon: UIImageView!
+    
+    func updateCell() {
+        contentView.addSubview(totalLevelLabel)
+        contentView.addSubview(totalXPLabel)
+        contentView.addSubview(profileIcon)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+}

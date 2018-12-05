@@ -32,6 +32,8 @@ class SettingsVC: UIViewController {
         
         self.view.backgroundColor = Global.backgroundColor
         
+        navigationController?.navigationBar.prefersLargeTitles = false
+        
         if UIDevice.current.userInterfaceIdiom == .pad {
             titleLabel.font = titleLabel.font.withSize(CGFloat(38.0))
             versionLabel.font = versionLabel.font.withSize(CGFloat(29.0))

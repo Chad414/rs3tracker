@@ -160,6 +160,34 @@ extension NSMutableAttributedString {
         return self
     }
     
+    @discardableResult func headerbold(_ text: String) -> NSMutableAttributedString {
+        var size: CGFloat = 20.0
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            size = 28.0
+        }
+        
+        let attrs: [NSAttributedString.Key: Any] = [.font: UIFont.boldSystemFont(ofSize: size)]
+        let boldString = NSMutableAttributedString(string:text, attributes: attrs)
+        append(boldString)
+        
+        return self
+    }
+    
+    @discardableResult func header(_ text: String) -> NSMutableAttributedString {
+        var size: CGFloat = 20.0
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            size = 28.0
+        }
+        
+        let attrs: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: size)]
+        let string = NSMutableAttributedString(string:text, attributes: attrs)
+        append(string)
+        
+        return self
+    }
+    
     @discardableResult func normal(_ text: String) -> NSMutableAttributedString {
         var size: CGFloat = 17.0
         

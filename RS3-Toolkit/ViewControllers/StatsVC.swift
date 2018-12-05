@@ -12,14 +12,7 @@ import GoogleMobileAds
 class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     @IBOutlet var statsTableView: UITableView!
-    @IBOutlet var searchBar: UISearchBar!
-    @IBOutlet var profileImage: UIImageView!
-    // Labels
-    @IBOutlet var usernameLabel: UILabel!
-    @IBOutlet var xpLabel: UILabel!
-    @IBOutlet var skillLabel: UILabel!
-    @IBOutlet var combatLabel: UILabel!
-    @IBOutlet var rankiPadLabel: UILabel!
+
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     
     var interstitial: GADInterstitial!
@@ -61,16 +54,8 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
             interstitial.load(request)
         }
         
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            statsTableView.rowHeight = 70.0
-            combatLabel.isHidden = true
-            rankiPadLabel.isHidden = false
-            usernameLabel.font = usernameLabel.font.withSize(28.0)
-        }
-        
         statsTableView.dataSource = tableViewDataSource
         statsTableView.delegate = self
-        searchBar.delegate = self
         tapGesture.isEnabled = false
     }
     
@@ -79,11 +64,11 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         self.view.backgroundColor = Global.backgroundColor
         statsTableView.backgroundColor = Global.backgroundColor
-        searchBar.searchBarStyle = .minimal
         
         self.tabBarController?.navigationItem.searchController?.searchBar.delegate = self
+        self.tabBarController?.navigationController?.navigationBar.prefersLargeTitles = true
         
-        if Global.cachedUserData != nil {
+        /*if Global.cachedUserData != nil {
             LogVC.user = Global.cachedUserData!
             updateViewData()
         } else {
@@ -92,11 +77,13 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         }
         
         if Global.cachedUserAvatar != nil {
-            profileImage.image = Global.cachedUserAvatar!
+            //profileImage.image = Global.cachedUserAvatar!
         } else {
             updateUserAvatar()
-        }
+        }*/
         
+        updateUserData()
+        updateUserAvatar()
     }
     
     func updateUserData() {
@@ -137,9 +124,10 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
             
             switch result {
             case let .success(avatar):
-                self.profileImage.image = avatar
+                //self.profileImage.image = avatar
                 //self.profileImage.image = UIImage(named: "chadtek.png")
                 Global.cachedUserAvatar = avatar
+                self.statsTableView.reloadData()
             case .failure:
                 print("Failed to Fetch User Avatar")
             }
@@ -151,7 +139,7 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         statsTableView.reloadData()
         
         print("Attack Level: \(localUser.getSkill(id: 0)["level"]!)")
-        usernameLabel.text = localUser.name
+        //usernameLabel.text = localUser.name
         //self.navigationController?.topViewController?.title = localUser.name
         self.tabBarController?.title = localUser.name
         
@@ -159,22 +147,22 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         let totalXPText = NSMutableAttributedString()
         totalXPText.bold("Total XP: ")
         totalXPText.normal("\(localUser.totalxp.convertToString())")
-        xpLabel.attributedText = totalXPText
+        //xpLabel.attributedText = totalXPText
         
         //skillLabel.text = "Total Level: \(localUser.totalskill)"
         let totalLevelText = NSMutableAttributedString()
         totalLevelText.bold("Total Level: ")
         totalLevelText.normal("\(localUser.totalskill)")
-        skillLabel.attributedText = totalLevelText
+        //skillLabel.attributedText = totalLevelText
         
         //combatLabel.text = "Rank: \(localUser.rank)"
         let rankText = NSMutableAttributedString()
         rankText.bold("Rank: ")
         rankText.normal("\(localUser.rank)")
         if UIDevice.current.userInterfaceIdiom == .pad {
-            rankiPadLabel.attributedText = rankText
+            //rankiPadLabel.attributedText = rankText
         } else {
-            combatLabel.attributedText = rankText
+            //combatLabel.attributedText = rankText
         }
     }
     
@@ -197,7 +185,7 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         stopLoading()
         
         Global.cachedUserData = UserData()
-        profileImage.image = UIImage(named: "chadtek.png")
+        //profileImage.image = UIImage(named: "chadtek.png")
         updateViewData()
         
         let errorMessage = "Please check your internet connection."
@@ -256,7 +244,7 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        searchBar.resignFirstResponder()
+        self.tabBarController?.navigationItem.searchController?.isActive = false
         tapGesture.isEnabled = false
     }
     
@@ -267,7 +255,15 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let skillID  = indexPath.row
+        
+        if indexPath.row == 0 {
+            let ac = UIAlertController(title: "\(localUser.name)", message: "Rank: \(localUser.rank)", preferredStyle: .alert)
+            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+            ac.addAction(closeAction)
+            self.present(ac, animated: true, completion: nil)
+        }
+        
+        let skillID  = indexPath.row - 1
         let skill = localUser.getSkill(id: skillID)
         var level = skill["level"]!
         var xp = String(skill["xp"]!).dropLast()
@@ -301,10 +297,25 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         let skillInfo = "Level: \(levelString)\nXP: \(formattedXP)\nXP To Level Up: \(xpToLevel)"
         
-        let ac = UIAlertController(title: "\(Global.getSkillString(id: indexPath.row))", message: skillInfo, preferredStyle: .alert)
+        let ac = UIAlertController(title: "\(Global.getSkillString(id: skillID))", message: skillInfo, preferredStyle: .alert)
         let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
         ac.addAction(closeAction)
         self.present(ac, animated: true, completion: nil)
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if indexPath.row == 0 {
+                return 70.0
+            } else {
+                return 70.0
+            }
+        } else {
+            if indexPath.row == 0 {
+                return 70.0
+            } else {
+                return 44.0
+            }
+        }
+    }
 }

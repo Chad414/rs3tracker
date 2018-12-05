@@ -19,5 +19,13 @@ class TabBarVC: UITabBarController {
         
         self.title = "Loading..."
         
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        navigationItem.backBarButtonItem = backItem
     }
 }

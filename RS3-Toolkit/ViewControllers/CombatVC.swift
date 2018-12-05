@@ -11,11 +11,9 @@ import GoogleMobileAds
 
 class CombatVC: UIViewController, UISearchBarDelegate {
     var interstitial: GADInterstitial!
+
+    //@IBOutlet var profileImage: UIImageView!
     
-    @IBOutlet var searchBar: UISearchBar!
-    @IBOutlet var profileImage: UIImageView!
-    
-    @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var combatLevelLabel: UILabel!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     @IBOutlet var combatLevelTitle: UILabel!
@@ -229,17 +227,16 @@ class CombatVC: UIViewController, UISearchBarDelegate {
             let request = GADRequest()
             interstitial.load(request)
         }
-        
-        searchBar.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.view.backgroundColor = Global.backgroundColor
-        searchBar.searchBarStyle = .minimal
         
         self.tabBarController?.navigationItem.searchController?.searchBar.delegate = self
+        
+        self.tabBarController?.navigationController?.navigationBar.prefersLargeTitles = false
         
         if Global.cachedUserData != nil {
             LogVC.user = Global.cachedUserData!
@@ -250,15 +247,15 @@ class CombatVC: UIViewController, UISearchBarDelegate {
         }
         
         if Global.cachedUserAvatar != nil {
-            profileImage.image = Global.cachedUserAvatar!
+            //profileImage.image = Global.cachedUserAvatar!
         } else {
             updateUserAvatar()
         }
         
         if Global.displayIsCompact() {
             combatLevelConst.constant = 50
-            leftSkillsConst.constant = 45
-            rightSkillsConst.constant = 45
+            leftSkillsConst.constant = 40
+            rightSkillsConst.constant = 40
             
             attackStrengthConst.constant = 10
             strengthDefenceConst.constant = 10
@@ -414,7 +411,7 @@ class CombatVC: UIViewController, UISearchBarDelegate {
             
             switch result {
             case let .success(avatar):
-                self.profileImage.image = avatar
+                //self.profileImage.image = avatar
                 Global.cachedUserAvatar = avatar
             case .failure:
                 print("Failed to Fetch User Avatar")
@@ -423,12 +420,11 @@ class CombatVC: UIViewController, UISearchBarDelegate {
     }
     
     func updateViewData() {
-        usernameLabel.text = localUser.name
         self.tabBarController?.title = localUser.name
         
         let combatLevelText = NSMutableAttributedString()
-        combatLevelText.bold("Combat Level: ")
-        combatLevelText.normal("\(localUser.combatlevel)")
+        combatLevelText.headerbold("Combat Level: ")
+        combatLevelText.header("\(localUser.combatlevel)")
         combatLevelLabel.attributedText = combatLevelText
         
         combatSkills["attack"]! = localUser.getSkill(id: 0)["level"]!
@@ -460,7 +456,7 @@ class CombatVC: UIViewController, UISearchBarDelegate {
         stopLoading()
         
         Global.cachedUserData = UserData()
-        profileImage.image = UIImage(named: "chadtek.png")
+        //profileImage.image = UIImage(named: "chadtek.png")
         updateViewData()
         
         let errorMessage = "Please check your internet connection."
@@ -519,7 +515,7 @@ class CombatVC: UIViewController, UISearchBarDelegate {
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        searchBar.resignFirstResponder()
+        self.tabBarController?.navigationItem.searchController?.isActive = false
         tapGesture.isEnabled = false
     }
     

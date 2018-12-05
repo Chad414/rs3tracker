@@ -21,12 +21,38 @@ class StatsTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.row == 0 { // First cell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell", for: indexPath) as! HeaderCell
+            
+            guard userData != nil else {
+                return cell
+            }
+            
+            cell.contentView.backgroundColor = Global.backgroundColor
+            
+            cell.profileIcon.image = Global.cachedUserAvatar
+            
+            let totalLevelText = NSMutableAttributedString()
+            totalLevelText.headerbold("Total Level: ")
+            totalLevelText.header("\(userData.totalskill)")
+            cell.totalLevelLabel.attributedText = totalLevelText
+            
+            let totalXPText = NSMutableAttributedString()
+            totalXPText.headerbold("Total XP: ")
+            totalXPText.header("\(userData.totalxp.convertToString())")
+            cell.totalXPLabel.attributedText = totalXPText
+            
+            cell.updateCell()
+            return cell
+        }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "statusCell", for: indexPath) as! StatusCell
         
         guard userData != nil else {
             return cell
         }
-        let skillID = indexPath.row
+        let skillID = indexPath.row - 1
         let skill = userData.getSkill(id: skillID)
         
         var xp = String(skill["xp"]!).dropLast()
@@ -78,7 +104,6 @@ class StatsTableViewDataSource: NSObject, UITableViewDataSource {
         }
         
         cell.updateCell()
-        
         return cell
     }
     
