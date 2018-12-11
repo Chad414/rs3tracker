@@ -1,6 +1,0 @@
-framework module Pods_RS3_Toolkit {
-  umbrella header "Pods-RS3-Toolkit-umbrella.h"
-
-  export *
-  module * { export * }
-}
