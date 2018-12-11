@@ -241,6 +241,7 @@ class CombatVC: UIViewController, UISearchBarDelegate {
         if Global.cachedUserData != nil {
             LogVC.user = Global.cachedUserData!
             updateViewData()
+            showAd()
         } else {
             updateUserData()
             updating = true
@@ -279,7 +280,7 @@ class CombatVC: UIViewController, UISearchBarDelegate {
             leftSkillsConst.constant = 120
             rightSkillsConst.constant = 120
             
-            calculatedCombatLevelLabel.font = calculatedCombatLevelLabel.font.withSize(CGFloat(72.0))
+            calculatedCombatLevelLabel.font = calculatedCombatLevelLabel.font.withSize(CGFloat(64.0))
             combatLevelTitle.font = combatLevelTitle.font.withSize(CGFloat(32.0))
             
             let skillLabelFontSize = CGFloat(28.0)
@@ -460,7 +461,7 @@ class CombatVC: UIViewController, UISearchBarDelegate {
         updateViewData()
         
         let errorMessage = "Please check your internet connection."
-        let ac = UIAlertController(title: "No Response from Server", message: errorMessage, preferredStyle: .alert)
+        let ac = UIAlertController(title: "No response from server", message: errorMessage, preferredStyle: .alert)
         let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
         ac.addAction(closeAction)
         self.present(ac, animated: true, completion: nil)
@@ -506,12 +507,7 @@ class CombatVC: UIViewController, UISearchBarDelegate {
         updateUserData()
         updateUserAvatar()
         updating = true
-        if interstitial.isReady && !Global.adShown {
-            self.interstitial.present(fromRootViewController: self)
-            Global.adShown = true
-        } else {
-            print("Ad wasn't ready or has already been shown")
-        }
+        showAd()
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
@@ -561,5 +557,18 @@ class CombatVC: UIViewController, UISearchBarDelegate {
         let result = product / 4
         
         calculatedCombatLevelLabel.text = "\(Int(result))"
+    }
+    
+    func showAd() {
+        if interstitial.isReady && !Global.adShown {
+            self.interstitial.present(fromRootViewController: self)
+            Global.adShown = true
+        } else {
+            if Global.adShown {
+                print("Ad has already been shown")
+            } else {
+                print("Ad wasn't ready")
+            }
+        }
     }
 }

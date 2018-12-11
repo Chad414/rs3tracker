@@ -11,14 +11,6 @@ import GoogleMobileAds
 
 class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     @IBOutlet var logTableView: UITableView!
-    @IBOutlet var searchBar: UISearchBar!
-    @IBOutlet var profileImage: UIImageView!
-    
-    @IBOutlet var usernameLabel: UILabel!
-    @IBOutlet var questProgressLabel: UILabel!
-    @IBOutlet var questsCompleteLabel: UILabel!
-    @IBOutlet var questsStartedLabel: UILabel!
-    @IBOutlet var questsNotStartedLabel: UILabel!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     
     var interstitial: GADInterstitial!
@@ -62,17 +54,13 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         if UIDevice.current.userInterfaceIdiom == .pad {
             logTableView.rowHeight = 70.0
-            usernameLabel.font = usernameLabel.font.withSize(28.0)
-            questsCompleteLabel.font = questsCompleteLabel.font.withSize(CGFloat(20.0))
-            questsStartedLabel.font = questsStartedLabel.font.withSize(CGFloat(20.0))
-            questsNotStartedLabel.font = questsNotStartedLabel.font.withSize(CGFloat(20.0))
         } else {
             logTableView.rowHeight = 50.0
         }
         
         logTableView.dataSource = tableViewDataSource
         logTableView.delegate = self
-        searchBar.delegate = self
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,24 +68,31 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         self.view.backgroundColor = Global.backgroundColor
         logTableView.backgroundColor = Global.backgroundColor
-        searchBar.searchBarStyle = .minimal
         
         self.tabBarController?.navigationItem.searchController?.searchBar.delegate = self
-        self.tabBarController?.navigationController?.navigationBar.prefersLargeTitles = true
+        self.tabBarController?.navigationController?.navigationBar.prefersLargeTitles = false
         
         if Global.cachedUserData != nil {
             LogVC.user = Global.cachedUserData!
             updateViewData()
+            showAd()
         } else {
             updateUserData()
             updating = true
         }
         
         if Global.cachedUserAvatar != nil {
-            profileImage.image = Global.cachedUserAvatar!
+            //profileImage.image = Global.cachedUserAvatar!
         } else {
             updateUserAvatar()
         }
+    
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.tabBarController?.navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     func updateUserData() {
@@ -127,7 +122,7 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
             
             switch result {
             case let .success(avatar):
-                self.profileImage.image = avatar
+                //self.profileImage.image = avatar
                 //self.profileImage.image = UIImage(named: "chadtek.png")
                 Global.cachedUserAvatar = avatar
             case .failure:
@@ -140,16 +135,15 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         tableViewDataSource.userData = localUser
         logTableView.reloadData()
         
-        usernameLabel.text = localUser.name
         self.tabBarController?.title = localUser.name
         
-        let questProgressText = NSMutableAttributedString()
+        /*let questProgressText = NSMutableAttributedString()
         questProgressText.bold("Quest Progress")
         questProgressLabel.attributedText = questProgressText
         
         questsCompleteLabel.text = "\(localUser.questscomplete)"
         questsStartedLabel.text = "\(localUser.questsstarted)"
-        questsNotStartedLabel.text = "\(localUser.questsnotstarted)"
+        questsNotStartedLabel.text = "\(localUser.questsnotstarted)"*/
     }
     
     func startLoading() {
@@ -172,11 +166,11 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         stopLoading()
         
         Global.cachedUserData = UserData()
-        profileImage.image = UIImage(named: "chadtek.png")
+        //profileImage.image = UIImage(named: "chadtek.png")
         updateViewData()
         
         let errorMessage = "Please check your internet connection."
-        let ac = UIAlertController(title: "No Response from Server", message: errorMessage, preferredStyle: .alert)
+        let ac = UIAlertController(title: "No response from server", message: errorMessage, preferredStyle: .alert)
         let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
         ac.addAction(closeAction)
         self.present(ac, animated: true, completion: nil)
@@ -222,22 +216,30 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         updateUserData()
         updateUserAvatar()
         updating = true
-        if interstitial.isReady && !Global.adShown {
-            self.interstitial.present(fromRootViewController: self)
-            Global.adShown = true
-        } else {
-            print("Ad wasn't ready or has already been shown")
-        }
+        showAd()
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        searchBar.resignFirstResponder()
+        self.tabBarController?.navigationItem.searchController?.isActive = false
         tapGesture.isEnabled = false
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         tapGesture.isEnabled = true
         return true
+    }
+    
+    func showAd() {
+        if interstitial.isReady && !Global.adShown {
+            self.interstitial.present(fromRootViewController: self)
+            Global.adShown = true
+        } else {
+            if Global.adShown {
+                print("Ad has already been shown")
+            } else {
+                print("Ad wasn't ready")
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -256,7 +258,7 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         let activityDate = "\(month) \(day), \(year) at \(time)"
         
         let ac = UIAlertController(title: activityDate, message: activityInfo, preferredStyle: .alert)
-        let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+        let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: {(alert: UIAlertAction!) in self.showAd()})
         ac.addAction(closeAction)
         self.present(ac, animated: true, completion: nil)
     }

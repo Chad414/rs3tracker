@@ -17,7 +17,7 @@ class StatsTableViewDataSource: NSObject, UITableViewDataSource {
             return 20
         }
         
-        return userData.skillvalues.count
+        return userData.skillvalues.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

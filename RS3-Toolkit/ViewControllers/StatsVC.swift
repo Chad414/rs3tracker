@@ -82,8 +82,14 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
             updateUserAvatar()
         }*/
         
-        updateUserData()
-        updateUserAvatar()
+        if Global.cachedUserData == nil || Global.username != localUser.name {
+            updateUserData()
+            updateUserAvatar()
+            updating = true
+        } else {
+            updateViewData()
+        }
+        
     }
     
     func updateUserData() {
@@ -188,8 +194,10 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         //profileImage.image = UIImage(named: "chadtek.png")
         updateViewData()
         
+        print("Error Fetching Data")
+        
         let errorMessage = "Please check your internet connection."
-        let ac = UIAlertController(title: "No Response from Server", message: errorMessage, preferredStyle: .alert)
+        let ac = UIAlertController(title: "No response from server", message: errorMessage, preferredStyle: .alert)
         let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
         ac.addAction(closeAction)
         self.present(ac, animated: true, completion: nil)
@@ -235,12 +243,7 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         updateUserData()
         updateUserAvatar()
         updating = true
-        if interstitial.isReady && !Global.adShown {
-            self.interstitial.present(fromRootViewController: self)
-            Global.adShown = true
-        } else {
-            print("Ad wasn't ready or has already been shown")
-        }
+        showAd()
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
@@ -257,9 +260,12 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         if indexPath.row == 0 {
-            let ac = UIAlertController(title: "\(localUser.name)", message: "Rank: \(localUser.rank)", preferredStyle: .alert)
-            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+            let message = "Rank: \(localUser.rank) \n\n Quests Completed: \(localUser.questscomplete) \n Quests Started: \(localUser.questsstarted) \n Quests Not Started: \(localUser.questsnotstarted)"
+            
+            let ac = UIAlertController(title: "\(localUser.name)", message: message, preferredStyle: .alert)
+            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: {(alert: UIAlertAction!) in self.showAd()})
             ac.addAction(closeAction)
+
             self.present(ac, animated: true, completion: nil)
         }
         
@@ -283,10 +289,12 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         if skillID == 26 {
             xpToLevel = (LevelTables.getXPForEliteLevel(level + 1) - xpInt).convertToString() // Get Invetion XP
+        } else if skillID == 24 && level == 120 { // Max Dungeoneering
+            xpToLevel = "0"
         } else {
             xpToLevel = (LevelTables.getXPForLevel(level + 1) - xpInt).convertToString()
         }
-        
+
         var levelString = String(level)
         
         if level > 99 {
@@ -298,15 +306,28 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         let skillInfo = "Level: \(levelString)\nXP: \(formattedXP)\nXP To Level Up: \(xpToLevel)"
         
         let ac = UIAlertController(title: "\(Global.getSkillString(id: skillID))", message: skillInfo, preferredStyle: .alert)
-        let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+        let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: {(alert: UIAlertAction!) in self.showAd()})
         ac.addAction(closeAction)
         self.present(ac, animated: true, completion: nil)
+    }
+    
+    func showAd() {
+        if interstitial.isReady && !Global.adShown {
+            self.interstitial.present(fromRootViewController: self)
+            Global.adShown = true
+        } else {
+            if Global.adShown {
+                print("Ad has already been shown")
+            } else {
+                print("Ad wasn't ready")
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if UIDevice.current.userInterfaceIdiom == .pad {
             if indexPath.row == 0 {
-                return 70.0
+                return 95.0
             } else {
                 return 70.0
             }

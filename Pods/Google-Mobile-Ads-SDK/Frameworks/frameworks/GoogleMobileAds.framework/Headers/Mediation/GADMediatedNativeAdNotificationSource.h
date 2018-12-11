@@ -10,10 +10,11 @@
 #import <GoogleMobileAds/GoogleMobileAdsDefines.h>
 #import <GoogleMobileAds/Mediation/GADMediatedNativeAd.h>
 
-GAD_ASSUME_NONNULL_BEGIN
+NS_ASSUME_NONNULL_BEGIN
 
 /// Used by mediation adapters to notify the Google Mobile Ads SDK about events occurring in the
 /// lifecycle of a GADMediatedNativeAd.
+GAD_SUBCLASSING_RESTRICTED
 @interface GADMediatedNativeAdNotificationSource : NSObject
 
 /// Called by the adapter when it has registered an impression on the tracked view. Adapter should
@@ -39,6 +40,8 @@ GAD_ASSUME_NONNULL_BEGIN
 /// or the App Store) to take input focus.
 + (void)mediatedNativeAdWillLeaveApplication:(id<GADMediatedNativeAd>)mediatedNativeAd;
 
+#pragma mark - Mediated Native Video Ad Notifications
+
 /// Called by the adapter when native video playback has begun or resumed.
 + (void)mediatedNativeAdDidPlayVideo:(id<GADMediatedNativeAd>)mediatedNativeAd;
 
@@ -50,4 +53,4 @@ GAD_ASSUME_NONNULL_BEGIN
 
 @end
 
-GAD_ASSUME_NONNULL_END
+NS_ASSUME_NONNULL_END

@@ -136,7 +136,7 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
         view.addSubview(activityIndicator);
         
         activityIndicator.startAnimating();
-        UIApplication.shared.beginIgnoringInteractionEvents();
+        //UIApplication.shared.beginIgnoringInteractionEvents();
     }
     
     func stopLoading() {

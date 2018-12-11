@@ -39,10 +39,18 @@ class HeaderCell: UITableViewCell {
     @IBOutlet var totalXPLabel: UILabel!
     @IBOutlet var profileIcon: UIImageView!
     
+    @IBOutlet var profileIconWidth: NSLayoutConstraint!
+    @IBOutlet var profileIconHeight: NSLayoutConstraint!
+    
     func updateCell() {
         contentView.addSubview(totalLevelLabel)
         contentView.addSubview(totalXPLabel)
         contentView.addSubview(profileIcon)
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            profileIconWidth.constant = 64
+            profileIconHeight.constant = 64
+        }
     }
     
     override func prepareForReuse() {
