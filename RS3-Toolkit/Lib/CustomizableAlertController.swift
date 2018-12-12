@@ -20,7 +20,8 @@ final class DarkAlertController: CustomizableAlertController {
         
         self.tintColor = UIColor(red: 0.4, green: 0.5, blue: 1.0, alpha: 1.0)
         
-        self.contentView?.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 0.7)
+        //self.contentView?.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 0.7)
+        self.contentView?.backgroundColor = UIColor(red: 50/255, green: 50/255, blue: 50/255, alpha: 1.0)
         
         let whiteStringAttribute = StringAttribute(key: .foregroundColor, value: UIColor.white)
         self.titleAttributes = [whiteStringAttribute]

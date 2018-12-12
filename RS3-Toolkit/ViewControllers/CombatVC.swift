@@ -232,7 +232,34 @@ class CombatVC: UIViewController, UISearchBarDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.view.backgroundColor = Global.backgroundColor
+        if Global.darkMode {
+            self.view.backgroundColor = UIColor.black
+            //self.view.backgroundColor = Global.darkBackgroundColor
+            
+            // Make Labels White
+            combatLevelLabel.textColor = UIColor.white
+            combatLevelTitle.textColor = UIColor.white
+            calculatedCombatLevelLabel.textColor = UIColor.white
+            attackLevelLabel.textColor = UIColor.white
+            strengthLevelLabel.textColor = UIColor.white
+            defenceLevelLabel.textColor = UIColor.white
+            constLevelLabel.textColor = UIColor.white
+            rangedLevelLabel.textColor = UIColor.white
+            magicLevelLabel.textColor = UIColor.white
+            prayerLevelLabel.textColor = UIColor.white
+            summonLevelLabel.textColor = UIColor.white
+            
+            attackLabel.textColor = UIColor.white
+            strengthLabel.textColor = UIColor.white
+            defenceLabel.textColor = UIColor.white
+            constLabel.textColor = UIColor.white
+            rangedLabel.textColor = UIColor.white
+            magicLabel.textColor = UIColor.white
+            prayerLabel.textColor = UIColor.white
+            summoningLabel.textColor = UIColor.white
+        } else {
+            self.view.backgroundColor = Global.backgroundColor
+        }
         
         self.tabBarController?.navigationItem.searchController?.searchBar.delegate = self
         
@@ -397,11 +424,19 @@ class CombatVC: UIViewController, UISearchBarDelegate {
                 print("Failed to Fetch User Data")
                 self.updating = false
                 // Show Alert Here
-                let errorMessage = "The user either doesn't exist, has been offline for a while, or has privacy enabled."
-                let ac = UIAlertController(title: "User Not Found", message: errorMessage, preferredStyle: .alert)
-                let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-                ac.addAction(closeAction)
-                self.present(ac, animated: true, completion: nil)
+                if Global.darkMode {
+                    let errorMessage = "The user either doesn't exist, has been offline for a while, or has privacy enabled."
+                    let ac = DarkAlertController(title: "User Not Found", message: errorMessage, preferredStyle: .alert)
+                    let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+                    ac.addAction(closeAction)
+                    self.present(ac, animated: true, completion: nil)
+                } else {
+                    let errorMessage = "The user either doesn't exist, has been offline for a while, or has privacy enabled."
+                    let ac = UIAlertController(title: "User Not Found", message: errorMessage, preferredStyle: .alert)
+                    let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+                    ac.addAction(closeAction)
+                    self.present(ac, animated: true, completion: nil)
+                }
             }
         }
     }
@@ -460,11 +495,19 @@ class CombatVC: UIViewController, UISearchBarDelegate {
         //profileImage.image = UIImage(named: "chadtek.png")
         updateViewData()
         
-        let errorMessage = "Please check your internet connection."
-        let ac = UIAlertController(title: "No response from server", message: errorMessage, preferredStyle: .alert)
-        let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-        ac.addAction(closeAction)
-        self.present(ac, animated: true, completion: nil)
+        if Global.darkMode {
+            let errorMessage = "Please check your internet connection."
+            let ac = DarkAlertController(title: "No response from server", message: errorMessage, preferredStyle: .alert)
+            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+            ac.addAction(closeAction)
+            self.present(ac, animated: true, completion: nil)
+        } else {
+            let errorMessage = "Please check your internet connection."
+            let ac = UIAlertController(title: "No response from server", message: errorMessage, preferredStyle: .alert)
+            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+            ac.addAction(closeAction)
+            self.present(ac, animated: true, completion: nil)
+        }
     }
     
     func stopLoading() {
@@ -490,11 +533,19 @@ class CombatVC: UIViewController, UISearchBarDelegate {
             searchBar.resignFirstResponder()
             self.tabBarController?.navigationItem.searchController?.isActive = false
             
-            let errorMessage = "Please enter a valid username."
-            let ac = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
-            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-            ac.addAction(closeAction)
-            self.present(ac, animated: true, completion: nil)
+            if Global.darkMode {
+                let errorMessage = "Please enter a valid username."
+                let ac = DarkAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+                let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+                ac.addAction(closeAction)
+                self.present(ac, animated: true, completion: nil)
+            } else {
+                let errorMessage = "Please enter a valid username."
+                let ac = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+                let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+                ac.addAction(closeAction)
+                self.present(ac, animated: true, completion: nil)
+            }
             
             return
         }

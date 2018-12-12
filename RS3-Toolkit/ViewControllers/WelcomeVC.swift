@@ -55,11 +55,19 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
                 self.updating = false
                 // Show Alert Here
                 //let errorMessage = "The user either doesn't exist, has been offline for a while, or has privacy enabled."
-                let errorMessage = "Please make sure your RuneMetrics profile is set to public."
-                let ac = UIAlertController(title: "User Not Found", message: errorMessage, preferredStyle: .alert)
-                let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-                ac.addAction(closeAction)
-                self.present(ac, animated: true, completion: nil)
+                if Global.darkMode {
+                    let errorMessage = "Please make sure your RuneMetrics profile is set to public."
+                    let ac = DarkAlertController(title: "User Not Found", message: errorMessage, preferredStyle: .alert)
+                    let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+                    ac.addAction(closeAction)
+                    self.present(ac, animated: true, completion: nil)
+                } else {
+                    let errorMessage = "Please make sure your RuneMetrics profile is set to public."
+                    let ac = UIAlertController(title: "User Not Found", message: errorMessage, preferredStyle: .alert)
+                    let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+                    ac.addAction(closeAction)
+                    self.present(ac, animated: true, completion: nil)
+                }
             }
         }
     }
@@ -81,11 +89,19 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
             usernameTextInput.text = ""
             usernameTextInput.resignFirstResponder()
             
-            let errorMessage = "Please enter a valid username."
-            let ac = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
-            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-            ac.addAction(closeAction)
-            self.present(ac, animated: true, completion: nil)
+            if Global.darkMode {
+                let errorMessage = "Please enter a valid username."
+                let ac = DarkAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+                let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+                ac.addAction(closeAction)
+                self.present(ac, animated: true, completion: nil)
+            } else {
+                let errorMessage = "Please enter a valid username."
+                let ac = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+                let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+                ac.addAction(closeAction)
+                self.present(ac, animated: true, completion: nil)
+            }
         } else {
             updating = true
             Global.username = username

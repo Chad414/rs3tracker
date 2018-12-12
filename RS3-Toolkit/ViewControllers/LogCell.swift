@@ -20,6 +20,21 @@ class LogCell: UITableViewCell {
     func updateCell() {
         contentView.addSubview(iconView)
         contentView.addSubview(logLabel)
+        
+        if Global.darkMode {
+            backgroundColor = UIColor.black
+            self.contentView.backgroundColor = Global.darkBackgroundColor
+            
+            logLabel.textColor = UIColor.white
+            
+            self.selectionStyle = .gray
+            let bgColorView = UIView()
+            bgColorView.backgroundColor = UIColor(red: 60/255, green: 60/255, blue: 60/255, alpha: 1.0)
+            self.selectedBackgroundView = bgColorView
+        } else {
+            backgroundColor = Global.backgroundColor
+            self.contentView.backgroundColor = Global.backgroundColor
+        }
     }
     
     override func prepareForReuse() {

@@ -21,6 +21,16 @@ class TabBarVC: UITabBarController {
         
         self.navigationItem.hidesSearchBarWhenScrolling = false
         
+        if Global.darkMode {
+            self.navigationController?.navigationBar.barStyle = UIBarStyle.black
+            self.navigationController?.navigationBar.tintColor = UIColor.white
+            
+            self.tabBar.barStyle = UIBarStyle.black
+            self.tabBar.unselectedItemTintColor = UIColor.white
+            
+            self.view.backgroundColor = UIColor.black
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
