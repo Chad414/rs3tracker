@@ -30,7 +30,21 @@ class SettingsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = Global.backgroundColor
+        if Global.darkMode {
+            self.view.backgroundColor = UIColor.black
+            
+            titleLabel.textColor = UIColor.white
+            versionLabel.textColor = UIColor.white
+            settingsLabel.textColor = UIColor.white
+            creditsLabel.textColor = UIColor.white
+            developedByLabel.textColor = UIColor.white
+            chadHamdanLabel.textColor = UIColor.white
+            appIconLabel.textColor = UIColor.white
+            uiIconLabel.textColor = UIColor.white
+            rsnLabel.textColor = UIColor.white
+        } else {
+            self.view.backgroundColor = Global.backgroundColor
+        }
         
         navigationController?.navigationBar.prefersLargeTitles = false
         

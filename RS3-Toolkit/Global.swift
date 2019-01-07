@@ -27,7 +27,7 @@ struct Global {
     static var cachedUserAvatar: UIImage?
     static var adShown: Bool = false
     
-    static var darkMode: Bool = true
+    static var darkMode: Bool = false
     
     static let systemVersion = UIDevice.current.systemVersion
     static let backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
