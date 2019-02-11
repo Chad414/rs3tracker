@@ -67,9 +67,11 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
             statsTableView.backgroundColor = Global.darkBackgroundColor
             statsTableView.separatorColor = Global.darkBackgroundColor
         } else {
-            self.view.backgroundColor = Global.backgroundColor
+            /*self.view.backgroundColor = Global.backgroundColor
             statsTableView.backgroundColor = Global.backgroundColor
+            statsTableView.separatorColor = Global.backgroundColor*/
         }
+        
         self.tabBarController?.navigationItem.searchController?.searchBar.delegate = self
         self.tabBarController?.navigationController?.navigationBar.prefersLargeTitles = true
         
@@ -259,7 +261,8 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         updateUserData()
         updateUserAvatar()
         updating = true
-        showAd()
+        
+        //showAd()
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {

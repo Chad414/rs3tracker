@@ -18,11 +18,14 @@ class SettingsVC: UIViewController {
     @IBOutlet var creditsLabel: UILabel!
     @IBOutlet var developedByLabel: UILabel!
     @IBOutlet var chadHamdanLabel: UILabel!
-    @IBOutlet var appIconCreditLabel: UIButton!
-    @IBOutlet var appIconLabel: UILabel!
+    //@IBOutlet var appIconCreditLabel: UIButton!
+    //@IBOutlet var appIconLabel: UILabel!
     @IBOutlet var uiIconLabel: UILabel!
     @IBOutlet var icons8Button: UIButton!
     @IBOutlet var rsnLabel: UILabel!
+    @IBOutlet var themeLabel: UILabel!
+    
+    @IBOutlet var themeSegmentedControl: UISegmentedControl!
     
     @IBOutlet var profileImageWidth: NSLayoutConstraint!
     @IBOutlet var profileImageHeight: NSLayoutConstraint!
@@ -30,20 +33,10 @@ class SettingsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        updateTheme()
+        
         if Global.darkMode {
-            self.view.backgroundColor = UIColor.black
-            
-            titleLabel.textColor = UIColor.white
-            versionLabel.textColor = UIColor.white
-            settingsLabel.textColor = UIColor.white
-            creditsLabel.textColor = UIColor.white
-            developedByLabel.textColor = UIColor.white
-            chadHamdanLabel.textColor = UIColor.white
-            appIconLabel.textColor = UIColor.white
-            uiIconLabel.textColor = UIColor.white
-            rsnLabel.textColor = UIColor.white
-        } else {
-            self.view.backgroundColor = Global.backgroundColor
+            themeSegmentedControl.selectedSegmentIndex = 1
         }
         
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -56,8 +49,8 @@ class SettingsVC: UIViewController {
             creditsLabel.font = creditsLabel.font.withSize(CGFloat(32.0))
             developedByLabel.font = creditsLabel.font.withSize(CGFloat(26.0))
             chadHamdanLabel.font = chadHamdanLabel.font.withSize(CGFloat(30.0))
-            appIconCreditLabel.titleLabel?.font = appIconCreditLabel.titleLabel?.font.withSize(CGFloat(28.0))
-            appIconLabel.font = appIconLabel.font.withSize(CGFloat(26.0))
+            //appIconCreditLabel.titleLabel?.font = appIconCreditLabel.titleLabel?.font.withSize(CGFloat(28.0))
+            //appIconLabel.font = appIconLabel.font.withSize(CGFloat(26.0))
             uiIconLabel.font = uiIconLabel.font.withSize(CGFloat(26.0))
             icons8Button.titleLabel?.font = icons8Button.titleLabel?.font.withSize(CGFloat(28.0))
             rsnLabel.font = rsnLabel.font.withSize(CGFloat(22.0))
@@ -69,6 +62,36 @@ class SettingsVC: UIViewController {
         }
         
         versionLabel.text = "Version " + Bundle.main.releaseVersionNumber!
+    }
+    
+    func updateTheme() {
+        if Global.darkMode {
+            self.view.backgroundColor = UIColor.black
+            
+            titleLabel.textColor = UIColor.white
+            versionLabel.textColor = UIColor.white
+            settingsLabel.textColor = UIColor.white
+            creditsLabel.textColor = UIColor.white
+            developedByLabel.textColor = UIColor.white
+            chadHamdanLabel.textColor = UIColor.white
+            //appIconLabel.textColor = UIColor.white
+            uiIconLabel.textColor = UIColor.white
+            rsnLabel.textColor = UIColor.white
+            themeLabel.textColor = UIColor.white
+        } else {
+            self.view.backgroundColor = Global.backgroundColor
+            
+            titleLabel.textColor = UIColor.black
+            versionLabel.textColor = UIColor.black
+            settingsLabel.textColor = UIColor.black
+            creditsLabel.textColor = UIColor.black
+            developedByLabel.textColor = UIColor.black
+            chadHamdanLabel.textColor = UIColor.black
+            //appIconLabel.textColor = UIColor.white
+            uiIconLabel.textColor = UIColor.black
+            rsnLabel.textColor = UIColor.black
+            themeLabel.textColor = UIColor.black
+        }
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -93,6 +116,18 @@ class SettingsVC: UIViewController {
     
     let emailURL: URL! = URL(string: "mailto:feedback@chadhamdan.me")
     
+    @IBAction func themeSegmentedAction(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            Global.darkMode = false
+            UserDefaults.standard.set(false, forKey: "darkmode")
+            updateTheme()
+        } else if sender.selectedSegmentIndex == 1 {
+            Global.darkMode = true
+            UserDefaults.standard.set(true, forKey: "darkmode")
+            updateTheme()
+        }
+    }
+    
     @IBAction func icons8Link(_ sender: UIButton) {
         UIApplication.shared.open(emailURL)
     }
@@ -101,7 +136,7 @@ class SettingsVC: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func appIconLink(_ sender: UIButton) {
+    /*@IBAction func appIconLink(_ sender: UIButton) {
         UIApplication.shared.open(URL(string: "https://www.facebook.com/profile.php?id=100005939234711")!)
-    }
+    }*/
 }

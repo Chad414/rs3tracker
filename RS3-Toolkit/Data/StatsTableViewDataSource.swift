@@ -32,6 +32,7 @@ class StatsTableViewDataSource: NSObject, UITableViewDataSource {
             cell.contentView.backgroundColor = Global.backgroundColor
             
             cell.profileIcon.image = Global.cachedUserAvatar
+            //cell.profileIcon.image = UIImage(named: "chadtek.png")
             
             let totalLevelText = NSMutableAttributedString()
             totalLevelText.headerbold("Total Level: ")

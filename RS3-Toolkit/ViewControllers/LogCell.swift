@@ -34,6 +34,11 @@ class LogCell: UITableViewCell {
         } else {
             backgroundColor = Global.backgroundColor
             self.contentView.backgroundColor = Global.backgroundColor
+            
+            logLabel.textColor = UIColor.black
+            
+            self.selectionStyle = .default
+            self.selectedBackgroundView = nil
         }
     }
     

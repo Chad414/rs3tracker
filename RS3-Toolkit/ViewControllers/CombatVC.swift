@@ -259,6 +259,27 @@ class CombatVC: UIViewController, UISearchBarDelegate {
             summoningLabel.textColor = UIColor.white
         } else {
             self.view.backgroundColor = Global.backgroundColor
+            
+            combatLevelLabel.textColor = UIColor.black
+            combatLevelTitle.textColor = UIColor.black
+            calculatedCombatLevelLabel.textColor = UIColor.black
+            attackLevelLabel.textColor = UIColor.black
+            strengthLevelLabel.textColor = UIColor.black
+            defenceLevelLabel.textColor = UIColor.black
+            constLevelLabel.textColor = UIColor.black
+            rangedLevelLabel.textColor = UIColor.black
+            magicLevelLabel.textColor = UIColor.black
+            prayerLevelLabel.textColor = UIColor.black
+            summonLevelLabel.textColor = UIColor.black
+            
+            attackLabel.textColor = UIColor.black
+            strengthLabel.textColor = UIColor.black
+            defenceLabel.textColor = UIColor.black
+            constLabel.textColor = UIColor.black
+            rangedLabel.textColor = UIColor.black
+            magicLabel.textColor = UIColor.black
+            prayerLabel.textColor = UIColor.black
+            summoningLabel.textColor = UIColor.black
         }
         
         self.tabBarController?.navigationItem.searchController?.searchBar.delegate = self

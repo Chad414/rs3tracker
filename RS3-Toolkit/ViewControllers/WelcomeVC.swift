@@ -16,6 +16,8 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
     @IBOutlet var welcomeToLabel: UILabel!
     @IBOutlet var appTitleLabel: UILabel!
     @IBOutlet var instructionsLabel: UILabel!
+    @IBOutlet var themeLabel: UILabel!
+    @IBOutlet var themeSegmentedControl: UISegmentedControl!
     
     let activityIndicator = UIActivityIndicatorView()
     var updating: Bool = false {
@@ -113,18 +115,25 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func themeSegmentedAction(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            Global.darkMode = false
+            UserDefaults.standard.set(false, forKey: "darkmode")
+            changeTheme()
+        } else if sender.selectedSegmentIndex == 1 {
+            Global.darkMode = true
+            UserDefaults.standard.set(true, forKey: "darkmode")
+            changeTheme()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if Global.darkMode {
-            self.view.backgroundColor = UIColor.black
-            
-            welcomeToLabel.textColor = UIColor.white
-            appTitleLabel.textColor = UIColor.white
-            instructionsLabel.textColor = UIColor.white
-        } else {
-            self.view.backgroundColor = Global.backgroundColor
-        }
+        themeLabel.isHidden = true
+        themeSegmentedControl.isHidden = true
+        
+        changeTheme()
         
         usernameTextInput.backgroundColor = UIColor(red: 227/255, green: 227/255, blue: 228/255, alpha: 1.0)
         
@@ -139,8 +148,30 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
         if WelcomeVC.hideCancelButton {
             cancelButton.isHidden = true
             WelcomeVC.hideCancelButton = false
+            
+            // Hide theme selection too
+            //themeLabel.isHidden = false
+            //themeSegmentedControl.isHidden = false
         }
         
+    }
+    
+    func changeTheme() {
+        if Global.darkMode {
+            self.view.backgroundColor = UIColor.black
+            
+            welcomeToLabel.textColor = UIColor.white
+            appTitleLabel.textColor = UIColor.white
+            instructionsLabel.textColor = UIColor.white
+            themeLabel.textColor = UIColor.white
+        } else {
+            self.view.backgroundColor = Global.backgroundColor
+            
+            welcomeToLabel.textColor = UIColor.black
+            appTitleLabel.textColor = UIColor.black
+            instructionsLabel.textColor = UIColor.black
+            themeLabel.textColor = UIColor.black
+        }
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {

@@ -36,6 +36,11 @@ class StatusCell: UITableViewCell {
         } else {
             backgroundColor = Global.backgroundColor
             self.contentView.backgroundColor = Global.backgroundColor
+            
+            skillLabel.textColor = .black
+            
+            self.selectionStyle = .default
+            self.selectedBackgroundView = nil
         }
     }
     
@@ -76,6 +81,12 @@ class HeaderCell: UITableViewCell {
         } else {
             backgroundColor = Global.backgroundColor
             self.contentView.backgroundColor = Global.backgroundColor
+            
+            totalLevelLabel.textColor = UIColor.black
+            totalXPLabel.textColor = UIColor.black
+            
+            self.selectionStyle = .default
+            self.selectedBackgroundView = nil
         }
         
         if UIDevice.current.userInterfaceIdiom == .pad {

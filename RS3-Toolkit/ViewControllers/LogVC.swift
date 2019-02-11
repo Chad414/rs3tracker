@@ -76,6 +76,7 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         } else {
             self.view.backgroundColor = Global.backgroundColor
             logTableView.backgroundColor = Global.backgroundColor
+            logTableView.separatorColor = Global.backgroundColor
         }
         
         self.tabBarController?.navigationItem.searchController?.searchBar.delegate = self
