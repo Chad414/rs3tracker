@@ -99,6 +99,12 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if Global.darkMode {
+            return .lightContent
+        } else { return .default }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         

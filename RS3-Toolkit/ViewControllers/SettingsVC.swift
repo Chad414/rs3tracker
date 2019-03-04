@@ -64,6 +64,12 @@ class SettingsVC: UIViewController {
         versionLabel.text = "Version " + Bundle.main.releaseVersionNumber!
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if Global.darkMode {
+            return .lightContent
+        } else { return .default }
+    }
+    
     func updateTheme() {
         if Global.darkMode {
             self.view.backgroundColor = UIColor.black
@@ -92,6 +98,8 @@ class SettingsVC: UIViewController {
             rsnLabel.textColor = UIColor.black
             themeLabel.textColor = UIColor.black
         }
+        
+        setNeedsStatusBarAppearanceUpdate()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

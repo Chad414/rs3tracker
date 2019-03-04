@@ -15,14 +15,6 @@ class TabBarVC: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        navigationItem.searchController = searchController
-        
         if Global.darkMode {
             self.navigationController?.navigationBar.barStyle = UIBarStyle.black
             self.navigationController?.navigationBar.tintColor = UIColor.white
@@ -38,6 +30,13 @@ class TabBarVC: UITabBarController {
             self.tabBar.barStyle = UIBarStyle.default
             self.tabBar.unselectedItemTintColor = nil
         }
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationItem.searchController = searchController
         
         self.title = "Loading..."
         

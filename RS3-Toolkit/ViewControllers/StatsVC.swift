@@ -67,9 +67,9 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
             statsTableView.backgroundColor = Global.darkBackgroundColor
             statsTableView.separatorColor = Global.darkBackgroundColor
         } else {
-            /*self.view.backgroundColor = Global.backgroundColor
+            self.view.backgroundColor = Global.backgroundColor
             statsTableView.backgroundColor = Global.backgroundColor
-            statsTableView.separatorColor = Global.backgroundColor*/
+            statsTableView.separatorColor = Global.backgroundColor
         }
         
         self.tabBarController?.navigationItem.searchController?.searchBar.delegate = self
@@ -84,6 +84,12 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
             updateViewData()
         }
         
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if Global.darkMode {
+            return .lightContent
+        } else { return .default }
     }
     
     func updateUserData() {

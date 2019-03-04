@@ -149,11 +149,17 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
             cancelButton.isHidden = true
             WelcomeVC.hideCancelButton = false
             
-            // Hide theme selection too
-            //themeLabel.isHidden = false
-            //themeSegmentedControl.isHidden = false
+            // Show theme selection on first launch
+            themeLabel.isHidden = false
+            themeSegmentedControl.isHidden = false
         }
         
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if Global.darkMode {
+            return .lightContent
+        } else { return .default }
     }
     
     func changeTheme() {
@@ -172,6 +178,8 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
             instructionsLabel.textColor = UIColor.black
             themeLabel.textColor = UIColor.black
         }
+        
+        setNeedsStatusBarAppearanceUpdate()
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {

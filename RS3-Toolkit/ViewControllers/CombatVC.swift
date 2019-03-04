@@ -281,7 +281,6 @@ class CombatVC: UIViewController, UISearchBarDelegate {
             prayerLabel.textColor = UIColor.black
             summoningLabel.textColor = UIColor.black
         }
-        
         self.tabBarController?.navigationItem.searchController?.searchBar.delegate = self
         
         self.tabBarController?.navigationController?.navigationBar.prefersLargeTitles = false
@@ -370,6 +369,12 @@ class CombatVC: UIViewController, UISearchBarDelegate {
             
             updateLayoutFor97iPad()
         }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if Global.darkMode {
+            return .lightContent
+        } else { return .default }
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
