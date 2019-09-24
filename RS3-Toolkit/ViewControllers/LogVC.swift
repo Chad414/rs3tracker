@@ -74,8 +74,8 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         logTableView.separatorColor = Global.backgroundColor
         
         
-        //self.tabBarController?.navigationItem.searchController?.searchBar.delegate = self
-        //self.tabBarController?.navigationController?.navigationBar.prefersLargeTitles = false
+        self.tabBarController?.navigationItem.searchController?.searchBar.delegate = self
+        self.tabBarController?.navigationController?.navigationBar.prefersLargeTitles = false
         
         if Global.cachedUserData != nil {
             LogVC.user = Global.cachedUserData!

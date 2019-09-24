@@ -122,7 +122,7 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
             switch result {
             case let .success(avatar):
                 //self.profileImage.image = avatar
-                //self.profileImage.image = UIImage(named: "chadtek.png")
+                //Global.cachedUserAvatar = UIImage(named: "chadtek.png")
                 Global.cachedUserAvatar = avatar
                 self.statsTableView.reloadData()
             case .failure:
@@ -182,7 +182,6 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         stopLoading()
         
         Global.cachedUserData = UserData()
-        //profileImage.image = UIImage(named: "chadtek.png")
         updateViewData()
         
         print("Error Fetching Data")
@@ -211,6 +210,7 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
             return
         }
         
+        //if ((searchBar.text?.range(of: pattern, options: .regularExpression)) == nil) {
         if searchBar.text?.rangeOfCharacter(from: Global.usernameChar.inverted) != nil {
             print("Invalid username")
             searchBar.text = ""
