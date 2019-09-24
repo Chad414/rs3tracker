@@ -15,6 +15,8 @@ class TabBarVC: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        //self.isModalInPresentation = true
+        
         self.navigationController?.navigationBar.barStyle = UIBarStyle.default
         self.navigationController?.navigationBar.tintColor = nil
         

@@ -46,6 +46,8 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.modalPresentationStyle = .fullScreen
+        
         interstitial = GADInterstitial(adUnitID: "ca-app-pub-4468715439448322/3008848820")
         //interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/1033173712") // Test ID
         
@@ -209,7 +211,7 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
             return
         }
         
-        if searchBar.text?.containsOnlyLetters() == false {
+        if searchBar.text?.rangeOfCharacter(from: Global.usernameChar.inverted) != nil {
             print("Invalid username")
             searchBar.text = ""
             searchBar.resignFirstResponder()

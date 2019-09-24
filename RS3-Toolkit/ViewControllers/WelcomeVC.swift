@@ -76,7 +76,7 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
             let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
             ac.addAction(closeAction)
             self.present(ac, animated: true, completion: nil)
-        } else if usernameTextInput.text?.containsOnlyLetters() == false {
+        } else if usernameTextInput.text?.rangeOfCharacter(from: Global.usernameChar.inverted) != nil {
             print("Invalid username")
             usernameTextInput.text = ""
             usernameTextInput.resignFirstResponder()

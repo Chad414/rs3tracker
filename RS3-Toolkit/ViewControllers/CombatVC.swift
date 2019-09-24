@@ -533,7 +533,7 @@ class CombatVC: UIViewController, UISearchBarDelegate {
             return
         }
         
-        if searchBar.text?.containsOnlyLetters() == false {
+        if searchBar.text?.rangeOfCharacter(from: Global.usernameChar.inverted) != nil {
             print("Invalid username")
             searchBar.text = ""
             searchBar.resignFirstResponder()

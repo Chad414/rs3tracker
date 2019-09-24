@@ -25,8 +25,8 @@ struct Global {
     }
     static var cachedUserData: UserData?
     static var cachedUserAvatar: UIImage?
-    static var adShown: Bool = true // CHANGE BEFORE UPLOAD
-    
+    static var adShown: Bool = false
+    static let usernameChar = CharacterSet(charactersIn: " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_")
     //static var darkMode: Bool = UserDefaults.standard.bool(forKey: "darkmode")
     
     static let systemVersion = UIDevice.current.systemVersion

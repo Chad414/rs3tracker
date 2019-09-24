@@ -23,8 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         Global.username = UserDefaults.standard.string(forKey: "username") ?? "ChadTek"
-        
-        GADMobileAds.configure(withApplicationID: "ca-app-pub-4468715439448322~4513502185")
        
         return true
     }
