@@ -16,8 +16,6 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
     @IBOutlet var welcomeToLabel: UILabel!
     @IBOutlet var appTitleLabel: UILabel!
     @IBOutlet var instructionsLabel: UILabel!
-    @IBOutlet var themeLabel: UILabel!
-    @IBOutlet var themeSegmentedControl: UISegmentedControl!
     
     let activityIndicator = UIActivityIndicatorView()
     var updating: Bool = false {
@@ -57,19 +55,11 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
                 self.updating = false
                 // Show Alert Here
                 //let errorMessage = "The user either doesn't exist, has been offline for a while, or has privacy enabled."
-                if Global.darkMode {
-                    let errorMessage = "Please make sure your RuneMetrics profile is set to public."
-                    let ac = DarkAlertController(title: "User Not Found", message: errorMessage, preferredStyle: .alert)
-                    let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-                    ac.addAction(closeAction)
-                    self.present(ac, animated: true, completion: nil)
-                } else {
-                    let errorMessage = "Please make sure your RuneMetrics profile is set to public."
-                    let ac = UIAlertController(title: "User Not Found", message: errorMessage, preferredStyle: .alert)
-                    let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-                    ac.addAction(closeAction)
-                    self.present(ac, animated: true, completion: nil)
-                }
+                let errorMessage = "Please make sure your RuneMetrics profile is set to public."
+                let ac = UIAlertController(title: "User Not Found", message: errorMessage, preferredStyle: .alert)
+                let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+                ac.addAction(closeAction)
+                self.present(ac, animated: true, completion: nil)
             }
         }
     }
@@ -91,19 +81,12 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
             usernameTextInput.text = ""
             usernameTextInput.resignFirstResponder()
             
-            if Global.darkMode {
-                let errorMessage = "Please enter a valid username."
-                let ac = DarkAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
-                let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-                ac.addAction(closeAction)
-                self.present(ac, animated: true, completion: nil)
-            } else {
-                let errorMessage = "Please enter a valid username."
-                let ac = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
-                let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-                ac.addAction(closeAction)
-                self.present(ac, animated: true, completion: nil)
-            }
+            let errorMessage = "Please enter a valid username."
+            let ac = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+            ac.addAction(closeAction)
+            self.present(ac, animated: true, completion: nil)
+            
         } else {
             updating = true
             Global.username = username
@@ -115,25 +98,8 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func themeSegmentedAction(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            Global.darkMode = false
-            UserDefaults.standard.set(false, forKey: "darkmode")
-            changeTheme()
-        } else if sender.selectedSegmentIndex == 1 {
-            Global.darkMode = true
-            UserDefaults.standard.set(true, forKey: "darkmode")
-            changeTheme()
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        themeLabel.isHidden = true
-        themeSegmentedControl.isHidden = true
-        
-        changeTheme()
         
         usernameTextInput.backgroundColor = UIColor(red: 227/255, green: 227/255, blue: 228/255, alpha: 1.0)
         
@@ -148,38 +114,8 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
         if WelcomeVC.hideCancelButton {
             cancelButton.isHidden = true
             WelcomeVC.hideCancelButton = false
-            
-            // Show theme selection on first launch
-            themeLabel.isHidden = false
-            themeSegmentedControl.isHidden = false
         }
         
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        if Global.darkMode {
-            return .lightContent
-        } else { return .default }
-    }
-    
-    func changeTheme() {
-        if Global.darkMode {
-            self.view.backgroundColor = UIColor.black
-            
-            welcomeToLabel.textColor = UIColor.white
-            appTitleLabel.textColor = UIColor.white
-            instructionsLabel.textColor = UIColor.white
-            themeLabel.textColor = UIColor.white
-        } else {
-            self.view.backgroundColor = Global.backgroundColor
-            
-            welcomeToLabel.textColor = UIColor.black
-            appTitleLabel.textColor = UIColor.black
-            instructionsLabel.textColor = UIColor.black
-            themeLabel.textColor = UIColor.black
-        }
-        
-        setNeedsStatusBarAppearanceUpdate()
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {

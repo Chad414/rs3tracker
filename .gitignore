@@ -45,3 +45,5 @@ DerivedData/
 # End of https://www.gitignore.io/api/xcode,cocoapods
 
 App_Store/
+
+.DS_Store

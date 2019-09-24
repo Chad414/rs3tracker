@@ -15,21 +15,12 @@ class TabBarVC: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if Global.darkMode {
-            self.navigationController?.navigationBar.barStyle = UIBarStyle.black
-            self.navigationController?.navigationBar.tintColor = UIColor.white
-            
-            self.tabBar.barStyle = UIBarStyle.black
-            self.tabBar.unselectedItemTintColor = UIColor.white
-            
-            self.view.backgroundColor = UIColor.black
-        } else {
-            self.navigationController?.navigationBar.barStyle = UIBarStyle.default
-            self.navigationController?.navigationBar.tintColor = nil
-            
-            self.tabBar.barStyle = UIBarStyle.default
-            self.tabBar.unselectedItemTintColor = nil
-        }
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.default
+        self.navigationController?.navigationBar.tintColor = nil
+        
+        self.tabBar.barStyle = UIBarStyle.default
+        self.tabBar.unselectedItemTintColor = nil
+        
     }
     
     

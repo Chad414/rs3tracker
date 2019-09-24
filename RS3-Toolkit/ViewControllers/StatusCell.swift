@@ -23,25 +23,14 @@ class StatusCell: UITableViewCell {
         contentView.addSubview(skillLabel)
         contentView.addSubview(progressView)
         
-        if Global.darkMode {
-            backgroundColor = UIColor.black
-            self.contentView.backgroundColor = Global.darkBackgroundColor
-            
-            skillLabel.textColor = UIColor.white
-            
-            self.selectionStyle = .gray
-            let bgColorView = UIView()
-            bgColorView.backgroundColor = UIColor(red: 60/255, green: 60/255, blue: 60/255, alpha: 1.0)
-            self.selectedBackgroundView = bgColorView
-        } else {
-            backgroundColor = Global.backgroundColor
-            self.contentView.backgroundColor = Global.backgroundColor
-            
-            skillLabel.textColor = .black
-            
-            self.selectionStyle = .default
-            self.selectedBackgroundView = nil
-        }
+        backgroundColor = Global.backgroundColor
+        self.contentView.backgroundColor = Global.backgroundColor
+        
+        skillLabel.textColor = .black
+        
+        self.selectionStyle = .default
+        self.selectedBackgroundView = nil
+        
     }
     
     override func prepareForReuse() {
@@ -67,27 +56,14 @@ class HeaderCell: UITableViewCell {
         contentView.addSubview(totalXPLabel)
         contentView.addSubview(profileIcon)
         
-        if Global.darkMode {
-            backgroundColor = UIColor.black
-            self.contentView.backgroundColor = Global.darkBackgroundColor
-            
-            totalLevelLabel.textColor = UIColor.white
-            totalXPLabel.textColor = UIColor.white
-            
-            self.selectionStyle = .gray
-            let bgColorView = UIView()
-            bgColorView.backgroundColor = UIColor(red: 60/255, green: 60/255, blue: 60/255, alpha: 1.0)
-            self.selectedBackgroundView = bgColorView
-        } else {
-            backgroundColor = Global.backgroundColor
-            self.contentView.backgroundColor = Global.backgroundColor
-            
-            totalLevelLabel.textColor = UIColor.black
-            totalXPLabel.textColor = UIColor.black
-            
-            self.selectionStyle = .default
-            self.selectedBackgroundView = nil
-        }
+        backgroundColor = Global.backgroundColor
+        self.contentView.backgroundColor = Global.backgroundColor
+        
+        totalLevelLabel.textColor = UIColor.black
+        totalXPLabel.textColor = UIColor.black
+        
+        self.selectionStyle = .default
+        self.selectedBackgroundView = nil
         
         if UIDevice.current.userInterfaceIdiom == .pad {
             profileIconWidth.constant = 64

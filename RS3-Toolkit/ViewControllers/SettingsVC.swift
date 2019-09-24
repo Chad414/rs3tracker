@@ -33,12 +33,6 @@ class SettingsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateTheme()
-        
-        if Global.darkMode {
-            themeSegmentedControl.selectedSegmentIndex = 1
-        }
-        
         navigationController?.navigationBar.prefersLargeTitles = false
         
         if UIDevice.current.userInterfaceIdiom == .pad {
@@ -64,44 +58,6 @@ class SettingsVC: UIViewController {
         versionLabel.text = "Version " + Bundle.main.releaseVersionNumber!
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        if Global.darkMode {
-            return .lightContent
-        } else { return .default }
-    }
-    
-    func updateTheme() {
-        if Global.darkMode {
-            self.view.backgroundColor = UIColor.black
-            
-            titleLabel.textColor = UIColor.white
-            versionLabel.textColor = UIColor.white
-            settingsLabel.textColor = UIColor.white
-            creditsLabel.textColor = UIColor.white
-            developedByLabel.textColor = UIColor.white
-            chadHamdanLabel.textColor = UIColor.white
-            //appIconLabel.textColor = UIColor.white
-            uiIconLabel.textColor = UIColor.white
-            rsnLabel.textColor = UIColor.white
-            themeLabel.textColor = UIColor.white
-        } else {
-            self.view.backgroundColor = Global.backgroundColor
-            
-            titleLabel.textColor = UIColor.black
-            versionLabel.textColor = UIColor.black
-            settingsLabel.textColor = UIColor.black
-            creditsLabel.textColor = UIColor.black
-            developedByLabel.textColor = UIColor.black
-            chadHamdanLabel.textColor = UIColor.black
-            //appIconLabel.textColor = UIColor.white
-            uiIconLabel.textColor = UIColor.black
-            rsnLabel.textColor = UIColor.black
-            themeLabel.textColor = UIColor.black
-        }
-        
-        setNeedsStatusBarAppearanceUpdate()
-    }
-    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         if UIDevice.current.userInterfaceIdiom == .pad {
             updateLayoutFor97iPad()
@@ -123,18 +79,6 @@ class SettingsVC: UIViewController {
     }
     
     let emailURL: URL! = URL(string: "mailto:feedback@chadhamdan.me")
-    
-    @IBAction func themeSegmentedAction(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            Global.darkMode = false
-            UserDefaults.standard.set(false, forKey: "darkmode")
-            updateTheme()
-        } else if sender.selectedSegmentIndex == 1 {
-            Global.darkMode = true
-            UserDefaults.standard.set(true, forKey: "darkmode")
-            updateTheme()
-        }
-    }
     
     @IBAction func icons8Link(_ sender: UIButton) {
         UIApplication.shared.open(emailURL)

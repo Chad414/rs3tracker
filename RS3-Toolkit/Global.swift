@@ -25,14 +25,12 @@ struct Global {
     }
     static var cachedUserData: UserData?
     static var cachedUserAvatar: UIImage?
-    static var adShown: Bool = false
+    static var adShown: Bool = true // CHANGE BEFORE UPLOAD
     
-    static var darkMode: Bool = UserDefaults.standard.bool(forKey: "darkmode")
-    //static var darkMode: Bool = false
+    //static var darkMode: Bool = UserDefaults.standard.bool(forKey: "darkmode")
     
     static let systemVersion = UIDevice.current.systemVersion
     static let backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
-    static let darkBackgroundColor = UIColor(red: 40/255, green: 40/255, blue: 40/255, alpha: 1.0)
     //static let backgroundColor = UIColor.white
     
     static func getSkillString(id: Int) -> String {

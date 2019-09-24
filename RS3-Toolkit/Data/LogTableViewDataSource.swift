@@ -47,7 +47,7 @@ class LogTableViewDataSource: NSObject, UITableViewDataSource {
             cell.iconView.image = UIImage(named: "icons8-adventure_filled.png")
         } else {
             cell.iconView.image = UIImage(named: "icons8-checklist_filled.png")
-        }
+        } // Add Icon for Songs unlocked
         
         cell.logLabel.text = logText
         

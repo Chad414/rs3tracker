@@ -232,7 +232,7 @@ class CombatVC: UIViewController, UISearchBarDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if Global.darkMode {
+        /*if Global.darkMode {
             self.view.backgroundColor = UIColor.black
             //self.view.backgroundColor = Global.darkBackgroundColor
             
@@ -280,7 +280,8 @@ class CombatVC: UIViewController, UISearchBarDelegate {
             magicLabel.textColor = UIColor.black
             prayerLabel.textColor = UIColor.black
             summoningLabel.textColor = UIColor.black
-        }
+        }*/
+        
         self.tabBarController?.navigationItem.searchController?.searchBar.delegate = self
         
         self.tabBarController?.navigationController?.navigationBar.prefersLargeTitles = false
@@ -371,12 +372,6 @@ class CombatVC: UIViewController, UISearchBarDelegate {
         }
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        if Global.darkMode {
-            return .lightContent
-        } else { return .default }
-    }
-    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         if UIDevice.current.userInterfaceIdiom == .pad {
             updateLayoutFor97iPad()
@@ -450,19 +445,12 @@ class CombatVC: UIViewController, UISearchBarDelegate {
                 print("Failed to Fetch User Data")
                 self.updating = false
                 // Show Alert Here
-                if Global.darkMode {
-                    let errorMessage = "The user either doesn't exist, has been offline for a while, or has privacy enabled."
-                    let ac = DarkAlertController(title: "User Not Found", message: errorMessage, preferredStyle: .alert)
-                    let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-                    ac.addAction(closeAction)
-                    self.present(ac, animated: true, completion: nil)
-                } else {
-                    let errorMessage = "The user either doesn't exist, has been offline for a while, or has privacy enabled."
-                    let ac = UIAlertController(title: "User Not Found", message: errorMessage, preferredStyle: .alert)
-                    let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-                    ac.addAction(closeAction)
-                    self.present(ac, animated: true, completion: nil)
-                }
+                let errorMessage = "The user either doesn't exist, has been offline for a while, or has privacy enabled."
+                let ac = UIAlertController(title: "User Not Found", message: errorMessage, preferredStyle: .alert)
+                let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+                ac.addAction(closeAction)
+                self.present(ac, animated: true, completion: nil)
+                
             }
         }
     }
@@ -521,19 +509,11 @@ class CombatVC: UIViewController, UISearchBarDelegate {
         //profileImage.image = UIImage(named: "chadtek.png")
         updateViewData()
         
-        if Global.darkMode {
-            let errorMessage = "Please check your internet connection."
-            let ac = DarkAlertController(title: "No response from server", message: errorMessage, preferredStyle: .alert)
-            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-            ac.addAction(closeAction)
-            self.present(ac, animated: true, completion: nil)
-        } else {
-            let errorMessage = "Please check your internet connection."
-            let ac = UIAlertController(title: "No response from server", message: errorMessage, preferredStyle: .alert)
-            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-            ac.addAction(closeAction)
-            self.present(ac, animated: true, completion: nil)
-        }
+        let errorMessage = "Please check your internet connection."
+        let ac = UIAlertController(title: "No response from server", message: errorMessage, preferredStyle: .alert)
+        let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+        ac.addAction(closeAction)
+        self.present(ac, animated: true, completion: nil)
     }
     
     func stopLoading() {
@@ -559,19 +539,11 @@ class CombatVC: UIViewController, UISearchBarDelegate {
             searchBar.resignFirstResponder()
             self.tabBarController?.navigationItem.searchController?.isActive = false
             
-            if Global.darkMode {
-                let errorMessage = "Please enter a valid username."
-                let ac = DarkAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
-                let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-                ac.addAction(closeAction)
-                self.present(ac, animated: true, completion: nil)
-            } else {
-                let errorMessage = "Please enter a valid username."
-                let ac = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
-                let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-                ac.addAction(closeAction)
-                self.present(ac, animated: true, completion: nil)
-            }
+            let errorMessage = "Please enter a valid username."
+            let ac = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+            ac.addAction(closeAction)
+            self.present(ac, animated: true, completion: nil)
             
             return
         }

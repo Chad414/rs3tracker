@@ -62,15 +62,10 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if Global.darkMode {
-            self.view.backgroundColor = UIColor.black
-            statsTableView.backgroundColor = Global.darkBackgroundColor
-            statsTableView.separatorColor = Global.darkBackgroundColor
-        } else {
-            self.view.backgroundColor = Global.backgroundColor
-            statsTableView.backgroundColor = Global.backgroundColor
-            statsTableView.separatorColor = Global.backgroundColor
-        }
+        self.view.backgroundColor = Global.backgroundColor
+        statsTableView.backgroundColor = Global.backgroundColor
+        statsTableView.separatorColor = Global.backgroundColor
+    
         
         self.tabBarController?.navigationItem.searchController?.searchBar.delegate = self
         self.tabBarController?.navigationController?.navigationBar.prefersLargeTitles = true
@@ -84,12 +79,6 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
             updateViewData()
         }
         
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        if Global.darkMode {
-            return .lightContent
-        } else { return .default }
     }
     
     func updateUserData() {
@@ -114,19 +103,11 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
                     ac.addAction(closeAction)
                     self.present(ac, animated: true, completion: nil)
                 } else {
-                    if Global.darkMode {
-                        let errorMessage = "The user either doesn't exist, has been offline for a while, or has privacy enabled."
-                        let ac = DarkAlertController(title: "User Not Found", message: errorMessage, preferredStyle: .alert)
-                        let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-                        ac.addAction(closeAction)
-                        self.present(ac, animated: true, completion: nil)
-                    } else {
-                        let errorMessage = "The user either doesn't exist, has been offline for a while, or has privacy enabled."
-                        let ac = UIAlertController(title: "User Not Found", message: errorMessage, preferredStyle: .alert)
-                        let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-                        ac.addAction(closeAction)
-                        self.present(ac, animated: true, completion: nil)
-                    }
+                    let errorMessage = "The user either doesn't exist, has been offline for a while, or has privacy enabled."
+                    let ac = UIAlertController(title: "User Not Found", message: errorMessage, preferredStyle: .alert)
+                    let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+                    ac.addAction(closeAction)
+                    self.present(ac, animated: true, completion: nil)
                 }
             }
         }
@@ -204,19 +185,11 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         print("Error Fetching Data")
         
-        if Global.darkMode {
-            let errorMessage = "Please check your internet connection."
-            let ac = DarkAlertController(title: "No response from server", message: errorMessage, preferredStyle: .alert)
-            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-            ac.addAction(closeAction)
-            self.present(ac, animated: true, completion: nil)
-        } else {
-            let errorMessage = "Please check your internet connection."
-            let ac = UIAlertController(title: "No response from server", message: errorMessage, preferredStyle: .alert)
-            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-            ac.addAction(closeAction)
-            self.present(ac, animated: true, completion: nil)
-        }
+        let errorMessage = "Please check your internet connection."
+        let ac = UIAlertController(title: "No response from server", message: errorMessage, preferredStyle: .alert)
+        let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+        ac.addAction(closeAction)
+        self.present(ac, animated: true, completion: nil)
     }
     
     func stopLoading() {
@@ -242,19 +215,11 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
             searchBar.resignFirstResponder()
             self.tabBarController?.navigationItem.searchController?.isActive = false
             
-            if Global.darkMode {
-                let errorMessage = "Please enter a valid username."
-                let ac = DarkAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
-                let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-                ac.addAction(closeAction)
-                self.present(ac, animated: true, completion: nil)
-            } else {
-                let errorMessage = "Please enter a valid username."
-                let ac = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
-                let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
-                ac.addAction(closeAction)
-                self.present(ac, animated: true, completion: nil)
-            }
+            let errorMessage = "Please enter a valid username."
+            let ac = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+            ac.addAction(closeAction)
+            self.present(ac, animated: true, completion: nil)
             
             return
         }
@@ -287,17 +252,10 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         if indexPath.row == 0 {
             let message = "Rank: \(localUser.rank) \n\n Quests Completed: \(localUser.questscomplete) \n Quests Started: \(localUser.questsstarted) \n Quests Not Started: \(localUser.questsnotstarted)"
             
-            if Global.darkMode {
-                let ac = DarkAlertController(title: "\(localUser.name)", message: message, preferredStyle: .alert)
-                let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: {(alert: UIAlertAction!) in self.showAd()})
-                ac.addAction(closeAction)
-                self.present(ac, animated: true, completion: nil)
-            } else {
-                let ac = UIAlertController(title: "\(localUser.name)", message: message, preferredStyle: .alert)
-                let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: {(alert: UIAlertAction!) in self.showAd()})
-                ac.addAction(closeAction)
-                self.present(ac, animated: true, completion: nil)
-            }
+            let ac = UIAlertController(title: "\(localUser.name)", message: message, preferredStyle: .alert)
+            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: {(alert: UIAlertAction!) in self.showAd()})
+            ac.addAction(closeAction)
+            self.present(ac, animated: true, completion: nil)
         }
         
         let skillID  = indexPath.row - 1
@@ -336,17 +294,11 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         
         let skillInfo = "Level: \(levelString)\nXP: \(formattedXP)\nXP To Level Up: \(xpToLevel)"
         
-        if Global.darkMode {
-            let ac = DarkAlertController(title: "\(Global.getSkillString(id: skillID))", message: skillInfo, preferredStyle: .alert)
-            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: {(alert: UIAlertAction!) in self.showAd()})
-            ac.addAction(closeAction)
-            self.present(ac, animated: true, completion: nil)
-        } else {
-            let ac = UIAlertController(title: "\(Global.getSkillString(id: skillID))", message: skillInfo, preferredStyle: .alert)
-            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: {(alert: UIAlertAction!) in self.showAd()})
-            ac.addAction(closeAction)
-            self.present(ac, animated: true, completion: nil)
-        }
+        let ac = UIAlertController(title: "\(Global.getSkillString(id: skillID))", message: skillInfo, preferredStyle: .alert)
+        let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: {(alert: UIAlertAction!) in self.showAd()})
+        ac.addAction(closeAction)
+        self.present(ac, animated: true, completion: nil)
+        
     }
     
     func showAd() {
