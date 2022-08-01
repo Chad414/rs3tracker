@@ -7,15 +7,12 @@
 //
 
 import UIKit
-import GoogleMobileAds
 
 class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     
     @IBOutlet var statsTableView: UITableView!
 
     @IBOutlet var tapGesture: UITapGestureRecognizer!
-    
-    var interstitial: GADInterstitial!
     
     let activityIndicator = UIActivityIndicatorView()
     var updating: Bool = false {
@@ -47,14 +44,6 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         super.viewDidLoad()
         
         self.modalPresentationStyle = .fullScreen
-        
-        interstitial = GADInterstitial(adUnitID: "ca-app-pub-4468715439448322/3008848820")
-        //interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/1033173712") // Test ID
-        
-        if !Global.adShown {
-            let request = GADRequest()
-            interstitial.load(request)
-        }
         
         statsTableView.dataSource = tableViewDataSource
         statsTableView.delegate = self
@@ -255,7 +244,7 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
             let message = "Rank: \(localUser.rank) \n\n Quests Completed: \(localUser.questscomplete) \n Quests Started: \(localUser.questsstarted) \n Quests Not Started: \(localUser.questsnotstarted)"
             
             let ac = UIAlertController(title: "\(localUser.name)", message: message, preferredStyle: .alert)
-            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: {(alert: UIAlertAction!) in self.showAd()})
+            let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
             ac.addAction(closeAction)
             self.present(ac, animated: true, completion: nil)
         }
@@ -297,23 +286,10 @@ class StatsVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         let skillInfo = "Level: \(levelString)\nXP: \(formattedXP)\nXP To Level Up: \(xpToLevel)"
         
         let ac = UIAlertController(title: "\(Global.getSkillString(id: skillID))", message: skillInfo, preferredStyle: .alert)
-        let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: {(alert: UIAlertAction!) in self.showAd()})
+        let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
         ac.addAction(closeAction)
         self.present(ac, animated: true, completion: nil)
         
-    }
-    
-    func showAd() {
-        if interstitial.isReady && !Global.adShown {
-            self.interstitial.present(fromRootViewController: self)
-            Global.adShown = true
-        } else {
-            if Global.adShown {
-                print("Ad has already been shown")
-            } else {
-                print("Ad wasn't ready")
-            }
-        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

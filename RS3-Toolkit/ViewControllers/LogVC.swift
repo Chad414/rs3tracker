@@ -7,13 +7,10 @@
 //
 
 import UIKit
-import GoogleMobileAds
 
 class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     @IBOutlet var logTableView: UITableView!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
-    
-    var interstitial: GADInterstitial!
     
     let activityIndicator = UIActivityIndicatorView()
     var updating: Bool = false {
@@ -44,14 +41,6 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        interstitial = GADInterstitial(adUnitID: "ca-app-pub-4468715439448322/3008848820")
-        //interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/1033173712") // Test ID
-        
-        if !Global.adShown {
-            let request = GADRequest()
-            interstitial.load(request)
-        }
-        
         if UIDevice.current.userInterfaceIdiom == .pad {
             logTableView.rowHeight = 70.0
         } else {
@@ -80,7 +69,6 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         if Global.cachedUserData != nil {
             LogVC.user = Global.cachedUserData!
             updateViewData()
-            showAd()
         } else {
             updateUserData()
             updating = true
@@ -222,7 +210,6 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         updateUserData()
         updateUserAvatar()
         updating = true
-        showAd()
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
@@ -233,19 +220,6 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         tapGesture.isEnabled = true
         return true
-    }
-    
-    func showAd() {
-        if interstitial.isReady && !Global.adShown {
-            self.interstitial.present(fromRootViewController: self)
-            Global.adShown = true
-        } else {
-            if Global.adShown {
-                print("Ad has already been shown")
-            } else {
-                print("Ad wasn't ready")
-            }
-        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -264,7 +238,7 @@ class LogVC: UIViewController, UITableViewDelegate, UISearchBarDelegate {
         let activityDate = "\(month) \(day), \(year) at \(time)"
         
         let ac = UIAlertController(title: activityDate, message: activityInfo, preferredStyle: .alert)
-        let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: {(alert: UIAlertAction!) in self.showAd()})
+        let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
         ac.addAction(closeAction)
         self.present(ac, animated: true, completion: nil)
     

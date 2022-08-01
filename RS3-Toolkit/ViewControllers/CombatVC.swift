@@ -7,10 +7,8 @@
 //
 
 import UIKit
-import GoogleMobileAds
 
 class CombatVC: UIViewController, UISearchBarDelegate {
-    var interstitial: GADInterstitial!
 
     //@IBOutlet var profileImage: UIImageView!
     
@@ -219,14 +217,6 @@ class CombatVC: UIViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        interstitial = GADInterstitial(adUnitID: "ca-app-pub-4468715439448322/3008848820")
-        //interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/1033173712") // Test ID
-        
-        if !Global.adShown {
-            let request = GADRequest()
-            interstitial.load(request)
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -289,7 +279,6 @@ class CombatVC: UIViewController, UISearchBarDelegate {
         if Global.cachedUserData != nil {
             LogVC.user = Global.cachedUserData!
             updateViewData()
-            showAd()
         } else {
             updateUserData()
             updating = true
@@ -556,7 +545,6 @@ class CombatVC: UIViewController, UISearchBarDelegate {
         updateUserData()
         updateUserAvatar()
         updating = true
-        showAd()
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
@@ -606,18 +594,5 @@ class CombatVC: UIViewController, UISearchBarDelegate {
         let result = product / 4
         
         calculatedCombatLevelLabel.text = "\(Int(result))"
-    }
-    
-    func showAd() {
-        if interstitial.isReady && !Global.adShown {
-            self.interstitial.present(fromRootViewController: self)
-            Global.adShown = true
-        } else {
-            if Global.adShown {
-                print("Ad has already been shown")
-            } else {
-                print("Ad wasn't ready")
-            }
-        }
     }
 }
