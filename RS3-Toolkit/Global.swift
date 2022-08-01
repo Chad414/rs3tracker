@@ -89,6 +89,8 @@ struct Global {
             return "Divination"
         case 26:
             return "Invention"
+        case 27:
+            return "Archaeology"
         default:
             return "Skill Not Found"
         }
