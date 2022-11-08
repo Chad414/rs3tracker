@@ -30,6 +30,12 @@
 		63C0F9B821952AA7005DFA8D /* CustomizableAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C0F9B721952AA7005DFA8D /* CustomizableAlertController.swift */; };
 		63D3AEE0204A378D00EBD07B /* LevelTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D3AEDF204A378D00EBD07B /* LevelTables.swift */; };
 		63DAFF88206450CA00219921 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DAFF87206450CA00219921 /* SettingsVC.swift */; };
+		CB206AAC2898563000588E6E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB206AAB2898563000588E6E /* WidgetKit.framework */; };
+		CB206AAE2898563000588E6E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB206AAD2898563000588E6E /* SwiftUI.framework */; };
+		CB206AB12898563000588E6E /* RS3TrackerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB206AB02898563000588E6E /* RS3TrackerWidget.swift */; };
+		CB206AB32898563100588E6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB206AB22898563100588E6E /* Assets.xcassets */; };
+		CB206AB72898563100588E6E /* RS3TrackerWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CB206AAA2898563000588E6E /* RS3TrackerWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CB9AC1882919912D008FC08F /* PlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9AC1872919912D008FC08F /* PlayerData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +53,28 @@
 			remoteGlobalIDString = 63BDBA132044717500A935CE;
 			remoteInfo = "RS3-Toolkit";
 		};
+		CB206AB52898563100588E6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63BDBA0C2044717500A935CE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CB206AA92898563000588E6E;
+			remoteInfo = RS3TrackerWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CB206AB82898563100588E6E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				CB206AB72898563100588E6E /* RS3TrackerWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		27F9C7C23F127123316AAF1B /* Pods-RS3-Toolkit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RS3-Toolkit.release.xcconfig"; path = "Pods/Target Support Files/Pods-RS3-Toolkit/Pods-RS3-Toolkit.release.xcconfig"; sourceTree = "<group>"; };
@@ -80,6 +107,13 @@
 		63C0F9B721952AA7005DFA8D /* CustomizableAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizableAlertController.swift; sourceTree = "<group>"; };
 		63D3AEDF204A378D00EBD07B /* LevelTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTables.swift; sourceTree = "<group>"; };
 		63DAFF87206450CA00219921 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		CB206AAA2898563000588E6E /* RS3TrackerWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RS3TrackerWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB206AAB2898563000588E6E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		CB206AAD2898563000588E6E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		CB206AB02898563000588E6E /* RS3TrackerWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RS3TrackerWidget.swift; sourceTree = "<group>"; };
+		CB206AB22898563100588E6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CB206AB42898563100588E6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB9AC1872919912D008FC08F /* PlayerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerData.swift; sourceTree = "<group>"; };
 		DA7DE69AEF31FAB6A6B1551E /* Pods_RS3_Toolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RS3_Toolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -106,6 +140,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CB206AA72898563000588E6E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB206AAE2898563000588E6E /* SwiftUI.framework in Frameworks */,
+				CB206AAC2898563000588E6E /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -113,6 +156,8 @@
 			isa = PBXGroup;
 			children = (
 				DA7DE69AEF31FAB6A6B1551E /* Pods_RS3_Toolkit.framework */,
+				CB206AAB2898563000588E6E /* WidgetKit.framework */,
+				CB206AAD2898563000588E6E /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -123,6 +168,7 @@
 				63BDBA162044717500A935CE /* RS3-Toolkit */,
 				63BDBA2B2044717600A935CE /* RS3-ToolkitTests */,
 				63BDBA362044717600A935CE /* RS3-ToolkitUITests */,
+				CB206AAF2898563000588E6E /* RS3TrackerWidget */,
 				63BDBA152044717500A935CE /* Products */,
 				D981472CA69E57B3AC83918A /* Pods */,
 				499CDC7CDF4837B65AD46D7E /* Frameworks */,
@@ -135,6 +181,7 @@
 				63BDBA142044717500A935CE /* RS3-Toolkit.app */,
 				63BDBA282044717600A935CE /* RS3-ToolkitTests.xctest */,
 				63BDBA332044717600A935CE /* RS3-ToolkitUITests.xctest */,
+				CB206AAA2898563000588E6E /* RS3TrackerWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -209,6 +256,17 @@
 			path = Lib;
 			sourceTree = "<group>";
 		};
+		CB206AAF2898563000588E6E /* RS3TrackerWidget */ = {
+			isa = PBXGroup;
+			children = (
+				CB206AB02898563000588E6E /* RS3TrackerWidget.swift */,
+				CB206AB22898563100588E6E /* Assets.xcassets */,
+				CB206AB42898563100588E6E /* Info.plist */,
+				CB9AC1872919912D008FC08F /* PlayerData.swift */,
+			);
+			path = RS3TrackerWidget;
+			sourceTree = "<group>";
+		};
 		D981472CA69E57B3AC83918A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,10 +287,12 @@
 				63BDBA102044717500A935CE /* Sources */,
 				63BDBA112044717500A935CE /* Frameworks */,
 				63BDBA122044717500A935CE /* Resources */,
+				CB206AB82898563100588E6E /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CB206AB62898563100588E6E /* PBXTargetDependency */,
 			);
 			name = "RS3-Toolkit";
 			productName = "RS3-Toolkit";
@@ -275,13 +335,30 @@
 			productReference = 63BDBA332044717600A935CE /* RS3-ToolkitUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		CB206AA92898563000588E6E /* RS3TrackerWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB206ABB2898563100588E6E /* Build configuration list for PBXNativeTarget "RS3TrackerWidgetExtension" */;
+			buildPhases = (
+				CB206AA62898563000588E6E /* Sources */,
+				CB206AA72898563000588E6E /* Frameworks */,
+				CB206AA82898563000588E6E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RS3TrackerWidgetExtension;
+			productName = RS3TrackerWidgetExtension;
+			productReference = CB206AAA2898563000588E6E /* RS3TrackerWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		63BDBA0C2044717500A935CE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1340;
 				ORGANIZATIONNAME = "Chad Hamdan";
 				TargetAttributes = {
@@ -302,6 +379,10 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 63BDBA132044717500A935CE;
 					};
+					CB206AA92898563000588E6E = {
+						CreatedOnToolsVersion = 13.4.1;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 63BDBA0F2044717500A935CE /* Build configuration list for PBXProject "RS3-Toolkit" */;
@@ -320,6 +401,7 @@
 				63BDBA132044717500A935CE /* RS3-Toolkit */,
 				63BDBA272044717600A935CE /* RS3-ToolkitTests */,
 				63BDBA322044717600A935CE /* RS3-ToolkitUITests */,
+				CB206AA92898563000588E6E /* RS3TrackerWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -346,6 +428,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB206AA82898563000588E6E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB206AB32898563100588E6E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +503,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CB206AA62898563000588E6E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB9AC1882919912D008FC08F /* PlayerData.swift in Sources */,
+				CB206AB12898563000588E6E /* RS3TrackerWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -425,6 +524,11 @@
 			isa = PBXTargetDependency;
 			target = 63BDBA132044717500A935CE /* RS3-Toolkit */;
 			targetProxy = 63BDBA342044717600A935CE /* PBXContainerItemProxy */;
+		};
+		CB206AB62898563100588E6E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CB206AA92898563000588E6E /* RS3TrackerWidgetExtension */;
+			targetProxy = CB206AB52898563100588E6E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -565,6 +669,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5E74834C97A235F7DB83175F /* Pods-RS3-Toolkit.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -586,6 +691,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 27F9C7C23F127123316AAF1B /* Pods-RS3-Toolkit.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -669,6 +775,61 @@
 			};
 			name = Release;
 		};
+		CB206AB92898563100588E6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZV5VY53F4X;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RS3TrackerWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = RS3TrackerWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Chad Hamdan. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = chadhamdan.RS3Tracker.RS3TrackerWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CB206ABA2898563100588E6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZV5VY53F4X;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RS3TrackerWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = RS3TrackerWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Chad Hamdan. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = chadhamdan.RS3Tracker.RS3TrackerWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -704,6 +865,15 @@
 			buildConfigurations = (
 				63BDBA432044717600A935CE /* Debug */,
 				63BDBA442044717600A935CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB206ABB2898563100588E6E /* Build configuration list for PBXNativeTarget "RS3TrackerWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB206AB92898563100588E6E /* Debug */,
+				CB206ABA2898563100588E6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

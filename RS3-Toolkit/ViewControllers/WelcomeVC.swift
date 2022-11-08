@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WidgetKit
 
 class WelcomeVC: UIViewController, UITextFieldDelegate {
     
@@ -36,8 +37,19 @@ class WelcomeVC: UIViewController, UITextFieldDelegate {
             if userDataFound {
                 Global.cachedUserData = nil
                 Global.cachedUserAvatar = nil
+                writeUsernameToFile()
                 UserDefaults.standard.set(username, forKey: "username")
                 performSegue(withIdentifier: "continue", sender: self)
+            }
+        }
+    }
+
+    func writeUsernameToFile() {
+        if let fileURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "rs3tracker")?.appendingPathComponent("username") {
+            try? username.write(to: fileURL, atomically: false, encoding: .utf8)
+
+            if #available(iOS 14.0, *) {
+                WidgetCenter.shared.reloadAllTimelines()
             }
         }
     }
